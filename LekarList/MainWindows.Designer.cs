@@ -1,6 +1,6 @@
 ﻿namespace LekarList
 {
-    partial class Form1
+    partial class MainWindows
     {
         /// <summary>
         /// Обязательная переменная конструктора.
