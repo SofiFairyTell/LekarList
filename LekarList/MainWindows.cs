@@ -20,15 +20,24 @@ namespace LekarList
   
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
-            LekarListClass lekarList = new LekarListClass();
+            string ANMG;
+            string THSG;
+            string PHSG;
+            string CHSG;
+            string CHST;
+            LekarListClass lekarList = new LekarListClass("A", "01", "A", "A", "01");
+            LekarListClass lekarList2 = new LekarListClass("A", "01", "A", "B", "02");
             List<LekarListClass> LKLIST = new List<LekarListClass>();
-            // Пример добавления узлов дерева, объект treeView1 создан в редакторе форм
-            treeView1.Nodes.Add("Parent");
-            treeView1.Nodes[0].Nodes.Add("Child 1");
-            treeView1.Nodes[0].Nodes.Add("Child 2");
-            //textBox1.Text = 
+
             LKLIST.Add(lekarList);
-            treeView1.Nodes.Add(LKLIST[0].ToString());
+            LKLIST.Add(lekarList2);
+            treeView1.Nodes.Add(LKLIST[0].AnatomicalMainGroup);
+            treeView1.Nodes[0].Nodes.Add(LKLIST[0].TherapeuticSG);
+            treeView1.Nodes[0].Nodes[0].Nodes.Add(LKLIST[0].PharmacologicalSG);
+            treeView1.Nodes[0].Nodes[0].Nodes[0].Nodes.Add(LKLIST[0].ChemicalSG);
+            treeView1.Nodes[0].Nodes[0].Nodes[0].Nodes[0].Nodes.Add(LKLIST[0].ChemicalSubTance);
+            treeView1.Nodes[0].Nodes[0].Nodes[0].Nodes[0].Nodes.Add(LKLIST[1].ChemicalSubTance);
+
 
         }
 

@@ -12,21 +12,30 @@ namespace LekarClass
 {
     public class LekarListClass
     {
-        string FirstCode;
-        string SecondCode;
-        string ThirdCode;
-        string FourthCode;
-        string NameProblem;
+        public string AnatomicalMainGroup; //GOURPS: A,B,C,D,G,H,J,L,M,N,P,R,S,V
+        public string TherapeuticSG;
+        public string PharmacologicalSG;
+        public string ChemicalSG;
+        public string ChemicalSubTance;
 
         #region Конструкторы
         public LekarListClass()
-            {
-                FirstCode = "A Пищеварительный тракт и обмен веществ";
-                SecondCode = "A01 Стоматологические препараты";
-                ThirdCode = "A01A Стоматологические препараты";
-                NameProblem = "Стоматологические препараты";
-            }
+        {
+            AnatomicalMainGroup = " "; 
+            TherapeuticSG = " ";
+            PharmacologicalSG = " ";
+            ChemicalSG = " ";
+            ChemicalSubTance = " ";
+        }
+        public LekarListClass(string ANMG, string THSG, string PHSG, string CHSG, string CHST)
+        {
+            AnatomicalMainGroup = ANMG;
+            TherapeuticSG = ANMG+THSG;
+            PharmacologicalSG = ANMG + THSG+PHSG;
+            ChemicalSG = ANMG + THSG + PHSG+ CHSG;
+            ChemicalSubTance = ANMG + THSG + PHSG + CHSG+CHST;
 
+        }
         #endregion
         public void Show()
         {
@@ -36,7 +45,7 @@ namespace LekarClass
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append($"{this.NameProblem},{this.FirstCode}");
+            sb.Append($"{this.AnatomicalMainGroup}{this.TherapeuticSG}{this.PharmacologicalSG}{this.ChemicalSG}{this.ChemicalSubTance}");
             return sb.ToString();
         }
     }
