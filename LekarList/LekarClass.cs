@@ -33,14 +33,14 @@ namespace LekarClass
             Level = 0;
             Index = 0;
         }
-        //Анатомическая группа - уровень 0
+        //Анатомическая группа - level 0
         public LekarListClass(string ANMG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
             Level = level;
             Index = index;
         }
-        //Терапевтическая группа - уровень 1
+        //Терапевтическая группа - level 1
         public LekarListClass(string ANMG, string THSG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
@@ -49,7 +49,7 @@ namespace LekarClass
             Level = level;
             Index = index;
         }
-        //Фармакологическая группа - уровень 2
+        //Фармакологическая группа - level 2
         public LekarListClass(string ANMG, string THSG, string PHSG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
@@ -59,7 +59,7 @@ namespace LekarClass
             Level = level;
             Index = index;
         }
-        //Химическая группа - уровень 3
+        //Химическая группа - level 3
         public LekarListClass(string ANMG, string THSG, string PHSG, string CHSG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
@@ -70,7 +70,7 @@ namespace LekarClass
             Level = level;
             Index = index;
         }
-        //Действующего вещества группа - уровень 4
+        //Действующего вещества группа -  level 4
         public LekarListClass(string ANMG, string THSG, string PHSG, string CHSG, string CHST, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
