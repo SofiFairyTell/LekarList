@@ -89,6 +89,11 @@ namespace LekarList
             // Вывод окна с текстом данного узла.
             MessageBox.Show(string.Format("You selected: {0}", node.Text));
         }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
     }
  }
 
