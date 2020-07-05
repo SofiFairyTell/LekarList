@@ -17,7 +17,7 @@ namespace LekarList
         {
             InitializeComponent();
         }
-  
+        List<LekarListClass> LKLIST;
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
             string ANMG;
@@ -25,19 +25,59 @@ namespace LekarList
             string PHSG;
             string CHSG;
             string CHST;
-            LekarListClass lekarList = new LekarListClass("A", "01", "A", "A", "01");
-            LekarListClass lekarList2 = new LekarListClass("A", "01", "A", "B", "02");
-            List<LekarListClass> LKLIST = new List<LekarListClass>();
+            LekarListClass lekarList0 = new LekarListClass("A", 0,0);
+            LekarListClass lekarList1 = new LekarListClass("A", "01", 1,1);
+            LekarListClass lekarList2 = new LekarListClass("A", "01", "A", 2,2);
+            LekarListClass lekarListB0 = new LekarListClass("B", 0,3);
+            LekarListClass lekarListB1 = new LekarListClass("B", "01", 1,4);
+            LekarListClass lekarListB2 = new LekarListClass("B", "01", "A", 2,5);
+            LKLIST = new List<LekarListClass>();
 
-            LKLIST.Add(lekarList);
+            LKLIST.Add(lekarList0);
+            LKLIST.Add(lekarList1);
             LKLIST.Add(lekarList2);
-            treeView1.Nodes.Add(LKLIST[0].AnatomicalMainGroup);
-            treeView1.Nodes[0].Nodes.Add(LKLIST[0].TherapeuticSG);
-            treeView1.Nodes[0].Nodes[0].Nodes.Add(LKLIST[0].PharmacologicalSG);
-            treeView1.Nodes[0].Nodes[0].Nodes[0].Nodes.Add(LKLIST[0].ChemicalSG);
-            treeView1.Nodes[0].Nodes[0].Nodes[0].Nodes[0].Nodes.Add(LKLIST[0].ChemicalSubTance);
-            treeView1.Nodes[0].Nodes[0].Nodes[0].Nodes[0].Nodes.Add(LKLIST[1].ChemicalSubTance);
+            LKLIST.Add(lekarListB0);
+            LKLIST.Add(lekarListB1);
+            LKLIST.Add(lekarListB2);
 
+            ParentNodes();
+
+        }
+        public void ParentNodes()
+        {
+            int i;
+           
+            treeView1.Nodes.Clear();
+            treeView1.BeginUpdate();
+            for (i=0;i<LKLIST.Count();i++)
+            {
+                if (LKLIST[i].Level ==0)
+                {
+                    treeView1.Nodes.Add(LKLIST[i].ShowText,LKLIST[i].ShowText);
+                    treeView1.Nodes[treeView1.Nodes.Count - 1].Tag = LKLIST[i];
+                }
+            }
+            for(i=0;i<treeView1.Nodes.Count;i++)
+            {
+                ChildNodes(treeView1.Nodes[i]);
+            }
+            treeView1.EndUpdate();
+            treeView1.Refresh();
+        }
+
+        private void ChildNodes(TreeNode treeNode)
+        {
+            LekarListClass parentRed = (LekarListClass)treeNode.Tag;
+            for (int i = parentRed.Index+1;i<LKLIST.Count;i++)
+            {
+                if(LKLIST[i].Level == (parentRed.Level+1))
+                {
+                    treeNode.Nodes.Add(LKLIST[i].ShowText, LKLIST[i].ShowText);
+                    treeNode.Nodes[treeNode.Nodes.Count - 1].Tag = LKLIST[i];
+                    ChildNodes(treeNode.Nodes[treeNode.Nodes.Count - 1]);
+                }
+                if (LKLIST[i].Level <= treeNode.Level) break;
+            }
 
         }
 
