@@ -93,8 +93,16 @@ namespace LekarClass
         public void StringParcer(string Code)
         {
             string[] Parse = Code.Split('-');
-
-        }
+            AnatomicalMainGroup = Parse[0];
+            TherapeuticSG = Parse[1];
+            PharmacologicalSG = Parse[2];
+            ChemicalSG = Parse[3];
+            ChemicalSubTance = Parse[4];
+            if ((AnatomicalMainGroup == " ") || (PharmacologicalSG == " ") || (ChemicalSG == " "))
+            {
+                MessageBox.Show("!");
+            }
+    }
         public override string ToString()
         {
             var sb = new StringBuilder();

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 using LekarClass;
 
 namespace LekarList
@@ -18,6 +19,7 @@ namespace LekarList
             InitializeComponent();
         }
         List<LekarListClass> LKLIST;
+        
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
             
@@ -47,6 +49,8 @@ namespace LekarList
             ParentNodes();
 
         }
+        #region TREENODE
+
         public void ParentNodes()
         {
             int i;
@@ -93,6 +97,7 @@ namespace LekarList
             // Вывод окна с текстом данного узла.
             MessageBox.Show(string.Format("You selected: {0}", node.Text));
         }
+        #endregion
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -111,15 +116,23 @@ namespace LekarList
             for (int i = 0; i < LBdata.Items.Count; i++)
             {
                 line = LBdata.Items[i].ToString();
-                if (line.Substring(0,1) == " ")
-                {
-                    MessageBox.Show("!");
-                }
-                else
+                Regex regex = new Regex("[A-Z]{1}$");
+                Match match = regex.Match(line);
+                while (match.Success)
                 {
                     ANMG = line.Substring(0, 1);
                     LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                    match = match.NextMatch();
                 }
+                //if (line.Substring(0,1) == " ")
+                //{
+                //    MessageBox.Show("!");
+                //}
+                //else
+                //{
+                //    ANMG = line.Substring(0, 1);
+                //    LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                //}
                 //LKLIST.Add(new LekarListClass());
             }
             ParentNodes();

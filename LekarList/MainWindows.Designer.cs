@@ -59,7 +59,10 @@
             this.LBdata.FormattingEnabled = true;
             this.LBdata.ItemHeight = 16;
             this.LBdata.Items.AddRange(new object[] {
-            "A"});
+            "B",
+            "A",
+            "C01",
+            "D"});
             this.LBdata.Location = new System.Drawing.Point(365, 24);
             this.LBdata.Name = "LBdata";
             this.LBdata.Size = new System.Drawing.Size(337, 84);
