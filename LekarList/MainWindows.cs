@@ -256,6 +256,32 @@ namespace LekarList
         {
 
         }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            string line;
+            string ANMG;
+            string THSG;
+            string PHSG;
+            string CHSG;
+            string CHST;
+            LKLIST = new List<LekarListClass>();
+            for (int i = 0; i < LBdata.Items.Count; i++)
+            {
+                line = LBdata.Items[i].ToString();
+                if (line.Substring(0,1) == " ")
+                {
+                    MessageBox.Show("!");
+                }
+                else
+                {
+                    ANMG = line.Substring(0, 1);
+                    LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                }
+                //LKLIST.Add(new LekarListClass());
+            }
+            ParentNodes();
+        }
     }
  }
 
