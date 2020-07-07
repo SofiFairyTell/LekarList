@@ -23,20 +23,21 @@ namespace LekarClass
 
         #region Конструкторы
         //По классификации ATC уровней 5. Здесь считаются: 0,1,2,3,4;
-        public LekarListClass()
-        {
-            AnatomicalMainGroup = " "; 
-            TherapeuticSG = " ";
-            PharmacologicalSG = " ";
-            ChemicalSG = " ";
-            ChemicalSubTance = " ";
-            Level = 0;
-            Index = 0;
-        }
+        //public LekarListClass()
+        //{
+        //    AnatomicalMainGroup = " "; 
+        //    TherapeuticSG = " ";
+        //    PharmacologicalSG = " ";
+        //    ChemicalSG = " ";
+        //    ChemicalSubTance = " ";
+        //    Level = 0;
+        //    Index = 0;
+        //}
         //Анатомическая группа - уровень 0
         public LekarListClass(string ANMG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
+            ShowText = AnatomicalMainGroup;
             Level = level;
             Index = index;
         }
@@ -89,7 +90,11 @@ namespace LekarClass
         {
             //Name = LekarListClass
         }
+        public void StringParcer(string Code)
+        {
+            string[] Parse = Code.Split('-');
 
+        }
         public override string ToString()
         {
             var sb = new StringBuilder();
