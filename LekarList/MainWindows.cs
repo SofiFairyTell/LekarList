@@ -116,14 +116,94 @@ namespace LekarList
             for (int i = 0; i < LBdata.Items.Count; i++)
             {
                 line = LBdata.Items[i].ToString();
-                Regex regex = new Regex("[A-Z]{1}$");
+
+                Regex regex = new Regex("^[A-Z]{1}$");
+                Regex regex2 = new Regex("^[A-Z]{1}[0-9]{2}$");
+                Regex regex3 = new Regex("^[A-Z]{1}[0-9]{2}[A-Z]{1}$");
+                Regex regex4 = new Regex("^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}$");
+                Regex regex5 = new Regex("^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2}$");
+
                 Match match = regex.Match(line);
-                while (match.Success)
+                Match match2 = regex2.Match(line);
+              //  if (match||match2)
+                
+                if (match.Success)
                 {
                     ANMG = line.Substring(0, 1);
                     LKLIST.Add(new LekarListClass(ANMG, 0, i));
                     match = match.NextMatch();
                 }
+                else
+                {
+                    match = regex2.Match(line);
+                    if (match.Success)
+                    {
+                        ANMG = line.Substring(0, 1);
+                        THSG = line.Substring(1, 2);
+                        LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                        LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
+                        match = match.NextMatch();
+                    }
+                    else
+                    {
+                        match = regex3.Match(line);
+                        if (match.Success)
+                        {
+                            ANMG = line.Substring(0, 1);
+                            THSG = line.Substring(1, 2);
+                            PHSG = line.Substring(3, 1);
+
+                            LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                            LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
+                            LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, 2, i));
+                            match = match.NextMatch();
+                        }
+                        else
+                        {
+                            match = regex4.Match(line);
+                            if (match.Success)
+                            {
+                                ANMG = line.Substring(0, 1);
+                                THSG = line.Substring(1, 2);
+                                PHSG = line.Substring(3, 1);
+                                CHSG = line.Substring(4, 1);
+
+                                LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                                LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
+                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, 2, i));
+                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, 3, i));
+
+                                match = match.NextMatch();
+                            }
+                            else
+                            {
+                                match = regex5.Match(line);
+                                if (match.Success)
+                                {
+                                    ANMG = line.Substring(0, 1);
+                                    THSG = line.Substring(1, 2);
+                                    PHSG = line.Substring(3, 1);
+                                    CHSG = line.Substring(4, 1);
+                                    CHST = line.Substring(5, 2);
+
+                                    LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                                    LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
+                                    LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, 2, i));
+                                    LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, 3, i));
+                                    LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, CHST, 4, i));
+
+                                    match = match.NextMatch();
+                                }
+                            }
+                        }
+                    }
+                }
+                //while (match.Success)
+                //{
+                //    ANMG = line.Substring(0, 1);
+                //    LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                //    match = match.NextMatch();
+                //}
                 //if (line.Substring(0,1) == " ")
                 //{
                 //    MessageBox.Show("!");

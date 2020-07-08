@@ -62,7 +62,9 @@
             "B",
             "A",
             "C01",
-            "D"});
+            "D01A",
+            "D01AA",
+            "D01AA01"});
             this.LBdata.Location = new System.Drawing.Point(365, 24);
             this.LBdata.Name = "LBdata";
             this.LBdata.Size = new System.Drawing.Size(337, 84);
