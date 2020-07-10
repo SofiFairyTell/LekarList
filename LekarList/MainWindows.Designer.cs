@@ -46,7 +46,7 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(551, 130);
+            this.AddButton.Location = new System.Drawing.Point(585, 217);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(117, 34);
             this.AddButton.TabIndex = 2;
@@ -59,15 +59,17 @@
             this.LBdata.FormattingEnabled = true;
             this.LBdata.ItemHeight = 16;
             this.LBdata.Items.AddRange(new object[] {
-            "B",
             "A",
             "C01",
             "D01A",
             "D01AA",
-            "D01AA01"});
+            "D01AA01",
+            "01",
+            "A0111",
+            "AA0909"});
             this.LBdata.Location = new System.Drawing.Point(365, 24);
             this.LBdata.Name = "LBdata";
-            this.LBdata.Size = new System.Drawing.Size(337, 84);
+            this.LBdata.Size = new System.Drawing.Size(337, 180);
             this.LBdata.TabIndex = 3;
             // 
             // MainWindows

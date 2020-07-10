@@ -117,24 +117,29 @@ namespace LekarList
             {
                 line = LBdata.Items[i].ToString();
 
-                Regex regex = new Regex("^[A-Z]{1}$");
-                Regex regex2 = new Regex("^[A-Z]{1}[0-9]{2}$");
-                Regex regex3 = new Regex("^[A-Z]{1}[0-9]{2}[A-Z]{1}$");
-                Regex regex4 = new Regex("^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}$");
-                Regex regex5 = new Regex("^([A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2}$)|(^[A-Z]{1}$)");
-
+                Regex regex = new Regex("(^[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2}$)");
                 Match match = regex.Match(line);
-                Match match2 = regex2.Match(line);
-                //  if (match||match2)
-                //   if(regex5.IsMatch(line,0) || regex5.IsMatch(line, 1))
-                Match match3 = regex5.Match(line);
-             if (match3.Success)
+             if (match.Success)
                 {
                     ANMG = line.Substring(0, 1);
-                   // THSG = line.Substring(1, 2);
-                    LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                   // LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
+                    //THSG = line.Substring(1, 2);
+                    LekarListClass result = LKLIST.Find(x => x.ShowText.Contains(ANMG));
+                    if (result == null)
+                    {
+                        LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                        //LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
+                    }
+
+                    //LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                    // LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
                 }
+             else
+                {
+                    ANMG = "ОШИБКА";
+                    
+                    LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                }
+
 
                 //if (match.Success)
                 //{
