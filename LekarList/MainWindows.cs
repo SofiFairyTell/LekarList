@@ -141,78 +141,8 @@ namespace LekarList
                 }
 
 
-                //if (match.Success)
-                //{
-                //    ANMG = line.Substring(0, 1);
-                //    LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                //    match = match.NextMatch();
-                //}
-                //else
-                //{
-                //    match = regex2.Match(line);
-                //    if (match.Success)
-                //    {
-                //        ANMG = line.Substring(0, 1);
-                //        THSG = line.Substring(1, 2);
-                //        LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                //        LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
-                //        match = match.NextMatch();
-                //    }
-                //    else
-                //    {
-                //        match = regex3.Match(line);
-                //        if (match.Success)
-                //        {
-                //            ANMG = line.Substring(0, 1);
-                //            THSG = line.Substring(1, 2);
-                //            PHSG = line.Substring(3, 1);
-
-                //            LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                //            LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
-                //            LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, 2, i));
-                //            match = match.NextMatch();
-                //        }
-                //        else
-                //        {
-                //            match = regex4.Match(line);
-                //            if (match.Success)
-                //            {
-                //                ANMG = line.Substring(0, 1);
-                //                THSG = line.Substring(1, 2);
-                //                PHSG = line.Substring(3, 1);
-                //                CHSG = line.Substring(4, 1);
-
-                //                LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                //                LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
-                //                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, 2, i));
-                //                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, 3, i));
-
-                //                match = match.NextMatch();
-                //            }
-                //            else
-                //            {
-                //                match = regex5.Match(line);
-                //                if (match.Success)
-                //                {
-                //                    ANMG = line.Substring(0, 1);
-                //                    THSG = line.Substring(1, 2);
-                //                    PHSG = line.Substring(3, 1);
-                //                    CHSG = line.Substring(4, 1);
-                //                    CHST = line.Substring(5, 2);
-
-                //                    LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                //                    LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
-                //                    LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, 2, i));
-                //                    LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, 3, i));
-                //                    LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, CHST, 4, i));
-
-                //                    match = match.NextMatch();
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
-
+                
+                //    
                 //while (match.Success)
                 //{
                 //    ANMG = line.Substring(0, 1);
