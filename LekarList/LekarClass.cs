@@ -45,8 +45,8 @@ namespace LekarClass
         public LekarListClass(string ANMG, string THSG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
-            TherapeuticSG = ANMG + THSG;
-            ShowText = TherapeuticSG;
+            TherapeuticSG = THSG;
+            ShowText = AnatomicalMainGroup+TherapeuticSG;
             Level = level;
             Index = index;
         }
@@ -54,9 +54,9 @@ namespace LekarClass
         public LekarListClass(string ANMG, string THSG, string PHSG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
-            TherapeuticSG = ANMG + THSG;
-            PharmacologicalSG = ANMG + THSG + PHSG;
-            ShowText = PharmacologicalSG;
+            TherapeuticSG = THSG;
+            PharmacologicalSG = PHSG;
+            ShowText = AnatomicalMainGroup + TherapeuticSG+ PharmacologicalSG;
             Level = level;
             Index = index;
         }
@@ -64,10 +64,10 @@ namespace LekarClass
         public LekarListClass(string ANMG, string THSG, string PHSG, string CHSG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
-            TherapeuticSG = ANMG + THSG;
-            PharmacologicalSG = ANMG + THSG + PHSG;
-            ChemicalSG = ANMG + THSG + PHSG + CHSG;
-            ShowText = ChemicalSG;
+            TherapeuticSG = THSG;
+            PharmacologicalSG = PHSG;
+            ChemicalSG = CHSG;
+            ShowText = AnatomicalMainGroup + TherapeuticSG + PharmacologicalSG + ChemicalSG;
             Level = level;
             Index = index;
         }
@@ -75,11 +75,11 @@ namespace LekarClass
         public LekarListClass(string ANMG, string THSG, string PHSG, string CHSG, string CHST, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
-            TherapeuticSG = ANMG + THSG;
-            PharmacologicalSG = ANMG + THSG + PHSG;
-            ChemicalSG = ANMG + THSG + PHSG + CHSG;
-            ChemicalSubTance = ANMG + THSG + PHSG + CHSG + CHST;
-            ShowText = ChemicalSubTance;
+            TherapeuticSG =  THSG;
+            PharmacologicalSG =  PHSG;
+            ChemicalSG = CHSG;
+            ChemicalSubTance =  CHST;
+            ShowText = AnatomicalMainGroup + TherapeuticSG + PharmacologicalSG + ChemicalSG + ChemicalSubTance;
             Level = level;
             Index = index;
         }

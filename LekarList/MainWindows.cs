@@ -104,8 +104,11 @@ namespace LekarList
 
         }
 
+        
+
         private void AddButton_Click(object sender, EventArgs e)
         {
+            int level;
             string line;
             string ANMG;
             string THSG;
@@ -117,18 +120,51 @@ namespace LekarList
             {
                 line = LBdata.Items[i].ToString();
 
-                Regex regex = new Regex("(^[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2}$)");
+                Regex regex = new Regex("(^[0-4]{1}[A-Z]{1}$)|(^[0-4]{1}[A-Z]{1}[0-9]{2}$)|(^[0-4]{1}[A-Z]{1}[0-9]{2}[A-Z]{1}$)|(^[0-4]{1}[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}$)|(^[0-4]{1}[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2}$)");
                 Match match = regex.Match(line);
              if (match.Success)
                 {
-                    ANMG = line.Substring(0, 1);
-                    //THSG = line.Substring(1, 2);
-                    LekarListClass result = LKLIST.Find(x => x.ShowText.Contains(ANMG));
-                    if (result == null)
+                    level = Int32.Parse(line.Substring(0, 1));
+                    switch (line.Length)
                     {
-                        LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                        //LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
+                        case 2:
+                            ANMG = line.Substring(1, 1);
+                            LKLIST.Add(new LekarListClass(ANMG, level, i));
+                            break;
+                        case 4:
+                            ANMG = line.Substring(1, 1);
+                            THSG = line.Substring(2, 2);
+                            LKLIST.Add(new LekarListClass(ANMG,THSG, level, i));
+                            break;
+                        case 5:
+                            ANMG = line.Substring(1, 1);
+                            THSG = line.Substring(2, 2);
+                            PHSG = line.Substring(4, 1);
+                            LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, level, i));
+                            break;
+                        case 6:
+                            ANMG = line.Substring(1, 1);
+                            THSG = line.Substring(2, 2);
+                            PHSG = line.Substring(4, 1);
+                            CHSG = line.Substring(5, 1);
+                            LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, level, i));
+                            break;
+                        case 8:
+                            ANMG = line.Substring(1, 1);
+                            THSG = line.Substring(2, 2);
+                            PHSG = line.Substring(4, 1);
+                            CHSG = line.Substring(5, 1);
+                            CHST = line.Substring(6, 2);
+                            LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, CHST, level, i));
+                            break;
                     }
+
+                    //LekarListClass result = LKLIST.Find(x => x.ShowText.Contains(ANMG));
+                    //if (result == null)
+                    //{
+                    //    LKLIST.Add(new LekarListClass(ANMG, level, i));
+                    //    //LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
+                    //}
 
                     //LKLIST.Add(new LekarListClass(ANMG, 0, i));
                     // LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
@@ -161,6 +197,11 @@ namespace LekarList
                 //LKLIST.Add(new LekarListClass());
             }
             ParentNodes();
+        }
+
+        private void LBdata_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
  }
