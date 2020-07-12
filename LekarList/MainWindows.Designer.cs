@@ -59,18 +59,18 @@
             this.LBdata.FormattingEnabled = true;
             this.LBdata.ItemHeight = 16;
             this.LBdata.Items.AddRange(new object[] {
-            "A",
-            "C01",
-            "D01A",
-            "D01AA",
-            "D01AA01",
-            "01",
-            "A0111",
-            "AA0909"});
+            "0A",
+            "0B",
+            "0D",
+            "1D01",
+            "2D01A",
+            "3D01AA",
+            "1C01"});
             this.LBdata.Location = new System.Drawing.Point(365, 24);
             this.LBdata.Name = "LBdata";
             this.LBdata.Size = new System.Drawing.Size(337, 180);
             this.LBdata.TabIndex = 3;
+            this.LBdata.SelectedIndexChanged += new System.EventHandler(this.LBdata_SelectedIndexChanged);
             // 
             // MainWindows
             // 
