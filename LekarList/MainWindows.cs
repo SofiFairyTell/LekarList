@@ -119,12 +119,15 @@ namespace LekarList
             for (int i = 0; i < LBdata.Items.Count; i++)
             {
                 line = LBdata.Items[i].ToString();
-
-                Regex regex = new Regex("(^[0-4]{1}[A-Z]{1}$)|(^[0-4]{1}[A-Z]{1}[0-9]{2}$)|(^[0-4]{1}[A-Z]{1}[0-9]{2}[A-Z]{1}$)|(^[0-4]{1}[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}$)|(^[0-4]{1}[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2}$)");
+                
+                Regex regex = new Regex("(^[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2},[0-4]{1}$)");
+                //string pattern = "(^[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2},[0-4]{1}$)";
                 Match match = regex.Match(line);
              if (match.Success)
                 {
+                   // string Line = line.Split(",");
                     level = Int32.Parse(line.Substring(0, 1));
+                    string[] elements = System.Text.RegularExpressions.Regex.Split(line, pattern);
                     switch (line.Length)
                     {
                         case 2:
@@ -202,6 +205,11 @@ namespace LekarList
         private void LBdata_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void SortButton_Click(object sender, EventArgs e)
+        {
+            LBdata.Sorted = true;
         }
     }
  }
