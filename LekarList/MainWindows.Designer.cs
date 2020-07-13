@@ -31,6 +31,7 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.AddButton = new System.Windows.Forms.Button();
             this.LBdata = new System.Windows.Forms.ListBox();
+            this.SortButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // treeView1
@@ -59,12 +60,14 @@
             this.LBdata.FormattingEnabled = true;
             this.LBdata.ItemHeight = 16;
             this.LBdata.Items.AddRange(new object[] {
-            "0A",
-            "0B",
-            "0D",
-            "1D01",
-            "2D01A",
-            "3D01AA",
+            "A,0",
+            "B,0",
+            "D,0",
+            "D01,1",
+            "D01A,2",
+            "C,0",
+            "D01AA,3",
+            "C01,1",
             "1C01"});
             this.LBdata.Location = new System.Drawing.Point(365, 24);
             this.LBdata.Name = "LBdata";
@@ -72,11 +75,22 @@
             this.LBdata.TabIndex = 3;
             this.LBdata.SelectedIndexChanged += new System.EventHandler(this.LBdata_SelectedIndexChanged);
             // 
+            // SortButton
+            // 
+            this.SortButton.Location = new System.Drawing.Point(442, 217);
+            this.SortButton.Name = "SortButton";
+            this.SortButton.Size = new System.Drawing.Size(102, 34);
+            this.SortButton.TabIndex = 4;
+            this.SortButton.Text = "Сортировка";
+            this.SortButton.UseVisualStyleBackColor = true;
+            this.SortButton.Click += new System.EventHandler(this.SortButton_Click);
+            // 
             // MainWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SortButton);
             this.Controls.Add(this.LBdata);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.treeView1);
@@ -92,6 +106,7 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.ListBox LBdata;
+        private System.Windows.Forms.Button SortButton;
     }
 }
 
