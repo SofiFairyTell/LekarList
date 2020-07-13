@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 using LekarClass;
 
 namespace LekarList
@@ -18,6 +19,7 @@ namespace LekarList
             InitializeComponent();
         }
         List<LekarListClass> LKLIST;
+        
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
             
@@ -47,6 +49,8 @@ namespace LekarList
             ParentNodes();
 
         }
+        #region TREENODE
+
         public void ParentNodes()
         {
             int i;
@@ -93,14 +97,18 @@ namespace LekarList
             // Вывод окна с текстом данного узла.
             MessageBox.Show(string.Format("You selected: {0}", node.Text));
         }
+        #endregion
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
         }
 
+        
+
         private void AddButton_Click(object sender, EventArgs e)
         {
+            int level;
             string line;
             string ANMG;
             string THSG;
@@ -111,18 +119,97 @@ namespace LekarList
             for (int i = 0; i < LBdata.Items.Count; i++)
             {
                 line = LBdata.Items[i].ToString();
-                if (line.Substring(0,1) == " ")
+                
+                Regex regex = new Regex("(^[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2},[0-4]{1}$)");
+                //string pattern = "(^[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2},[0-4]{1}$)";
+                Match match = regex.Match(line);
+             if (match.Success)
                 {
-                    MessageBox.Show("!");
+                   // string Line = line.Split(",");
+                    level = Int32.Parse(line.Substring(0, 1));
+                    string[] elements = System.Text.RegularExpressions.Regex.Split(line, pattern);
+                    switch (line.Length)
+                    {
+                        case 2:
+                            ANMG = line.Substring(1, 1);
+                            LKLIST.Add(new LekarListClass(ANMG, level, i));
+                            break;
+                        case 4:
+                            ANMG = line.Substring(1, 1);
+                            THSG = line.Substring(2, 2);
+                            LKLIST.Add(new LekarListClass(ANMG,THSG, level, i));
+                            break;
+                        case 5:
+                            ANMG = line.Substring(1, 1);
+                            THSG = line.Substring(2, 2);
+                            PHSG = line.Substring(4, 1);
+                            LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, level, i));
+                            break;
+                        case 6:
+                            ANMG = line.Substring(1, 1);
+                            THSG = line.Substring(2, 2);
+                            PHSG = line.Substring(4, 1);
+                            CHSG = line.Substring(5, 1);
+                            LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, level, i));
+                            break;
+                        case 8:
+                            ANMG = line.Substring(1, 1);
+                            THSG = line.Substring(2, 2);
+                            PHSG = line.Substring(4, 1);
+                            CHSG = line.Substring(5, 1);
+                            CHST = line.Substring(6, 2);
+                            LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, CHST, level, i));
+                            break;
+                    }
+
+                    //LekarListClass result = LKLIST.Find(x => x.ShowText.Contains(ANMG));
+                    //if (result == null)
+                    //{
+                    //    LKLIST.Add(new LekarListClass(ANMG, level, i));
+                    //    //LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
+                    //}
+
+                    //LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                    // LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
                 }
-                else
+             else
                 {
-                    ANMG = line.Substring(0, 1);
+                    ANMG = "ОШИБКА";
+                    
                     LKLIST.Add(new LekarListClass(ANMG, 0, i));
                 }
+
+
+                
+                //    
+                //while (match.Success)
+                //{
+                //    ANMG = line.Substring(0, 1);
+                //    LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                //    match = match.NextMatch();
+                //}
+                //if (line.Substring(0,1) == " ")
+                //{
+                //    MessageBox.Show("!");
+                //}
+                //else
+                //{
+                //    ANMG = line.Substring(0, 1);
+                //    LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                //}
                 //LKLIST.Add(new LekarListClass());
             }
             ParentNodes();
+        }
+
+        private void LBdata_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SortButton_Click(object sender, EventArgs e)
+        {
+            LBdata.Sorted = true;
         }
     }
  }
