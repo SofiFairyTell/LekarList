@@ -104,11 +104,9 @@ namespace LekarList
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
-        }
+        }      
 
-        
-
-        private void AddButton_Click(object sender, EventArgs e)
+        private void AddButton_Click_1(object sender, EventArgs e)
         {
             int level;
             string line;
@@ -202,30 +200,9 @@ namespace LekarList
                 }
              else
                 {
-                    ANMG = "ОШИБКА";
-                    
+                    ANMG = "ОШИБКА";                  
                     LKLIST.Add(new LekarListClass(ANMG, 0, i));
                 }
-
-
-                
-                //    
-                //while (match.Success)
-                //{
-                //    ANMG = line.Substring(0, 1);
-                //    LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                //    match = match.NextMatch();
-                //}
-                //if (line.Substring(0,1) == " ")
-                //{
-                //    MessageBox.Show("!");
-                //}
-                //else
-                //{
-                //    ANMG = line.Substring(0, 1);
-                //    LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                //}
-                //LKLIST.Add(new LekarListClass());
             }
             ParentNodes();
         }
@@ -251,46 +228,7 @@ namespace LekarList
         {
 
         }
-        #endregion
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            string line;
-            string ANMG;
-            string THSG;
-            string PHSG;
-            string CHSG;
-            string CHST;
-            LKLIST = new List<LekarListClass>();
-            for (int i = 0; i < LBdata.Items.Count; i++)
-            {
-                line = LBdata.Items[i].ToString();
-                Regex regex = new Regex("[A-Z]{1}$");
-                Match match = regex.Match(line);
-                while (match.Success)
-                {
-                    ANMG = line.Substring(0, 1);
-                    LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                    match = match.NextMatch();
-                }
-                //if (line.Substring(0,1) == " ")
-                //{
-                //    MessageBox.Show("!");
-                //}
-                //else
-                //{
-                //    ANMG = line.Substring(0, 1);
-                //    LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                //}
-                //LKLIST.Add(new LekarListClass());
-            }
-            ParentNodes();
-        }
     }
  }
 

@@ -35,14 +35,14 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьДанныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.GroupNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescriptColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -56,7 +56,6 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(304, 390);
             this.treeView1.TabIndex = 0;
-            //this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
             // 
             // AddButton
@@ -68,7 +67,7 @@
             this.AddButton.Text = "Добавить";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Visible = false;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click_1);
             // 
             // LBdata
             // 
@@ -123,9 +122,21 @@
             // добавитьДанныеToolStripMenuItem
             // 
             this.добавитьДанныеToolStripMenuItem.Name = "добавитьДанныеToolStripMenuItem";
-            this.добавитьДанныеToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.добавитьДанныеToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.добавитьДанныеToolStripMenuItem.Text = "Добавить данные";
             this.добавитьДанныеToolStripMenuItem.Click += new System.EventHandler(this.добавитьДанныеToolStripMenuItem_Click);
+            // 
+            // выходToolStripMenuItem
+            // 
+            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.выходToolStripMenuItem.Text = "Помощь";
+            // 
+            // выходToolStripMenuItem1
+            // 
+            this.выходToolStripMenuItem1.Name = "выходToolStripMenuItem1";
+            this.выходToolStripMenuItem1.Size = new System.Drawing.Size(65, 24);
+            this.выходToolStripMenuItem1.Text = "Выход";
             // 
             // tabControl1
             // 
@@ -149,28 +160,6 @@
             this.tabPage1.Size = new System.Drawing.Size(760, 393);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "АТХ классификация";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.Color.Silver;
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(738, 393);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Заболевания";
-            // 
-            // выходToolStripMenuItem
-            // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
-            this.выходToolStripMenuItem.Text = "Помощь";
-            // 
-            // выходToolStripMenuItem1
-            // 
-            this.выходToolStripMenuItem1.Name = "выходToolStripMenuItem1";
-            this.выходToolStripMenuItem1.Size = new System.Drawing.Size(65, 24);
-            this.выходToolStripMenuItem1.Text = "Выход";
             // 
             // dataGridView1
             // 
@@ -205,6 +194,16 @@
             this.DescriptColumn.ReadOnly = true;
             this.DescriptColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.DescriptColumn.Width = 300;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.Silver;
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(760, 393);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Заболевания";
             // 
             // MainWindows
             // 
