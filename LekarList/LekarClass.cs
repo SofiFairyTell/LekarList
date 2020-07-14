@@ -25,7 +25,7 @@ namespace LekarClass
         //По классификации ATC уровней 5. Здесь считаются: 0,1,2,3,4;
         public LekarListClass()
         {
-            AnatomicalMainGroup = " "; 
+            AnatomicalMainGroup = " ";
             TherapeuticSG = " ";
             PharmacologicalSG = " ";
             ChemicalSG = " ";
@@ -37,6 +37,7 @@ namespace LekarClass
         public LekarListClass(string ANMG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
+            ShowText = AnatomicalMainGroup;
             Level = level;
             Index = index;
         }
@@ -44,8 +45,8 @@ namespace LekarClass
         public LekarListClass(string ANMG, string THSG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
-            TherapeuticSG = ANMG + THSG;
-            ShowText = TherapeuticSG;
+            TherapeuticSG = THSG;
+            ShowText = AnatomicalMainGroup+TherapeuticSG;
             Level = level;
             Index = index;
         }
@@ -53,9 +54,9 @@ namespace LekarClass
         public LekarListClass(string ANMG, string THSG, string PHSG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
-            TherapeuticSG = ANMG + THSG;
-            PharmacologicalSG = ANMG + THSG + PHSG;
-            ShowText = PharmacologicalSG;
+            TherapeuticSG = THSG;
+            PharmacologicalSG = PHSG;
+            ShowText = AnatomicalMainGroup + TherapeuticSG+ PharmacologicalSG;
             Level = level;
             Index = index;
         }
@@ -63,22 +64,22 @@ namespace LekarClass
         public LekarListClass(string ANMG, string THSG, string PHSG, string CHSG, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
-            TherapeuticSG = ANMG + THSG;
-            PharmacologicalSG = ANMG + THSG + PHSG;
-            ChemicalSG = ANMG + THSG + PHSG + CHSG;
-            ShowText = ChemicalSG;
+            TherapeuticSG = THSG;
+            PharmacologicalSG = PHSG;
+            ChemicalSG = CHSG;
+            ShowText = AnatomicalMainGroup + TherapeuticSG + PharmacologicalSG + ChemicalSG;
             Level = level;
             Index = index;
         }
-        //Действующего вещества группа -  level 4
+        //Действующего вещества группа - level 4
         public LekarListClass(string ANMG, string THSG, string PHSG, string CHSG, string CHST, int level, int index)
         {
             AnatomicalMainGroup = ANMG;
-            TherapeuticSG = ANMG + THSG;
-            PharmacologicalSG = ANMG + THSG + PHSG;
-            ChemicalSG = ANMG + THSG + PHSG + CHSG;
-            ChemicalSubTance = ANMG + THSG + PHSG + CHSG + CHST;
-            ShowText = ChemicalSubTance;
+            TherapeuticSG =  THSG;
+            PharmacologicalSG =  PHSG;
+            ChemicalSG = CHSG;
+            ChemicalSubTance =  CHST;
+            ShowText = AnatomicalMainGroup + TherapeuticSG + PharmacologicalSG + ChemicalSG + ChemicalSubTance;
             Level = level;
             Index = index;
         }
@@ -89,7 +90,19 @@ namespace LekarClass
         {
             //Name = LekarListClass
         }
-
+        public void StringParcer(string Code)
+        {
+            string[] Parse = Code.Split('-');
+            AnatomicalMainGroup = Parse[0];
+            TherapeuticSG = Parse[1];
+            PharmacologicalSG = Parse[2];
+            ChemicalSG = Parse[3];
+            ChemicalSubTance = Parse[4];
+            if ((AnatomicalMainGroup == " ") || (PharmacologicalSG == " ") || (ChemicalSG == " "))
+            {
+                MessageBox.Show("!");
+            }
+    }
         public override string ToString()
         {
             var sb = new StringBuilder();
