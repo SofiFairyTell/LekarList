@@ -96,6 +96,8 @@ namespace LekarList
 
             // Вывод окна с текстом данного узла.
             MessageBox.Show(string.Format("You selected: {0}", node.Text));
+
+
         }
         #endregion
 
@@ -119,46 +121,72 @@ namespace LekarList
             for (int i = 0; i < LBdata.Items.Count; i++)
             {
                 line = LBdata.Items[i].ToString();
-                
-                Regex regex = new Regex("(^[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2},[0-4]{1}$)");
-                //string pattern = "(^[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1},[0-4]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2},[0-4]{1}$)";
+                LekarListClass result;
+                Regex regex = new Regex("(^[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2}$)");
                 Match match = regex.Match(line);
-             if (match.Success)
+                if (match.Success)
                 {
-                   // string Line = line.Split(",");
-                    level = Int32.Parse(line.Substring(0, 1));
-                    string[] elements = System.Text.RegularExpressions.Regex.Split(line, pattern);
+                   
                     switch (line.Length)
                     {
-                        case 2:
-                            ANMG = line.Substring(1, 1);
-                            LKLIST.Add(new LekarListClass(ANMG, level, i));
+                        case 1:
+                            level = 0;
+                            ANMG = line.Substring(0, 1);
+                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG));
+                            if (result == null)
+                            {
+
+                                LKLIST.Add(new LekarListClass(ANMG, level, i));                               
+                            }
+                           
+                            break;
+                        case 3:
+                            level = 1;
+                            ANMG = line.Substring(0, 1);
+                            THSG = line.Substring(1, 2);
+                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG));
+                            if (result == null)
+                            {
+                                 LKLIST.Add(new LekarListClass(ANMG,THSG, level, i));
+                            }
+                           
                             break;
                         case 4:
-                            ANMG = line.Substring(1, 1);
-                            THSG = line.Substring(2, 2);
-                            LKLIST.Add(new LekarListClass(ANMG,THSG, level, i));
+                            level = 2;
+                            ANMG = line.Substring(0, 1);
+                            THSG = line.Substring(1, 2);
+                            PHSG = line.Substring(3, 1);
+                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG));
+                            if (result == null)
+                            {
+                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, level, i));
+                            }
+                            
                             break;
                         case 5:
-                            ANMG = line.Substring(1, 1);
-                            THSG = line.Substring(2, 2);
-                            PHSG = line.Substring(4, 1);
-                            LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, level, i));
+                            level = 3;
+                            ANMG = line.Substring(0, 1);
+                            THSG = line.Substring(1, 2);
+                            PHSG = line.Substring(3, 1);
+                            CHSG = line.Substring(4, 1);
+                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG+CHSG));
+                            if (result == null)
+                            {
+                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, level, i));
+                            }
                             break;
-                        case 6:
-                            ANMG = line.Substring(1, 1);
-                            THSG = line.Substring(2, 2);
-                            PHSG = line.Substring(4, 1);
-                            CHSG = line.Substring(5, 1);
-                            LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, level, i));
-                            break;
-                        case 8:
-                            ANMG = line.Substring(1, 1);
-                            THSG = line.Substring(2, 2);
-                            PHSG = line.Substring(4, 1);
-                            CHSG = line.Substring(5, 1);
-                            CHST = line.Substring(6, 2);
-                            LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, CHST, level, i));
+                        case 7:
+                            level = 4;
+                            ANMG = line.Substring(0, 1);
+                            THSG = line.Substring(1, 2);
+                            PHSG = line.Substring(3, 1);
+                            CHSG = line.Substring(4, 1);
+                            CHST = line.Substring(5, 2);
+                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG+CHSG+CHST));
+                            if (result == null)
+                            {
+                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, CHST, level, i));
+                            }
                             break;
                     }
 
@@ -210,6 +238,18 @@ namespace LekarList
         private void SortButton_Click(object sender, EventArgs e)
         {
             LBdata.Sorted = true;
+        }
+
+        private void добавитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LBdata.Visible = true;
+            SortButton.Visible = true;
+            AddButton.Visible = true;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
  }
