@@ -39,14 +39,15 @@
             this.выходToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.EditButton = new System.Windows.Forms.Button();
+            this.DataDescriptionGrid = new System.Windows.Forms.DataGridView();
             this.GroupNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescriptColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataDescriptionGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // treeView1
@@ -60,7 +61,7 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(895, 71);
+            this.AddButton.Location = new System.Drawing.Point(852, 243);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(102, 34);
             this.AddButton.TabIndex = 2;
@@ -80,16 +81,15 @@
             "D01",
             "D01",
             "D01AA"});
-            this.LBdata.Location = new System.Drawing.Point(856, 111);
+            this.LBdata.Location = new System.Drawing.Point(801, 121);
             this.LBdata.Name = "LBdata";
             this.LBdata.Size = new System.Drawing.Size(153, 116);
             this.LBdata.TabIndex = 3;
             this.LBdata.Visible = false;
-            this.LBdata.SelectedIndexChanged += new System.EventHandler(this.LBdata_SelectedIndexChanged);
             // 
             // SortButton
             // 
-            this.SortButton.Location = new System.Drawing.Point(895, 31);
+            this.SortButton.Location = new System.Drawing.Point(852, 283);
             this.SortButton.Name = "SortButton";
             this.SortButton.Size = new System.Drawing.Size(102, 34);
             this.SortButton.TabIndex = 4;
@@ -146,36 +146,46 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(768, 422);
+            this.tabControl1.Size = new System.Drawing.Size(769, 422);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Silver;
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.EditButton);
+            this.tabPage1.Controls.Add(this.DataDescriptionGrid);
             this.tabPage1.Controls.Add(this.treeView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(760, 393);
+            this.tabPage1.Size = new System.Drawing.Size(761, 393);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "АТХ классификация";
             // 
-            // dataGridView1
+            // EditButton
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.EditButton.Location = new System.Drawing.Point(653, 213);
+            this.EditButton.Name = "EditButton";
+            this.EditButton.Size = new System.Drawing.Size(102, 34);
+            this.EditButton.TabIndex = 7;
+            this.EditButton.Text = "Изменить";
+            this.EditButton.UseVisualStyleBackColor = true;
+            // 
+            // DataDescriptionGrid
+            // 
+            this.DataDescriptionGrid.AllowUserToAddRows = false;
+            this.DataDescriptionGrid.AllowUserToDeleteRows = false;
+            this.DataDescriptionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataDescriptionGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.GroupNameColumn,
             this.DescriptColumn});
-            this.dataGridView1.Location = new System.Drawing.Point(311, 7);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(446, 150);
-            this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.DataDescriptionGrid.Location = new System.Drawing.Point(311, 7);
+            this.DataDescriptionGrid.Name = "DataDescriptionGrid";
+            this.DataDescriptionGrid.ReadOnly = true;
+            this.DataDescriptionGrid.RowTemplate.Height = 24;
+            this.DataDescriptionGrid.Size = new System.Drawing.Size(445, 190);
+            this.DataDescriptionGrid.TabIndex = 1;
+            this.DataDescriptionGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataDescriptionGrid_CellContentDoubleClick);
             // 
             // GroupNameColumn
             // 
@@ -201,7 +211,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(760, 393);
+            this.tabPage2.Size = new System.Drawing.Size(761, 393);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Заболевания";
             // 
@@ -224,7 +234,7 @@
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataDescriptionGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,9 +254,10 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DataDescriptionGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn GroupNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescriptColumn;
+        private System.Windows.Forms.Button EditButton;
     }
 }
 

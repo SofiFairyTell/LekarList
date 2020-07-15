@@ -88,7 +88,7 @@ namespace LekarList
             }
 
         }
-
+               
         private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             // Получение выбранного двойным щелчком узла дерева.
@@ -96,16 +96,33 @@ namespace LekarList
 
             // Вывод окна с текстом данного узла.
             MessageBox.Show(string.Format("You selected: {0}", node.Text));
-
+            DataDescriptionGrid.Rows.Clear();
+            DataDescriptionGrid.Columns.Clear();
+            DataGridInit();
+            DataDescriptionGrid.ReadOnly = true;
+            var index = LKLIST.FindIndex(x => x.ShowText.Contains(node.Text));
+            DataDescriptionGrid.Rows[0].Cells[1].Value = LKLIST[index].ShowText;
 
         }
         #endregion
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        #region AddNode
+
+        private void DataGridInit()
         {
-
-        }      
-
+            DataGridViewCellStyle columnstyle = new DataGridViewCellStyle();
+            columnstyle.BackColor = Color.Chocolate;
+            columnstyle.Font = new Font("Arial", 11, FontStyle.Regular);
+            DataDescriptionGrid.Columns.Add("GroupNameColumn", "");
+            DataDescriptionGrid.Columns.Add("DescripColumn", "");
+            DataDescriptionGrid.Rows.Add(5);
+            DataDescriptionGrid.Rows[0].Cells[0].Value = "Код";
+            DataDescriptionGrid.Rows[1].Cells[0].Value = "Группа";
+            DataDescriptionGrid.Rows[2].Cells[0].Value = "Название";
+            DataDescriptionGrid.Rows[3].Cells[0].Value = "Латинское название";
+            DataDescriptionGrid.Rows[4].Cells[0].Value = "Препараты группы";
+            DataDescriptionGrid.AllowUserToAddRows = false;
+        }
         private void AddButton_Click_1(object sender, EventArgs e)
         {
             int level;
@@ -187,16 +204,6 @@ namespace LekarList
                             }
                             break;
                     }
-
-                    //LekarListClass result = LKLIST.Find(x => x.ShowText.Contains(ANMG));
-                    //if (result == null)
-                    //{
-                    //    LKLIST.Add(new LekarListClass(ANMG, level, i));
-                    //    //LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
-                    //}
-
-                    //LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                    // LKLIST.Add(new LekarListClass(ANMG, THSG, 1, i));
                 }
              else
                 {
@@ -206,12 +213,8 @@ namespace LekarList
             }
             ParentNodes();
         }
-
-        private void LBdata_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
+        #endregion
         private void SortButton_Click(object sender, EventArgs e)
         {
             LBdata.Sorted = true;
@@ -224,11 +227,11 @@ namespace LekarList
             AddButton.Visible = true;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataDescriptionGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            this.DataDescriptionGrid.EditMode = DataGridViewEditMode.EditOnEnter;
 
         }
-
     }
  }
 
