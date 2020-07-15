@@ -170,6 +170,7 @@
             this.EditButton.TabIndex = 7;
             this.EditButton.Text = "Изменить";
             this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // DataDescriptionGrid
             // 
@@ -179,13 +180,14 @@
             this.DataDescriptionGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.GroupNameColumn,
             this.DescriptColumn});
+            this.DataDescriptionGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.DataDescriptionGrid.Location = new System.Drawing.Point(311, 7);
             this.DataDescriptionGrid.Name = "DataDescriptionGrid";
-            this.DataDescriptionGrid.ReadOnly = true;
             this.DataDescriptionGrid.RowTemplate.Height = 24;
             this.DataDescriptionGrid.Size = new System.Drawing.Size(445, 190);
             this.DataDescriptionGrid.TabIndex = 1;
-            this.DataDescriptionGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataDescriptionGrid_CellContentDoubleClick);
+            this.DataDescriptionGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataDescriptionGrid_CellContentClick);
+            this.DataDescriptionGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataDescriptionGrid_KeyDown);
             // 
             // GroupNameColumn
             // 
@@ -193,7 +195,6 @@
             this.GroupNameColumn.HeaderText = "";
             this.GroupNameColumn.MaxInputLength = 30;
             this.GroupNameColumn.Name = "GroupNameColumn";
-            this.GroupNameColumn.ReadOnly = true;
             this.GroupNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DescriptColumn
@@ -201,7 +202,6 @@
             this.DescriptColumn.Frozen = true;
             this.DescriptColumn.HeaderText = "";
             this.DescriptColumn.Name = "DescriptColumn";
-            this.DescriptColumn.ReadOnly = true;
             this.DescriptColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.DescriptColumn.Width = 300;
             // 

@@ -19,7 +19,7 @@ namespace LekarList
             InitializeComponent();
         }
         List<LekarListClass> LKLIST;
-        
+        public string ErrorMess = "Нельзя изменять главный уровень!";
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
             
@@ -227,10 +227,50 @@ namespace LekarList
             AddButton.Visible = true;
         }
 
-        private void DataDescriptionGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void EditButton_Click(object sender, EventArgs e)
         {
-            this.DataDescriptionGrid.EditMode = DataGridViewEditMode.EditOnEnter;
+            //flag = true;
+            //if (flag)
+            //{
+            if (DataDescriptionGrid.Rows[1].Cells[1].Value.ToString() == " ")
+            {
+                
+                MessageBox.Show(ErrorMess);
+            }
+            else
+            {
+                var index = LKLIST.FindIndex(x => x.ShowText.Contains(DataDescriptionGrid.Rows[1].Cells[1].Value.ToString()));
+                LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
+                ParentNodes();
+            }
+                
+                //LKLIST[index]
+                
+               // LKLIST.Sort();
+               
+         }
+        
 
+        private void DataDescriptionGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.LButton && DataDescriptionGrid.CurrentCell.ColumnIndex == 1)
+            {
+                e.Handled = true;
+                DataGridViewCell cell = DataDescriptionGrid.Rows[0].Cells[1];
+                DataDescriptionGrid.CurrentCell = cell;
+                DataDescriptionGrid.BeginEdit(true);
+                DataDescriptionGrid.EditMode = DataGridViewEditMode.EditOnEnter;               
+            }
+
+        }
+
+        private void DataDescriptionGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                DataDescriptionGrid.BeginEdit(true);
+                DataDescriptionGrid.ReadOnly = false;
+            }
         }
     }
  }
