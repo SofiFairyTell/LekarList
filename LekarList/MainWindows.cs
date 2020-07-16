@@ -226,27 +226,23 @@ namespace LekarList
             SortButton.Visible = true;
             AddButton.Visible = true;
         }
-
+        private bool flag;
         private void EditButton_Click(object sender, EventArgs e)
         {
-            //flag = true;
-            //if (flag)
+            flag = true;
+
+            //if (DataDescriptionGrid.Rows[1].Cells[1].Value.ToString() == " ")
             //{
-            if (DataDescriptionGrid.Rows[1].Cells[1].Value.ToString() == " ")
-            {
                 
-                MessageBox.Show(ErrorMess);
-            }
-            else
-            {
-                var index = LKLIST.FindIndex(x => x.ShowText.Contains(DataDescriptionGrid.Rows[1].Cells[1].Value.ToString()));
-                LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
-                ParentNodes();
-            }
-                
-                //LKLIST[index]
-                
-               // LKLIST.Sort();
+            //    MessageBox.Show(ErrorMess);
+            //}
+            //else
+            //{
+            //    var index = LKLIST.FindIndex(x => x.ShowText.Contains(DataDescriptionGrid.Rows[1].Cells[1].Value.ToString()));
+            //    LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
+            //    ParentNodes();
+            //}
+
                
          }
         
@@ -266,10 +262,23 @@ namespace LekarList
 
         private void DataDescriptionGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            var index = LKLIST.FindIndex(x => x.ShowText.Contains(DataDescriptionGrid.Rows[0].Cells[1].Value.ToString()));
             if (e.ColumnIndex == 1)
             {
                 DataDescriptionGrid.BeginEdit(true);
                 DataDescriptionGrid.ReadOnly = false;
+            }
+            else
+            {
+                DataDescriptionGrid.ReadOnly = true;
+                DataDescriptionGrid.EndEdit();
+                if (flag)
+                {
+                     LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
+                    ParentNodes();
+                }
+                
+               
             }
         }
     }
