@@ -53,9 +53,9 @@
             // treeView1
             // 
             this.treeView1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Location = new System.Drawing.Point(1, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(304, 390);
+            this.treeView1.Size = new System.Drawing.Size(304, 393);
             this.treeView1.TabIndex = 0;
             this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
             // 
@@ -122,7 +122,7 @@
             // добавитьДанныеToolStripMenuItem
             // 
             this.добавитьДанныеToolStripMenuItem.Name = "добавитьДанныеToolStripMenuItem";
-            this.добавитьДанныеToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
+            this.добавитьДанныеToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.добавитьДанныеToolStripMenuItem.Text = "Добавить данные";
             this.добавитьДанныеToolStripMenuItem.Click += new System.EventHandler(this.добавитьДанныеToolStripMenuItem_Click);
             // 

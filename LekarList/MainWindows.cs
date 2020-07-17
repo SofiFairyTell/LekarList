@@ -102,6 +102,7 @@ namespace LekarList
             DataDescriptionGrid.ReadOnly = true;
             var index = LKLIST.FindIndex(x => x.ShowText.Contains(node.Text));
             DataDescriptionGrid.Rows[0].Cells[1].Value = LKLIST[index].ShowText;
+            DataDescriptionGrid.Rows[1].Cells[1].Value = LKLIST[index].Index; //индекс это номер элемента в списке
 
         }
         #endregion
@@ -122,6 +123,7 @@ namespace LekarList
             DataDescriptionGrid.Rows[3].Cells[0].Value = "Латинское название";
             DataDescriptionGrid.Rows[4].Cells[0].Value = "Препараты группы";
             DataDescriptionGrid.AllowUserToAddRows = false;
+            DataDescriptionGrid.Columns[0].ReadOnly = true;
         }
         private void AddButton_Click_1(object sender, EventArgs e)
         {
@@ -229,22 +231,23 @@ namespace LekarList
         private bool flag;
         private void EditButton_Click(object sender, EventArgs e)
         {
-            flag = true;
+            //flag = true;
 
-            //if (DataDescriptionGrid.Rows[1].Cells[1].Value.ToString() == " ")
-            //{
-                
-            //    MessageBox.Show(ErrorMess);
-            //}
-            //else
-            //{
-            //    var index = LKLIST.FindIndex(x => x.ShowText.Contains(DataDescriptionGrid.Rows[1].Cells[1].Value.ToString()));
-            //    LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
-            //    ParentNodes();
-            //}
+            if (DataDescriptionGrid.Rows[1].Cells[1].Value.ToString() == " ")
+            {
 
-               
-         }
+                MessageBox.Show(ErrorMess);
+            }
+            else
+            {
+                var index = LKLIST.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
+                LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
+                //LKLIST.Sort();
+                ParentNodes();
+            }
+
+
+        }
         
 
         private void DataDescriptionGrid_KeyDown(object sender, KeyEventArgs e)
@@ -271,12 +274,12 @@ namespace LekarList
             else
             {
                 DataDescriptionGrid.ReadOnly = true;
-                DataDescriptionGrid.EndEdit();
-                if (flag)
-                {
-                     LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
-                    ParentNodes();
-                }
+                //DataDescriptionGrid.EndEdit();
+                //if (flag)
+                //{
+                //     LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
+                //    ParentNodes();
+                //}
                 
                
             }
