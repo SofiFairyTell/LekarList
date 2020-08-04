@@ -20,6 +20,7 @@ namespace LekarClass
         public string ShowText;
         public int Level;
         public int Index;
+        public int Child;
 
         #region Конструкторы
         //По классификации ATC уровней 5. Здесь считаются: 0,1,2,3,4;

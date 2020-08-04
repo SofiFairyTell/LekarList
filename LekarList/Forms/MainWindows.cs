@@ -26,6 +26,8 @@ namespace LekarList
             LekarListClass lekarList0 = new LekarListClass("A", 0, 0);
             LekarListClass lekarList1 = new LekarListClass("A", "01", 1,1);
             LekarListClass lekarList2 = new LekarListClass("A", "01", "A", 2, 2);
+            
+
             LekarListClass lekarList3 = new LekarListClass("A", "01", "A","A", 3, 3);
             LekarListClass lekarList4 = new LekarListClass("A", "01", "A", "A","01", 4, 4);
             LekarListClass lekarList4a = new LekarListClass("A", "01", "A", "A", "02", 4, 5);
@@ -68,6 +70,7 @@ namespace LekarList
             for(i=0;i<treeView1.Nodes.Count;i++)
             {
                 ChildNodes(treeView1.Nodes[i]);
+                LKLIST[i].Child++;
             }
             treeView1.EndUpdate();
             treeView1.Refresh();
@@ -100,15 +103,24 @@ namespace LekarList
             DataDescriptionGrid.Columns.Clear();
             DataGridInit();
             DataDescriptionGrid.ReadOnly = true;
+            DataDescriptionGrid.Visible = true;
+            AddButton.BringToFront();
+            MinimButton.Visible = true;
+            //AddButton.Location = new Point(AddButton.Location.X - 137, AddButton.Location.Y+ 224);
+            //EditButton.Location = new Point(EditButton.Location.X,EditButton.Location.Y + 156);
+            //DelButton.Location = new Point(DelButton.Location.X +139 ,DelButton.Location.Y + 52);
+            //MinimButton.Location = new Point(EditButton.Location.X, DelButton.Location.Y + 80);
+
             var index = LKLIST.FindIndex(x => x.ShowText.Contains(node.Text));
             DataDescriptionGrid.Rows[0].Cells[1].Value = LKLIST[index].ShowText;
             DataDescriptionGrid.Rows[1].Cells[1].Value = LKLIST[index].Index; //индекс это номер элемента в списке
+            
 
+           // AddButton.Location = new Point(AddButton.Location.X - 199 , AddButton.Location.Y);
         }
         #endregion
 
-        #region AddNode
-
+        #region DataGrids
         private void DataGridInit()
         {
             DataGridViewCellStyle columnstyle = new DataGridViewCellStyle();
@@ -125,131 +137,6 @@ namespace LekarList
             DataDescriptionGrid.AllowUserToAddRows = false;
             DataDescriptionGrid.Columns[0].ReadOnly = true;
         }
-        private void AddButton_Click_1(object sender, EventArgs e)
-        {
-            int level;
-            string line;
-            string ANMG;
-            string THSG;
-            string PHSG;
-            string CHSG;
-            string CHST;
-            LKLIST = new List<LekarListClass>();
-            for (int i = 0; i < LBdata.Items.Count; i++)
-            {
-                line = LBdata.Items[i].ToString();
-                LekarListClass result;
-                Regex regex = new Regex("(^[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2}$)");
-                Match match = regex.Match(line);
-                if (match.Success)
-                {
-                   
-                    switch (line.Length)
-                    {
-                        case 1:
-                            level = 0;
-                            ANMG = line.Substring(0, 1);
-                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG));
-                            if (result == null)
-                            {
-
-                                LKLIST.Add(new LekarListClass(ANMG, level, i));                               
-                            }
-                           
-                            break;
-                        case 3:
-                            level = 1;
-                            ANMG = line.Substring(0, 1);
-                            THSG = line.Substring(1, 2);
-                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG));
-                            if (result == null)
-                            {
-                                 LKLIST.Add(new LekarListClass(ANMG,THSG, level, i));
-                            }
-                           
-                            break;
-                        case 4:
-                            level = 2;
-                            ANMG = line.Substring(0, 1);
-                            THSG = line.Substring(1, 2);
-                            PHSG = line.Substring(3, 1);
-                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG));
-                            if (result == null)
-                            {
-                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, level, i));
-                            }
-                            
-                            break;
-                        case 5:
-                            level = 3;
-                            ANMG = line.Substring(0, 1);
-                            THSG = line.Substring(1, 2);
-                            PHSG = line.Substring(3, 1);
-                            CHSG = line.Substring(4, 1);
-                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG+CHSG));
-                            if (result == null)
-                            {
-                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, level, i));
-                            }
-                            break;
-                        case 7:
-                            level = 4;
-                            ANMG = line.Substring(0, 1);
-                            THSG = line.Substring(1, 2);
-                            PHSG = line.Substring(3, 1);
-                            CHSG = line.Substring(4, 1);
-                            CHST = line.Substring(5, 2);
-                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG+CHSG+CHST));
-                            if (result == null)
-                            {
-                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, CHST, level, i));
-                            }
-                            break;
-                    }
-                }
-             else
-                {
-                    ANMG = "ОШИБКА";                  
-                    LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                }
-            }
-            ParentNodes();
-        }
-        
-        #endregion
-        private void SortButton_Click(object sender, EventArgs e)
-        {
-            LBdata.Sorted = true;
-        }
-
-        private void добавитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LBdata.Visible = true;
-            SortButton.Visible = true;
-            AddButton.Visible = true;
-        }
-        private bool flag;
-        private void EditButton_Click(object sender, EventArgs e)
-        {
-            //flag = true;
-
-            if (DataDescriptionGrid.Rows[1].Cells[1].Value.ToString() == " ")
-            {
-
-                MessageBox.Show(ErrorMess);
-            }
-            else
-            {
-                var index = LKLIST.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
-                LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
-                //LKLIST.Sort();
-                ParentNodes();
-            }
-
-
-        }
-        
-
         private void DataDescriptionGrid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.LButton && DataDescriptionGrid.CurrentCell.ColumnIndex == 1)
@@ -284,6 +171,170 @@ namespace LekarList
                
             }
         }
+
+        #endregion
+
+        #region Кнопки
+        private void AddButton_Click_1(object sender, EventArgs e)
+        {
+            int level;
+            string line;
+            string ANMG;
+            string THSG;
+            string PHSG;
+            string CHSG;
+            string CHST;
+
+            LKLIST = new List<LekarListClass>();
+            for (int i = 0; i < LBdata.Items.Count; i++)
+            {
+                line = LBdata.Items[i].ToString();
+                LekarListClass result;
+                Regex regex = new Regex("(^[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2}$)");
+                Match match = regex.Match(line);
+                if (match.Success)
+                {
+
+                    switch (line.Length)
+                    {
+                        case 1:
+                            level = 0;
+                            ANMG = line.Substring(0, 1);
+                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG));
+                            if (result == null)
+                            {
+
+                                LKLIST.Add(new LekarListClass(ANMG, level, i));
+                            }
+
+                            break;
+                        case 3:
+                            level = 1;
+                            ANMG = line.Substring(0, 1);
+                            THSG = line.Substring(1, 2);
+                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG));
+                            if (result == null)
+                            {
+                                LKLIST.Add(new LekarListClass(ANMG, THSG, level, i));
+                            }
+
+                            break;
+                        case 4:
+                            level = 2;
+                            ANMG = line.Substring(0, 1);
+                            THSG = line.Substring(1, 2);
+                            PHSG = line.Substring(3, 1);
+                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG));
+                            if (result == null)
+                            {
+                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, level, i));
+                            }
+
+                            break;
+                        case 5:
+                            level = 3;
+                            ANMG = line.Substring(0, 1);
+                            THSG = line.Substring(1, 2);
+                            PHSG = line.Substring(3, 1);
+                            CHSG = line.Substring(4, 1);
+                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG + CHSG));
+                            if (result == null)
+                            {
+                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, level, i));
+                            }
+                            break;
+                        case 7:
+                            level = 4;
+                            ANMG = line.Substring(0, 1);
+                            THSG = line.Substring(1, 2);
+                            PHSG = line.Substring(3, 1);
+                            CHSG = line.Substring(4, 1);
+                            CHST = line.Substring(5, 2);
+                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG + CHSG + CHST));
+                            if (result == null)
+                            {
+                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, CHST, level, i));
+                            }
+                            break;
+                    }
+                }
+                else
+                {
+                    ANMG = "ОШИБКА";
+                    LKLIST.Add(new LekarListClass(ANMG, 0, i));
+                }
+            }
+            ParentNodes();
+            Forms.AddForm NewForm = new Forms.AddForm();
+            NewForm.Show();
+        }
+
+        
+        private void SortButton_Click(object sender, EventArgs e)
+        {
+            LBdata.Sorted = true;
+        }
+
+        private void добавитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LBdata.Visible = true;
+            SortButton.Visible = true;
+            AddButton.Visible = true;
+        }
+        private bool flag;
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            //flag = true;
+
+            if (DataDescriptionGrid.Rows[1].Cells[1].Value.ToString() == " ")
+            {
+
+                MessageBox.Show(ErrorMess);
+            }
+            else
+            {
+                var index = LKLIST.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
+                LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
+                //LKLIST.Sort();
+                ParentNodes();
+            }
+
+
+        }
+        private void MinimButton_Click(object sender, EventArgs e)
+                {
+                    MinimButton.Visible = false;
+                    DataDescriptionGrid.Rows.Clear();
+                    AddButton.BringToFront();
+                    
+                    //AddButton.Location = new Point(AddButton.Location.X + 137, AddButton.Location.Y - 224);
+                    //EditButton.Location = new Point(EditButton.Location.X, EditButton.Location.Y - 156);
+                    //DelButton.Location = new Point(DelButton.Location.X - 139, DelButton.Location.Y - 52);
+                    // MinimButton.Location = new Point(EditButton.Location.X, DelButton.Location.Y + 80);
+                    //MinimButton.Location = new Point(485, 310);
+                }
+
+            private void DelButton_Click(object sender, EventArgs e)
+                    {
+            var index = LKLIST.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
+            if (LKLIST[index].Child >0)
+            {
+                MessageBox.Show("Нельзя удалять корни!");
+            }
+            else
+            {
+                LKLIST.RemoveAt(index);
+            }
+            
+            //LKLIST.Sort();
+            ParentNodes();
+        }
+
+
+
+        #endregion
+
+        
     }
  }
 
