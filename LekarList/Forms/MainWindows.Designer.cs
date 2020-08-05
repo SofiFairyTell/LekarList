@@ -47,10 +47,13 @@
             this.DescriptColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataDescriptionGrid)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // treeView1
@@ -172,7 +175,7 @@
             // 
             // MinimButton
             // 
-            this.MinimButton.Location = new System.Drawing.Point(706, 174);
+            this.MinimButton.Location = new System.Drawing.Point(709, 174);
             this.MinimButton.Name = "MinimButton";
             this.MinimButton.Size = new System.Drawing.Size(121, 50);
             this.MinimButton.TabIndex = 9;
@@ -217,7 +220,7 @@
             this.DataDescriptionGrid.Location = new System.Drawing.Point(258, 3);
             this.DataDescriptionGrid.Name = "DataDescriptionGrid";
             this.DataDescriptionGrid.RowTemplate.Height = 24;
-            this.DataDescriptionGrid.Size = new System.Drawing.Size(448, 387);
+            this.DataDescriptionGrid.Size = new System.Drawing.Size(442, 387);
             this.DataDescriptionGrid.TabIndex = 1;
             this.DataDescriptionGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataDescriptionGrid_CellContentClick);
             this.DataDescriptionGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataDescriptionGrid_KeyDown);
@@ -241,6 +244,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Silver;
+            this.tabPage2.Controls.Add(this.dataGridView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -258,6 +262,15 @@
             this.button1.UseCompatibleTextRendering = true;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(8, 6);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(816, 150);
+            this.dataGridView1.TabIndex = 0;
             // 
             // MainWindows
             // 
@@ -281,6 +294,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataDescriptionGrid)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,6 +322,7 @@
         private System.Windows.Forms.Button MinimButton;
         private System.Windows.Forms.Button DelButton;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

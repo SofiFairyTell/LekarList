@@ -46,7 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\LekarClass.cs" />
+    <Compile Include="Classes\NewFolder1\Class1.cs" />
+    <Compile Include="Classes\NewFolder1\Class2.cs" />
+    <Compile Include="Classes\NewFolder1\Class3.cs" />
+    <Compile Include="Classes\NewFolder1\Class4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\NewFolder1\Examples.cs" />
+    <Compile Include="LekarListClass\ClassLekar.cs" />
+    <Compile Include="LekarListClass\LekarClass.cs" />
     <Compile Include="Forms\AddForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,7 +67,7 @@
     <Compile Include="Forms\MainWindows.Designer.cs">
       <DependentUpon>MainWindows.cs</DependentUpon>
     </Compile>
-    <Compile Include="NodeCollection.cs" />
+    <Compile Include="Classes\NodeCollection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AddForm.resx">
@@ -97,5 +105,6 @@
       <Name>Simple Test App</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

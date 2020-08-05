@@ -59,15 +59,24 @@ namespace Simple_Test_App
             this.treeGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.treeGridView1.ImageList = this.imageList1;
             this.treeGridView1.Location = new System.Drawing.Point(0, 0);
+            this.treeGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.treeGridView1.Name = "treeGridView1";
+            treeGridNode1.Height = 24;
             treeGridNode1.ImageIndex = 0;
+            treeGridNode2.Height = 24;
             treeGridNode2.ImageIndex = 11;
             treeGridNode1.Nodes.Add(treeGridNode2);
+            treeGridNode3.Height = 24;
             treeGridNode3.ImageIndex = 13;
+            treeGridNode4.Height = 24;
             treeGridNode4.ImageIndex = 7;
+            treeGridNode5.Height = 24;
             treeGridNode5.ImageIndex = 15;
+            treeGridNode6.Height = 24;
             treeGridNode6.ImageIndex = 0;
+            treeGridNode7.Height = 24;
             treeGridNode7.ImageIndex = 9;
+            treeGridNode8.Height = 24;
             treeGridNode8.ImageIndex = 10;
             treeGridNode7.Nodes.Add(treeGridNode8);
             treeGridNode6.Nodes.Add(treeGridNode7);
@@ -77,7 +86,7 @@ namespace Simple_Test_App
             this.treeGridView1.Nodes.Add(treeGridNode5);
             this.treeGridView1.Nodes.Add(treeGridNode6);
             this.treeGridView1.RowHeadersVisible = false;
-            this.treeGridView1.Size = new System.Drawing.Size(292, 266);
+            this.treeGridView1.Size = new System.Drawing.Size(405, 227);
             this.treeGridView1.TabIndex = 0;
             // 
             // treeColumn
@@ -122,10 +131,11 @@ namespace Simple_Test_App
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.ClientSize = new System.Drawing.Size(405, 227);
             this.Controls.Add(this.treeGridView1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.treeGridView1)).EndInit();
