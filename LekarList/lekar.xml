@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <LekarListClass AnatomicalMainGroup = "A">
+    <Level>0</Level>
+    <Index>0</Index>
+  </LekarListClass>
+  <LekarListClass AnatomicalMainGroup = "B">
+    <Level>0</Level>
+    <Index>1</Index>
+  </LekarListClass>
+  <LekarListClass AnatomicalMainGroup = "A">
+    <TherapeuticSG>"01"</TherapeuticSG>     
+    <Level>1</Level>
+    <Index>2</Index>
+  </LekarListClass>
+</root>
