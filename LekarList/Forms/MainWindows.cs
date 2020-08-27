@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using LekarClass;
+using System.Xml;
 
 namespace LekarList
 {
@@ -17,6 +18,7 @@ namespace LekarList
         public MainWindows()
         {
             InitializeComponent();
+            LoadXML();
         }
         List<LekarListClass> LKLIST;
         public string ErrorMess = "Нельзя изменять главный уровень!";
@@ -334,7 +336,46 @@ namespace LekarList
 
         #endregion
 
-        
+        private void LoadXML()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml");
+            foreach (XmlNode node in doc.DocumentElement)
+            {
+                string AnatomicalMainGroup = node.Attributes[0].Value;
+                int level = int.Parse(node["Level"].InnerText);
+                int index = int.Parse(node["Index"].InnerText);
+                listBox1.Items.Add(new LekarListClass(AnatomicalMainGroup, level, index));
+            }
+        }
+
+        private void propertyGrid1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex !=-1)
+            {
+                propertyGrid1.SelectedObject = listBox1.SelectedItem;
+            }
+        }
+
+        private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LKLIST.Clear();
+            XmlDocument doc = new XmlDocument();
+            doc.Load("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml");
+            foreach (XmlNode node in doc.DocumentElement)
+            {
+                string AnatomicalMainGroup = node.Attributes[0].Value;
+                int level = int.Parse(node["Level"].InnerText);
+                int index = int.Parse(node["Index"].InnerText);
+                LKLIST.Add(new LekarListClass(AnatomicalMainGroup, level, index));
+            }
+            ParentNodes();
+        }
     }
  }
 

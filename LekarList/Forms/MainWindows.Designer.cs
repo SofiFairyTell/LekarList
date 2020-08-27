@@ -46,9 +46,10 @@
             this.GroupNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescriptColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -61,7 +62,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.treeView1.Location = new System.Drawing.Point(2, 2);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(2);
             this.treeView1.Name = "treeView1";
             this.treeView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.treeView1.Size = new System.Drawing.Size(192, 312);
@@ -70,8 +71,8 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(530, 187);
-            this.AddButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddButton.Location = new System.Drawing.Point(530, 184);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(2);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(91, 43);
             this.AddButton.TabIndex = 2;
@@ -90,8 +91,8 @@
             "D01",
             "D01",
             "D01AA"});
-            this.LBdata.Location = new System.Drawing.Point(642, 43);
-            this.LBdata.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LBdata.Location = new System.Drawing.Point(628, 48);
+            this.LBdata.Margin = new System.Windows.Forms.Padding(2);
             this.LBdata.Name = "LBdata";
             this.LBdata.Size = new System.Drawing.Size(116, 95);
             this.LBdata.TabIndex = 3;
@@ -100,7 +101,7 @@
             // SortButton
             // 
             this.SortButton.Location = new System.Drawing.Point(656, 237);
-            this.SortButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SortButton.Margin = new System.Windows.Forms.Padding(2);
             this.SortButton.Name = "SortButton";
             this.SortButton.Size = new System.Drawing.Size(76, 28);
             this.SortButton.TabIndex = 4;
@@ -126,7 +127,8 @@
             // настройкиToolStripMenuItem
             // 
             this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьДанныеToolStripMenuItem});
+            this.добавитьДанныеToolStripMenuItem,
+            this.xMLToolStripMenuItem});
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
             this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.настройкиToolStripMenuItem.Text = "Настройки";
@@ -156,7 +158,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(628, 342);
@@ -172,17 +174,17 @@
             this.tabPage1.Controls.Add(this.treeView1);
             this.tabPage1.Controls.Add(this.AddButton);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(620, 316);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "АТХ классификация";
             // 
             // MinimButton
             // 
-            this.MinimButton.Location = new System.Drawing.Point(532, 141);
-            this.MinimButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimButton.Location = new System.Drawing.Point(527, 139);
+            this.MinimButton.Margin = new System.Windows.Forms.Padding(2);
             this.MinimButton.Name = "MinimButton";
             this.MinimButton.Size = new System.Drawing.Size(91, 41);
             this.MinimButton.TabIndex = 9;
@@ -195,7 +197,7 @@
             // DelButton
             // 
             this.DelButton.Location = new System.Drawing.Point(530, 231);
-            this.DelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DelButton.Margin = new System.Windows.Forms.Padding(2);
             this.DelButton.Name = "DelButton";
             this.DelButton.Size = new System.Drawing.Size(91, 43);
             this.DelButton.TabIndex = 8;
@@ -207,7 +209,7 @@
             // EditButton
             // 
             this.EditButton.Location = new System.Drawing.Point(530, 274);
-            this.EditButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EditButton.Margin = new System.Windows.Forms.Padding(2);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(91, 43);
             this.EditButton.TabIndex = 7;
@@ -227,7 +229,7 @@
             this.DataDescriptionGrid.Dock = System.Windows.Forms.DockStyle.Left;
             this.DataDescriptionGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.DataDescriptionGrid.Location = new System.Drawing.Point(194, 2);
-            this.DataDescriptionGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DataDescriptionGrid.Margin = new System.Windows.Forms.Padding(2);
             this.DataDescriptionGrid.Name = "DataDescriptionGrid";
             this.DataDescriptionGrid.RowTemplate.Height = 24;
             this.DataDescriptionGrid.Size = new System.Drawing.Size(332, 312);
@@ -257,24 +259,21 @@
             this.tabPage2.Controls.Add(this.propertyGrid1);
             this.tabPage2.Controls.Add(this.listBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(620, 316);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Заболевания";
             // 
-            // button1
+            // propertyGrid1
             // 
-            this.button1.Location = new System.Drawing.Point(642, 318);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 41);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Свернуть";
-            this.button1.UseCompatibleTextRendering = true;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.propertyGrid1.Location = new System.Drawing.Point(323, 2);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(295, 312);
+            this.propertyGrid1.TabIndex = 1;
+            this.propertyGrid1.Click += new System.EventHandler(this.propertyGrid1_Click);
             // 
             // listBox1
             // 
@@ -284,14 +283,26 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(315, 312);
             this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // propertyGrid1
+            // button1
             // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.propertyGrid1.Location = new System.Drawing.Point(323, 2);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(295, 312);
-            this.propertyGrid1.TabIndex = 1;
+            this.button1.Location = new System.Drawing.Point(642, 318);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(91, 41);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Свернуть";
+            this.button1.UseCompatibleTextRendering = true;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            // 
+            // xMLToolStripMenuItem
+            // 
+            this.xMLToolStripMenuItem.Name = "xMLToolStripMenuItem";
+            this.xMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xMLToolStripMenuItem.Text = "XML";
+            this.xMLToolStripMenuItem.Click += new System.EventHandler(this.xMLToolStripMenuItem_Click);
             // 
             // MainWindows
             // 
@@ -305,7 +316,7 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainWindows";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " Справочник лекарственных средств";
@@ -345,6 +356,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ToolStripMenuItem xMLToolStripMenuItem;
     }
 }
 
