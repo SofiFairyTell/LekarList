@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using LekarList.LekarClass;
 using System.Windows.Forms;
 
 namespace LekarList.Forms
@@ -15,6 +15,8 @@ namespace LekarList.Forms
     public partial class AddForm : Form
     {
         string CodeSG;
+        List<string> Code = new List<string>();
+        public List<Medication>  MedList = new List<Medication>();
         // List<LekarListClass> LKLIST;
         //  private BindingList <LekarListClass> ListLekar = new BindingList<LekarListClass>();
         public AddForm()
@@ -25,7 +27,10 @@ namespace LekarList.Forms
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-
+            int index = MedList.Count();//пока для последнего элеммента в списке так
+            AnatomGroup anatom = new AnatomGroup(AnatomComboBox.ToString(),CodeTextBox.ToString(),0,index);
+            MedList.Add(anatom);
+            MainWindows.M
         }
 
         private void AddForm_Load(object sender, EventArgs e)
@@ -33,107 +38,115 @@ namespace LekarList.Forms
             List<string> ANMG = new List<string>();
             ANMG.AddRange(new string[]
            {
-                "Код A: Препараты, влияющие на пищеварительный тракт и обмен веществ",
-                "Код B: Препараты, влияющие на кроветворение и кровь",
-                "Код C: Препараты для лечения заболеваний сердечно-сосудистой системы",
-                "Код D: Препараты для лечения заболеваний кожи",
-                "Код G: Препараты для лечения заболеваний урогенитальных органов и половые гормоны"
+                "Препараты, влияющие на пищеварительный тракт и обмен веществ",
+                "Препараты, влияющие на кроветворение и кровь",
+                "Препараты для лечения заболеваний сердечно-сосудистой системы",
+                "Препараты для лечения заболеваний кожи",
+                "Препараты для лечения заболеваний урогенитальных органов и половые гормоны"
            });
             foreach (var str in ANMG)
             {
                 AnatomComboBox.Items.Add(str);
             }
-            //AnatomComboBox.Items.Add("Код A: Препараты, влияющие на пищеварительный тракт и обмен веществ");
-            //AnatomComboBox.Items.Add("Код B: Препараты, влияющие на кроветворение и кровь");
-            //AnatomComboBox.Items.Add("Код C: Препараты для лечения заболеваний сердечно-сосудистой системы");
-            //AnatomComboBox.Items.Add("Код D: Препараты для лечения заболеваний кожи");
-            //AnatomComboBox.Items.Add("Код G: Препараты для лечения заболеваний урогенитальных органов и половые гормоны");
+            Code.Clear();
+            Code.AddRange(new string[] { "A", "B", "C", "D", "G" });
         }
-
-        private void TherapComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-          
-            //switch ((string)TherapComboBox.SelectedItem)
-            //{
-                
-            //    case "Код A: Препараты, влияющие на пищеварительный тракт и обмен веществ":
-            //        TherapComboBox.Items.Clear();
-            //        TherapComboBox.Items.Add("код А01 — Стоматологические препараты");
-                    //THSG_A.AddRange(new string[]
-                    //{
-                    //    "АТХ код А01 — Стоматологические препараты",
-                    //    "АТХ код A02 — Препараты для лечения заболеваний, связанных с нарушением кислотности",
-                    //    "АТХ код A03 — Препараты для лечения функциональных расстройств ЖКТ",
-                    //    "АТХ код A04 — Противорвотные препараты",
-                    //    "АТХ код A05 — Препараты для лечения заболеваний печени и желчевыводящих путей"
-                    //});
-                    //foreach (var str in THSG_A)
-                    //{
-                    //    TherapComboBox.Items.Add(str);
-                    //}
-                //    break;
-                //case "Код B: Препараты, влияющие на кроветворение и кровь":
-                //    THSG_A.AddRange(new string[]
-                //    {
-                //        "АТХ код B01 — Антикоагулянты",
-                //        "АТХ код B02 — Гемостатические препараты",
-                //        "АТХ код B03 — Антианемические препараты",
-                //        "АТХ код B05 — Плазмозамещающие и перфузионные растворы",
-                //        "АТХ код B06 — Прочие гематологические препараты"
-                //    });
-                //    foreach (var str in THSG_A)
-                //    {
-                //        TherapComboBox.Items.Add(str);
-                //    }
-                //    break;
-                //default:
-                //    break;
-            //}
-        }
-
-        private void AnatomComboBox_SelectedIndexChanged(object sender, EventArgs e)
+       private void AnatomComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<string> THSG_A = new List<string>();
+            
             switch ((string)AnatomComboBox.SelectedItem)
             {
-
-                case "Код A: Препараты, влияющие на пищеварительный тракт и обмен веществ":
+                case "Препараты, влияющие на пищеварительный тракт и обмен веществ":
                     TherapComboBox.Items.Clear();
-                    //TherapComboBox.Items.Add("код А01 — Стоматологические препараты");
                     THSG_A.AddRange(new string[]
                     {
-                        "АТХ код А01 — Стоматологические препараты",
-                        "АТХ код A02 — Препараты для лечения заболеваний, связанных с нарушением кислотности",
-                        "АТХ код A03 — Препараты для лечения функциональных расстройств ЖКТ",
-                        "АТХ код A04 — Противорвотные препараты",
-                        "АТХ код A05 — Препараты для лечения заболеваний печени и желчевыводящих путей"
+                        "Стоматологические препараты",
+                        "Препараты для лечения заболеваний, связанных с нарушением кислотности",
+                        "Препараты для лечения функциональных расстройств ЖКТ",
+                        "Противорвотные препараты",
+                        "Препараты для лечения заболеваний печени и желчевыводящих путей"
                     });
-                    CodeSG = "A";
+                    CodeSG = "A01";
+                    Code.Clear();
+                    Code.AddRange(new string[] { "A01", "A02", "A03", "A04", "A05" });
                     foreach (var str in THSG_A)
                     {
                         TherapComboBox.Items.Add(str);
                     }
                     break;
-                case "Код B: Препараты, влияющие на кроветворение и кровь":
+                case "Препараты, влияющие на кроветворение и кровь":
                     TherapComboBox.Items.Clear();
                     THSG_A.AddRange(new string[]
                     {
-                        "АТХ код B01 — Антикоагулянты",
-                        "АТХ код B02 — Гемостатические препараты",
-                        "АТХ код B03 — Антианемические препараты",
-                        "АТХ код B05 — Плазмозамещающие и перфузионные растворы",
-                        "АТХ код B06 — Прочие гематологические препараты"
+                        "Антикоагулянты",
+                        "Гемостатические препараты",
+                        "Антианемические препараты",
+                        "Плазмозамещающие и перфузионные растворы",
+                        "Прочие гематологические препараты"
                     });
                     foreach (var str in THSG_A)
                     {
                         TherapComboBox.Items.Add(str);
                     }
                     CodeSG = "B";
+                    Code.Clear();
+                    Code.AddRange(new string[] { "B01", "B02", "B03", "B05", "B06" });
                     break;
                 default:
+                    TherapComboBox.Items.Clear();
                     break;
             }
+
         }
+        private void TherapComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<string> PHSG = new List<string>();
+            switch ((string)TherapComboBox.SelectedItem)
+            {
+               case "Стоматологические препараты":
+                    PharmaComboBox.Items.Clear();
+                    PHSG.AddRange(new string[]
+                    {
+                        "Препараты для профилактики кариеса",
+                        "Противомикробные препараты для местного лечения заболеваний",
+                        "Глюкокортикостероиды для местного лечения заболеваний полости рта",
+                        "Прочие препараты для лечения заболеваний полости рта ",
+                    });
+                    foreach (var str in PHSG)
+                    {
+                        PharmaComboBox.Items.Add(str);
+                    }
+                    Code.Clear();
+                    Code.AddRange(new string[] { "A01AA", "A02AB", "A03AC", "A04AD"});
+                    break;
+                case "Антикоагулянты":
+                    PharmaComboBox.Items.Clear();
+                    PHSG.AddRange(new string[]
+                    {
+                        "Антагонисты витамина К",
+                        "Гепарин и его производные",
+                        "Ингибиторы агрегации тромбоцитов (исключая гепарин)",
+                        "Ферментные препараты",
+                        "Прямые ингибиторы тромбина",
+                        "Прямые ингибиторы фактора Xa",
+                        "Прочие антикоагулянты"
+                    });
+                    foreach (var str in PHSG)
+                    {
+                        PharmaComboBox.Items.Add(str);
+                    }
+                    Code.Clear();
+                    Code.AddRange(new string[] { "B01AA", "B01AB", "B01AC", "B01AD", "B01AE","B01AF","B01AX" });
+                    break;
+                default:
+                    PharmaComboBox.Items.Clear();
+                    break;
+            }
+           
+        }
+
+ 
     }
 
      

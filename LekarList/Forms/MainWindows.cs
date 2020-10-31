@@ -24,31 +24,31 @@ namespace LekarList
 
         /*новые классы для иерархии*/
         public static List<Medication> MedList = new List<Medication>();
+        public static void ParentNodesMed();
         public string ErrorMess = "Нельзя изменять главный уровень!";
 
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
+            /*Тестовые данные для списка*/
             AnatomGroup anatom1 = new AnatomGroup("Препараты, влияющие на пищеварительный тракт и обмен веществ","A",0, 0);
             TherapGroup therap1 = new TherapGroup("Стоматологические препараты", "A01", 1, 1);
-            //PharmaGroup pharma1 = new PharmaGroup("A", "01", "A", 2, 2);
+            PharmaGroup pharma1 = new PharmaGroup("Препараты для профилактики кариеса", "A01A", 2, 2);
             //ChemGroup chem1 = new ChemGroup("A", "01", "A", "A", 3, 3);
 
-            AnatomGroup anatom2 = new AnatomGroup("Препараты, влияющие на кроветворение и кровь","B",0, 4);
-            TherapGroup therap2 = new TherapGroup("Антикоагулянты", "B01", 1, 5);
+            AnatomGroup anatom2 = new AnatomGroup("Препараты, влияющие на кроветворение и кровь","B",0, 3);
+            TherapGroup therap2 = new TherapGroup("Антикоагулянты", "B01", 1, 4);
            // PharmaGroup pharma2 = new PharmaGroup("B", "01", "A", 2, 8);
 
             MedList.Add(anatom1);
             MedList.Add(therap1);
-            //MedList.Add(pharma1);
             MedList.Add(anatom2);
             MedList.Add(therap2);
-            //MedList.Add(pharma2);
 
             ParentNodesMed();
         }
         #region TREENODE
 
-        public void ParentNodesMed()
+        public static void ParentNodesMed()
         {
             int i;
 
@@ -269,6 +269,7 @@ namespace LekarList
             }
             ParentNodesMed();*/
             Forms.AddForm NewForm = new Forms.AddForm();
+            NewForm.MedList = MedList;
             NewForm.Show();
         }
 

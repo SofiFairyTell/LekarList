@@ -33,7 +33,6 @@
             this.lekarListClassBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AnatomTypeLabel = new System.Windows.Forms.Label();
             this.AnatomComboBox = new System.Windows.Forms.ComboBox();
-            this.CancelAdButton = new System.Windows.Forms.Button();
             this.TherapTypeLabel = new System.Windows.Forms.Label();
             this.TherapComboBox = new System.Windows.Forms.ComboBox();
             this.AddButton = new System.Windows.Forms.Button();
@@ -45,6 +44,7 @@
             this.ChemComboBox = new System.Windows.Forms.ComboBox();
             this.Description = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.CancelAdButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.lekarListClassBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,16 +68,6 @@
             this.AnatomComboBox.Size = new System.Drawing.Size(345, 24);
             this.AnatomComboBox.TabIndex = 47;
             this.AnatomComboBox.SelectedIndexChanged += new System.EventHandler(this.AnatomComboBox_SelectedIndexChanged);
-            // 
-            // CancelAdButton
-            // 
-            this.CancelAdButton.Location = new System.Drawing.Point(199, 511);
-            this.CancelAdButton.Margin = new System.Windows.Forms.Padding(4);
-            this.CancelAdButton.Name = "CancelAdButton";
-            this.CancelAdButton.Size = new System.Drawing.Size(169, 28);
-            this.CancelAdButton.TabIndex = 46;
-            this.CancelAdButton.Text = "Отмена";
-            this.CancelAdButton.UseVisualStyleBackColor = true;
             // 
             // TherapTypeLabel
             // 
@@ -187,6 +177,17 @@
             this.textBox1.Size = new System.Drawing.Size(341, 168);
             this.textBox1.TabIndex = 54;
             // 
+            // CancelAdButton
+            // 
+            this.CancelAdButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CancelAdButton.Location = new System.Drawing.Point(199, 511);
+            this.CancelAdButton.Margin = new System.Windows.Forms.Padding(4);
+            this.CancelAdButton.Name = "CancelAdButton";
+            this.CancelAdButton.Size = new System.Drawing.Size(169, 28);
+            this.CancelAdButton.TabIndex = 46;
+            this.CancelAdButton.Text = "Отмена";
+            this.CancelAdButton.UseVisualStyleBackColor = true;
+            // 
             // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -221,7 +222,6 @@
         private System.Windows.Forms.BindingSource lekarListClassBindingSource;
         private System.Windows.Forms.Label AnatomTypeLabel;
         private System.Windows.Forms.ComboBox AnatomComboBox;
-        private System.Windows.Forms.Button CancelAdButton;
         private System.Windows.Forms.Label TherapTypeLabel;
         private System.Windows.Forms.ComboBox TherapComboBox;
         private System.Windows.Forms.Button AddButton;
@@ -233,5 +233,6 @@
         private System.Windows.Forms.ComboBox ChemComboBox;
         private System.Windows.Forms.Label Description;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button CancelAdButton;
     }
 }
