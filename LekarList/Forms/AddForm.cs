@@ -27,10 +27,14 @@ namespace LekarList.Forms
 
         private void AddButton_Click(object sender, EventArgs e)
         {
+            if(AnatomComboBox.ToString()!=null)
+            {
+                CodeTextBox.Text = "A";
+            }
             int index = MedList.Count();//пока для последнего элеммента в списке так
             AnatomGroup anatom = new AnatomGroup(AnatomComboBox.ToString(),CodeTextBox.ToString(),0,index);
             MedList.Add(anatom);
-            MainWindows.M
+            MainWindows.MedList = MedList;
         }
 
         private void AddForm_Load(object sender, EventArgs e)

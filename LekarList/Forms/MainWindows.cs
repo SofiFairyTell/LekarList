@@ -24,7 +24,7 @@ namespace LekarList
 
         /*новые классы для иерархии*/
         public static List<Medication> MedList = new List<Medication>();
-        public static void ParentNodesMed();
+       // public extern void ParentNodesMed();
         public string ErrorMess = "Нельзя изменять главный уровень!";
 
         private void MainWindows_Load_1(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace LekarList
         }
         #region TREENODE
 
-        public static void ParentNodesMed()
+        public void ParentNodesMed()
         {
             int i;
 
