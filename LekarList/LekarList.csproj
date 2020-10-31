@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Classes\NewFolder1\Examples.cs" />
     <Compile Include="LekarClass\AnatomGroup.cs" />
+    <Compile Include="LekarClass\ChemGroup.cs" />
     <Compile Include="LekarClass\Medication.cs" />
     <Compile Include="LekarClass\PharmaGroup.cs" />
     <Compile Include="LekarListClass\ClassLekar.cs" />

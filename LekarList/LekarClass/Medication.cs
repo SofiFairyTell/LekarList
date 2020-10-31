@@ -13,15 +13,18 @@ namespace LekarList.LekarClass
         public int Index;
         //public string ShowText;
         public int Child;
+        public string Code;
+        /*Если уровень 0, то или А или B и т.д.*/
         public Medication()
         {
             MedicName = " ";
             Level = 0;
             Index = 0;
         }
-        public Medication(string MedicNam, int level, int index)
+        public Medication(string MedicNam, string CodeSG, int level, int index)
         {
             MedicName = MedicNam;
+            Code = CodeSG;
             Level = level;
             Index = index;
         }

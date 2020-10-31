@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace LekarList.LekarClass
 {
-    class PharmaGroup:Medication
+    class ChemGroup:Medication
     {
         private string AnatomMainGroup { get; set; }
         private string TherapSG { get; set; }
         private string PharmaSG { get; set; }
+        private string ChemSG { get; set; }
 
-        public PharmaGroup(string PHSG,string CodeSG, int level, int index)
+        public ChemGroup(string CHSG, string CodeSG, int level, int index)
         {
-            PharmaSG = PHSG;
-            MedicName = PHSG;
+            ChemSG = CHSG;
+            MedicName = CHSG;
             Code = CodeSG;
             Level = level;
             Index = index;
@@ -26,10 +27,11 @@ namespace LekarList.LekarClass
             int n = 0;
             foreach (var obj in MedicGroups)
             {
-                if (obj is PharmaGroup)
+                if (obj is ChemGroup);
                     n++;
             }
             return n;
         }
     }
 }
+

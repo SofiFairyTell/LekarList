@@ -287,7 +287,8 @@
             // 
             // treeView2
             // 
-            this.treeView2.Location = new System.Drawing.Point(3, 3);
+            this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView2.Location = new System.Drawing.Point(422, 2);
             this.treeView2.Name = "treeView2";
             treeNode1.Name = "chem";
             treeNode1.Text = "Фторид натрия";
@@ -301,7 +302,7 @@
             treeNode5.Text = "Лекарственное средство";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode5});
-            this.treeView2.Size = new System.Drawing.Size(419, 387);
+            this.treeView2.Size = new System.Drawing.Size(11, 389);
             this.treeView2.TabIndex = 2;
             this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
             // 
