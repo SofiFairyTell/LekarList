@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using LekarClass;
+using LekarList.LekarClass;
 using System.Xml;
 
 namespace LekarList
@@ -21,10 +22,12 @@ namespace LekarList
             LoadXML();
         }
         List<LekarListClass> LKLIST;
+        /*новые классы для иерархии*/
+        public static List<Medication> MedList = new List<Medication>();
         public string ErrorMess = "Нельзя изменять главный уровень!";
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
-            
+         /*   
             LekarListClass lekarList0 = new LekarListClass("A", 0, 0);
             LekarListClass lekarList1 = new LekarListClass("A", "01", 1,1);
             LekarListClass lekarList2 = new LekarListClass("A", "01", "A", 2, 2);
@@ -49,9 +52,15 @@ namespace LekarList
             LKLIST.Add(lekarListB0);
             LKLIST.Add(lekarListB1);
             LKLIST.Add(lekarListB2);
-
-            ParentNodes();
-
+            */
+            AnatomGroup anatom = new AnatomGroup("A", 0, 0);
+            TherapGroup therap = new TherapGroup("A", "01", 1, 1);
+            PharmaGroup pharma = new PharmaGroup("A", "01", "A", 2, 2);
+            MedList.Add(anatom);
+            MedList.Add(therap);
+            MedList.Add(pharma);
+            //ParentNodes();
+            ParentNodesMed();
         }
         #region TREENODE
 
@@ -77,7 +86,43 @@ namespace LekarList
             treeView1.EndUpdate();
             treeView1.Refresh();
         }
+        public void ParentNodesMed()
+        {
+            int i;
 
+            treeView1.Nodes.Clear();
+            treeView1.BeginUpdate();
+            for (i = 0; i < MedList.Count(); i++)
+            {
+                if (MedList[i].Level == 0)
+                {
+                    treeView1.Nodes.Add(MedList[i].MedicName, MedList[i].MedicName);
+                    treeView1.Nodes[treeView1.Nodes.Count - 1].Tag = MedList[i];
+                }
+            }
+            for (i = 0; i < treeView1.Nodes.Count; i++)
+            {
+                ChildNodesMed(treeView1.Nodes[i]);
+                MedList[i].Child++;
+            }
+            treeView1.EndUpdate();
+            treeView1.Refresh();
+        }
+        private void ChildNodesMed(TreeNode treeNode)
+        {
+            Medication parentRed = (Medication)treeNode.Tag;
+            for (int i = parentRed.Index + 1; i < MedList.Count; i++)
+            {
+                if (MedList[i].Level == (parentRed.Level + 1))
+                {
+                    treeNode.Nodes.Add(MedList[i].MedicName, MedList[i].MedicName);
+                    treeNode.Nodes[treeNode.Nodes.Count - 1].Tag = MedList[i];
+                    ChildNodesMed(treeNode.Nodes[treeNode.Nodes.Count - 1]);
+                }
+                if (MedList[i].Level <= treeNode.Level) break;
+            }
+
+        }
         private void ChildNodes(TreeNode treeNode)
         {
             LekarListClass parentRed = (LekarListClass)treeNode.Tag;
@@ -93,7 +138,30 @@ namespace LekarList
             }
 
         }
-               
+        /*              
+               private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+               {
+                   // Получение выбранного двойным щелчком узла дерева.
+                   TreeNode node = treeView1.SelectedNode;
+
+                   // Вывод окна с текстом данного узла.
+                   MessageBox.Show(string.Format("You selected: {0}", node.Text));
+                   DataDescriptionGrid.Rows.Clear();
+                   DataDescriptionGrid.Columns.Clear();
+                   DataGridInit();
+                   DataDescriptionGrid.ReadOnly = true;
+                   DataDescriptionGrid.Visible = true;
+                   AddButton.BringToFront();
+                   MinimButton.Visible = true;
+
+                   var index = LKLIST.FindIndex(x => x.ShowText.Contains(node.Text));
+                   DataDescriptionGrid.Rows[0].Cells[1].Value = LKLIST[index].ShowText;
+                   DataDescriptionGrid.Rows[1].Cells[1].Value = LKLIST[index].Index; //индекс это номер элемента в списке
+
+
+                  // AddButton.Location = new Point(AddButton.Location.X - 199 , AddButton.Location.Y);
+               }
+               */
         private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             // Получение выбранного двойным щелчком узла дерева.
@@ -108,17 +176,13 @@ namespace LekarList
             DataDescriptionGrid.Visible = true;
             AddButton.BringToFront();
             MinimButton.Visible = true;
-            //AddButton.Location = new Point(AddButton.Location.X - 137, AddButton.Location.Y+ 224);
-            //EditButton.Location = new Point(EditButton.Location.X,EditButton.Location.Y + 156);
-            //DelButton.Location = new Point(DelButton.Location.X +139 ,DelButton.Location.Y + 52);
-            //MinimButton.Location = new Point(EditButton.Location.X, DelButton.Location.Y + 80);
 
-            var index = LKLIST.FindIndex(x => x.ShowText.Contains(node.Text));
-            DataDescriptionGrid.Rows[0].Cells[1].Value = LKLIST[index].ShowText;
-            DataDescriptionGrid.Rows[1].Cells[1].Value = LKLIST[index].Index; //индекс это номер элемента в списке
-            
+            var index = MedList.FindIndex(x => x.MedicName.Contains(node.Text));
+            DataDescriptionGrid.Rows[0].Cells[1].Value = MedList[index].MedicName;
+            DataDescriptionGrid.Rows[1].Cells[1].Value = MedList[index].Index; //индекс это номер элемента в списке
 
-           // AddButton.Location = new Point(AddButton.Location.X - 199 , AddButton.Location.Y);
+
+            // AddButton.Location = new Point(AddButton.Location.X - 199 , AddButton.Location.Y);
         }
         #endregion
 
@@ -169,7 +233,7 @@ namespace LekarList
                 //     LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
                 //    ParentNodes();
                 //}
-                
+              
                
             }
         }
@@ -267,8 +331,8 @@ namespace LekarList
                 }
             }
             ParentNodes();
-            Forms.AddForm NewForm = new Forms.AddForm();
-            NewForm.Show();
+          //  Forms.AddForm NewForm = new Forms.AddForm();
+            //NewForm.Show();
         }
 
         
@@ -316,7 +380,8 @@ namespace LekarList
                     //MinimButton.Location = new Point(485, 310);
                 }
 
-            private void DelButton_Click(object sender, EventArgs e)
+        /*
+        private void DelButton_Click(object sender, EventArgs e)
                     {
             var index = LKLIST.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
             if (LKLIST[index].Child >0)
@@ -330,8 +395,23 @@ namespace LekarList
             
             //LKLIST.Sort();
             ParentNodes();
-        }
+        }*/
 
+        private void DelButton_Click(object sender, EventArgs e)
+        {
+            var index = MedList.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
+            if (MedList[index].Child > 0)
+            {
+                MessageBox.Show("Нельзя удалять корни!");
+            }
+            else
+            {
+                MedList.RemoveAt(index);
+            }
+
+            //LKLIST.Sort();
+            ParentNodes();
+        }
 
 
         #endregion
@@ -345,7 +425,9 @@ namespace LekarList
                 string AnatomicalMainGroup = node.Attributes[0].Value;
                 int level = int.Parse(node["Level"].InnerText);
                 int index = int.Parse(node["Index"].InnerText);
-                listBox1.Items.Add(new LekarListClass(AnatomicalMainGroup, level, index));
+                MedList.Add(new AnatomGroup(AnatomicalMainGroup, level, index));
+                //listBox1.Items.Add(new AnatomGroup(AnatomicalMainGroup, level, index));
+                ParentNodes();
             }
         }
 
@@ -375,6 +457,11 @@ namespace LekarList
                 LKLIST.Add(new LekarListClass(AnatomicalMainGroup, level, index));
             }
             ParentNodes();
+        }
+
+        private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
         }
     }
  }

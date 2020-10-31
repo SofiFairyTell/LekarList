@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple Test App", "TreeGrid
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example", "example", "{53D7AB5C-2D1F-4322-9AB9-D86C05621F77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vp_course", "vp_course\vp_course\vp_course.csproj", "{55D3CDA0-4AF3-4200-BD11-3BA5F9BC47DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{136FDB49-A279-45CE-B859-6131C4616A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{136FDB49-A279-45CE-B859-6131C4616A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{136FDB49-A279-45CE-B859-6131C4616A11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55D3CDA0-4AF3-4200-BD11-3BA5F9BC47DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55D3CDA0-4AF3-4200-BD11-3BA5F9BC47DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55D3CDA0-4AF3-4200-BD11-3BA5F9BC47DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55D3CDA0-4AF3-4200-BD11-3BA5F9BC47DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

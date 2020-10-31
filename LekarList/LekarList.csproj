@@ -53,6 +53,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Classes\NewFolder1\Examples.cs" />
+    <Compile Include="LekarClass\AnatomGroup.cs" />
+    <Compile Include="LekarClass\Medication.cs" />
+    <Compile Include="LekarClass\PharmaGroup.cs" />
     <Compile Include="LekarListClass\ClassLekar.cs" />
     <Compile Include="LekarListClass\LekarClass.cs" />
     <Compile Include="Forms\AddForm.cs">
@@ -68,6 +71,7 @@
       <DependentUpon>MainWindows.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\NodeCollection.cs" />
+    <Compile Include="LekarClass\TherapGroup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AddForm.resx">

@@ -53,7 +53,7 @@
             // 
             // lekarListClassBindingSource
             // 
-            this.lekarListClassBindingSource.DataSource = typeof(LekarClass.LekarListClass);
+            //this.lekarListClassBindingSource.DataSource = typeof(LekarClass.LekarListClass);
             // 
             // ANMGcolumn
             // 

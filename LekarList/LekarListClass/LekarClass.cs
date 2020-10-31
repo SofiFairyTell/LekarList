@@ -89,19 +89,7 @@ namespace LekarClass
 
         #endregion
 
-        //private ObservableCollection<LekarListClass> GetLekarLists()
-        //{
-        //    var list = new ObservableCollection<LekarListClass>();
-        //    LekarListClass lekar = new LekarListClass()
-        //    {
-        //        Name = "KKK";
-        //        Child =
-        //        {
-        //            new LekarListClass() { ShowText = " AA"}
-        //    }
-        //    }
-        //    return list;
-        //}
+
         public override string ToString()
         {
             var sb = new StringBuilder();
