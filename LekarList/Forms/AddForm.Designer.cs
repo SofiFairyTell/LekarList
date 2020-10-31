@@ -62,17 +62,12 @@
             // 
             this.AnatomComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AnatomComboBox.FormattingEnabled = true;
-            this.AnatomComboBox.Items.AddRange(new object[] {
-            "Препараты, влияющие на пищеварительный тракт и обмен веществ",
-            "Препараты, влияющие на кроветворение и кровь",
-            "Препараты для лечения заболеваний сердечно-сосудистой системы",
-            "Препараты для лечения заболеваний кожи",
-            "Препараты для лечения заболеваний урогенитальных органов и половые гормоны"});
             this.AnatomComboBox.Location = new System.Drawing.Point(21, 28);
             this.AnatomComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.AnatomComboBox.Name = "AnatomComboBox";
             this.AnatomComboBox.Size = new System.Drawing.Size(345, 24);
             this.AnatomComboBox.TabIndex = 47;
+            this.AnatomComboBox.SelectedIndexChanged += new System.EventHandler(this.AnatomComboBox_SelectedIndexChanged);
             // 
             // CancelAdButton
             // 

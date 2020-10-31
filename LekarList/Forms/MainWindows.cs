@@ -33,16 +33,16 @@ namespace LekarList
             //PharmaGroup pharma1 = new PharmaGroup("A", "01", "A", 2, 2);
             //ChemGroup chem1 = new ChemGroup("A", "01", "A", "A", 3, 3);
 
-            AnatomGroup anatom2 = new AnatomGroup("B", 0, 6);
-            TherapGroup therap2 = new TherapGroup("B", "01", 1, 7);
+            AnatomGroup anatom2 = new AnatomGroup("Препараты, влияющие на кроветворение и кровь","B",0, 4);
+            TherapGroup therap2 = new TherapGroup("Антикоагулянты", "B01", 1, 5);
            // PharmaGroup pharma2 = new PharmaGroup("B", "01", "A", 2, 8);
 
             MedList.Add(anatom1);
             MedList.Add(therap1);
-            MedList.Add(pharma1);
+            //MedList.Add(pharma1);
             MedList.Add(anatom2);
             MedList.Add(therap2);
-            MedList.Add(pharma2);
+            //MedList.Add(pharma2);
 
             ParentNodesMed();
         }
@@ -177,6 +177,7 @@ namespace LekarList
 
         private void AddButton_Click_1(object sender, EventArgs e)
         {
+            /*
             int level;
             string CodeSG;
             string line;
@@ -266,9 +267,9 @@ namespace LekarList
                     MedList.Add(new AnatomGroup(ANMG,"Ошибка",0, i));
                 }
             }
-            ParentNodesMed();
-            //  Forms.AddForm NewForm = new Forms.AddForm();
-            //NewForm.Show();
+            ParentNodesMed();*/
+            Forms.AddForm NewForm = new Forms.AddForm();
+            NewForm.Show();
         }
 
         private void SortButton_Click(object sender, EventArgs e)
@@ -335,20 +336,7 @@ namespace LekarList
 
         #endregion
 
-        private void LoadXML()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml");
-            foreach (XmlNode node in doc.DocumentElement)
-            {
-                string AnatomicalMainGroup = node.Attributes[0].Value;
-                int level = int.Parse(node["Level"].InnerText);
-                int index = int.Parse(node["Index"].InnerText);
-                MedList.Add(new AnatomGroup(AnatomicalMainGroup, level, index));
-                //listBox1.Items.Add(MedList.[0]));
-                ParentNodesMed();
-            }
-        }
+        
         private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MedList.Clear();
@@ -357,9 +345,10 @@ namespace LekarList
             foreach (XmlNode node in doc.DocumentElement)
             {
                 string AnatomicalMainGroup = node.Attributes[0].Value;
+                string Code = " ";
                 int level = int.Parse(node["Level"].InnerText);
                 int index = int.Parse(node["Index"].InnerText);
-                MedList.Add(new AnatomGroup(AnatomicalMainGroup, level, index));
+                MedList.Add(new AnatomGroup(AnatomicalMainGroup, Code, level, index));
             }
             ParentNodesMed();
         }
