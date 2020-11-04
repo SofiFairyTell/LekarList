@@ -10,7 +10,9 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using LekarClass;
 using LekarList.LekarClass;
+using System.Xml.Serialization;
 using System.Xml;
+using System.IO;
 
 namespace LekarList
 {
@@ -26,7 +28,7 @@ namespace LekarList
         public static List<Medication> MedList = new List<Medication>();
        // public extern void ParentNodesMed();
         public string ErrorMess = "Нельзя изменять главный уровень!";
-
+        string CurrentFile = "";
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
             /*Тестовые данные для списка*/
@@ -343,6 +345,7 @@ namespace LekarList
             MedList.Clear();
             XmlDocument doc = new XmlDocument();
             doc.Load("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml");
+            CurrentFile = "C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml";
             foreach (XmlNode node in doc.DocumentElement)
             {
                 string AnatomicalMainGroup = node.Attributes[0].Value;
@@ -375,6 +378,55 @@ namespace LekarList
         {
 
         }
+
+        private void MainWindows_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+                SaveFile();
+            //if (e.Control && e.KeyCode == Keys.L)
+            //    LoadFile();
+            //if (e.Control && e.KeyCode == Keys.P)
+            //    customControl11_Click(new object(), new EventArgs());
+            //if (e.KeyCode == Keys.Delete)
+            //    DeleteButton_Click(new object(), new EventArgs());
+            //if (e.Control && e.KeyCode == Keys.I)
+            //    AboutToolStripMenuItem_Click(new object(), new EventArgs());
+            //if (e.KeyCode == Keys.F1)
+            //    HelpToolStripMenuItem_Click(new object(), new EventArgs());
+        }
+ private void SaveFile()
+{
+
+    try
+    {
+       List<Type> types = new List<Type>();
+       foreach(Medication med in MedList)
+        {
+            Type type = med.GetType();
+            if(!types.Contains(type))
+            {
+                types.Add(type);
+            }
+        }
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Medication>),types.ToArray());
+                using (FileStream file = new FileStream("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\output.xml", FileMode.Create))
+                { 
+                  file.SetLength(0);
+                   file.Flush();
+                    serializer.Serialize(file, MedList);
+                }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Что-то пошло не так!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
  }
+
+        private void сохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFile();
+        }
+    }
+ }
+
 

@@ -13,6 +13,14 @@ namespace LekarList.LekarClass
         private string PharmaSG { get; set; }
         private string ChemSG { get; set; }
 
+        public ChemGroup()
+        {
+            PharmaSG = "";
+            MedicName = "";
+            Code = "";
+            Level = 0;
+            Index = 0;
+        }
         public ChemGroup(string CHSG, string CodeSG, int level, int index)
         {
             ChemSG = CHSG;

@@ -12,8 +12,15 @@ namespace LekarList.LekarClass
         private string TherapSG { get; set; }
 
         //int Child = PharmaGroup.Count();
-
-        public TherapGroup(string THSG,string CodeSG, int level, int index)
+        public TherapGroup()
+        {
+            TherapSG = "";
+            MedicName = "";
+            Code = " ";
+            Level = 0;
+            Index = 0;
+        }
+        public TherapGroup(string THSG, string CodeSG, int level, int index)
         {
             TherapSG = THSG;
             MedicName = THSG;

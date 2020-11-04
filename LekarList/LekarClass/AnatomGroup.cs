@@ -9,7 +9,7 @@ namespace LekarList.LekarClass
     public class AnatomGroup: Medication
     {
         private string AnatomMainGroup; //GOURPS: A,B,C,D,G,H,J,L,M,N,P,R,S,V
-
+        
         //public string ShowText;
 
         public AnatomGroup()

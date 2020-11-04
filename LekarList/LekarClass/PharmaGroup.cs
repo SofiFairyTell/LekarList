@@ -11,7 +11,14 @@ namespace LekarList.LekarClass
         private string AnatomMainGroup { get; set; }
         private string TherapSG { get; set; }
         private string PharmaSG { get; set; }
-
+        public PharmaGroup()
+        {
+            PharmaSG = "";
+            MedicName = "";
+            Code = "";
+            Level = 0;
+            Index = 0;
+        }
         public PharmaGroup(string PHSG,string CodeSG, int level, int index)
         {
             PharmaSG = PHSG;

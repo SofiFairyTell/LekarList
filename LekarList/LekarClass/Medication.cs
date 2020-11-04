@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using System.Xml.XmlConfiguration;
 
 namespace LekarList.LekarClass
 {
-    public abstract class Medication: IComparable<Medication>
+    public abstract class Medication : IComparable<Medication>
     {
+        [XmlElement("MedicName")]
         public string MedicName { get; set; }
+        [XmlElement("Level")]
         public int Level;
+        [XmlElement("Index")]
         public int Index;
         //public string ShowText;
         public int Child;
