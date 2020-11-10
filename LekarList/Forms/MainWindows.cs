@@ -21,15 +21,21 @@ namespace LekarList
         public MainWindows()
         {
             InitializeComponent();
-
+            
+            StatusStrip1Initizlization();
+            StatusStrip2Initizlization();
         }
-
-        /*новые классы для иерархии*/
-        public static List<Medication> MedList = new List<Medication>();
-       // public extern void ParentNodesMed();
+        //Error Message
         public string ErrorMess = "Нельзя изменять главный уровень!";
-        string CurrentFile = "";
+        public string ErrorMess2 = "Нельзя удалить уровень у которого есть подуровни!";
+        //Cписки
+        public static List<Medication> MedList = new List<Medication>();
+        //Переменные
+        ToolStripLabel timeStartLabel, dateLabel, timeLabel;
+        private static ulong timeSec = 0;
+        string CurrentFile = ""; //для определения имени текущего файла
         public static string searchline;//this string may be init after entering text in searchForm
+
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
             /*Тестовые данные для списка*/
@@ -49,6 +55,47 @@ namespace LekarList
 
             ParentNodesMed();
         }
+
+        #region Статусы
+        void timer_Tick(object sender, EventArgs e)
+        {
+            dateLabel.Text = DateTime.Now.ToLongDateString();
+            timeLabel.Text = DateTime.Now.ToLongTimeString();
+        }
+        void timer_Tick2(object sender, EventArgs e)
+        {
+            timeSec += 1;
+            timeStartLabel.Text = timeSec.ToString();
+        }
+        private void StatusStrip1Initizlization()
+        {
+            ToolStripLabel infoLabel = new ToolStripLabel();
+            infoLabel.Text = "Текущие дата и время:";
+            dateLabel = new ToolStripLabel();
+            timeLabel = new ToolStripLabel();
+            statusStrip1.Items.Add(infoLabel);
+            statusStrip1.Items.Add(dateLabel);
+            statusStrip1.Items.Add(timeLabel);
+            Timer timer = new Timer() { Interval = 1000 };
+            timer.Tick += timer_Tick;
+            Timer timer2 = new Timer() { Interval = 1000 };
+            timer2.Tick += timer_Tick2;
+            timer.Start();
+            timer2.Start();
+        }
+        private void StatusStrip2Initizlization()
+        {
+            ToolStripLabel infoLabel = new ToolStripLabel();
+            infoLabel.Text = "Время работы программы в секундах:";
+            timeStartLabel = new ToolStripLabel();
+            statusStrip2.Items.Add(infoLabel);
+            statusStrip2.Items.Add(timeStartLabel);
+            Timer timer = new Timer() { Interval = 1000 };
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+        #endregion
+
         #region TREENODE
 
         public void ParentNodesMed()
@@ -232,7 +279,7 @@ namespace LekarList
             SortButton.Visible = true;
             AddButton.Visible = true;
         }
-        private bool flag;
+
 
         private void EditButton_Click(object sender, EventArgs e)
         {
@@ -261,16 +308,24 @@ namespace LekarList
 
         private void DelButton_Click(object sender, EventArgs e)
         {
-            var index = MedList.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
-            if (MedList[index].Child > 0)
-            {
-                MessageBox.Show("Нельзя удалять корни!");
+            try
+                {
+                var index = MedList.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
+                if (MedList[index].Child > 0)
+                    {
+                        MessageBox.Show("Нельзя удалять корни!");
+                    }
+                    else
+                    {
+                        MedList.RemoveAt(index);
+                    }
+                    ParentNodesMed();
             }
-            else
+            catch
             {
-                MedList.RemoveAt(index);
+                MessageBox.Show(ErrorMess2);
             }
-            ParentNodesMed();
+           
         }
 
         #endregion
@@ -291,28 +346,6 @@ namespace LekarList
                 MedList.Add(new AnatomGroup(AnatomicalMainGroup, Code, level, index));
             }
             ParentNodesMed();
-        }
-
-
-
-        private void propertyGrid1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedIndex !=-1)
-            {
-                propertyGrid1.SelectedObject = listBox1.SelectedItem;
-            }
-        }
-
-
-
-        private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
         }
 
         /*Обработка событий клавиатуры*/
@@ -375,7 +408,13 @@ namespace LekarList
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Программа создана в рамках выполнения курсового проекта\n\nИсходный текст программы в актуальном виде доступен на GitHub")
+            MessageBox.Show("Программа создана в рамках выполнения курсового проекта\n\nИсходный текст программы в актуальном виде доступен на GitHub");
+        }
+        //End work with current Form
+        //завершение работы с текущей формой
+        private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Close();    
         }
     }
  }

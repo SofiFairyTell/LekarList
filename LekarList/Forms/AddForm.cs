@@ -35,6 +35,7 @@ namespace LekarList.Forms
             AnatomGroup anatom = new AnatomGroup(AnatomComboBox.ToString(),CodeTextBox.ToString(),0,index);
             MedList.Add(anatom);
             MainWindows.MedList = MedList;
+            this.Close();
         }
 
         private void AddForm_Load(object sender, EventArgs e)
