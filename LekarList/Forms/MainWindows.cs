@@ -29,6 +29,7 @@ namespace LekarList
        // public extern void ParentNodesMed();
         public string ErrorMess = "Нельзя изменять главный уровень!";
         string CurrentFile = "";
+        public static string searchline;//this string may be init after entering text in searchForm
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
             /*Тестовые данные для списка*/
@@ -121,85 +122,47 @@ namespace LekarList
         }
         
         //функция поиска в дереве. Если ничего не найдено - возвращает null
-
-        private treeview1_SearchNode(string SearchText,TreeNode StartNode)
-
+        
+        public static TreeNode SearchNode(string SearchText, TreeNode StartNode)
         {
-
             TreeNode node=null;
-
             while (StartNode!= null)
-
             {
-
                 if (StartNode.Text.ToLower().Contains(SearchText.ToLower()))
-
                 {
-
-                    node = StartNode; //чето нашли, выходим
-
+                    node = StartNode; //node was found
                     break;
-
                 };
-
-                if (StartNode.Nodes.Count != 0) //у узла есть дочерние элементы
-
+                if (StartNode.Nodes.Count != 0) //if node has child
                 {
-
-                    node=SearchNode(SearchText, StartNode.Nodes[0]);//ищем рекурсивно в дочерних
-
+                    node = SearchNode(SearchText, StartNode.Nodes[0]);//ищем рекурсивно в дочерних
                     if (node != null)
-
                     {
-
-                        break;//чето нашли
-
+                        break;
                     };
-
                 };
-
                 StartNode = StartNode.NextNode;
-
             };
-
             return node;//вернули результат поиска
-
         }
 
- 
-
-//нажатие на клавишу поиска
-
-        private void button2_Click(object sender, EventArgs e)
-
+        private void StartSearh()
         {
-
-            string SearchText = this.textBox1.Text;
-
-            if (SearchText == "")
-
-            {
-
-                return;
-
-            };
-
-            TreeNode SelectedNode = SearchNode(SearchText, treeView1.Nodes[0]);//пытаемся найти в поле Text
-
+            Forms.SearchLine searchForm = new Forms.SearchLine();
+            searchForm.ShowDialog();
+            TreeNode SelectedNode = SearchNode(searchline, treeView1.Nodes[0]);//пытаемся найти в поле Text
             if (SelectedNode != null)
-
             {
-
                 //нашли, выделяем...
-
                 this.treeView1.SelectedNode = SelectedNode;
-
                 this.treeView1.SelectedNode.Expand();
-
                 this.treeView1.Select();
-
             };
+        }
 
+        private void поискToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartSearh();
         }
         #endregion
 
@@ -243,15 +206,7 @@ namespace LekarList
             }
             else
             {
-                DataDescriptionGrid.ReadOnly = true;
-                //DataDescriptionGrid.EndEdit();
-                //if (flag)
-                //{
-                //     LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
-                //    ParentNodes();
-                //}
-              
-               
+                DataDescriptionGrid.ReadOnly = true;                          
             }
         }
 
@@ -261,97 +216,6 @@ namespace LekarList
 
         private void AddButton_Click_1(object sender, EventArgs e)
         {
-            /*
-            int level;
-            string CodeSG;
-            string line;
-            string ANMG;
-            string THSG;
-            string PHSG;
-            string CHSG;
-            string CHST;
-
-            MedList = new List<Medication>();
-            for (int i = 0; i < LBdata.Items.Count; i++)
-            {
-                line = LBdata.Items[i].ToString();
-                Medication result;
-                Regex regex = new Regex("(^[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2}$)");
-                Match match = regex.Match(line);
-                if (match.Success)
-                {
-
-                    switch (line.Length)
-                    {
-                        case 1:
-                            level = 0;
-                            ANMG = "Препараты, влияющие на пищеварительный тракт и обмен веществ";
-                            CodeSG = line.Substring(0, 1);
-                            result = MedList.Find(x => x.MedicName.Contains(ANMG));
-                            if (result == null)
-                            {
-                                MedList.Add(new AnatomGroup(ANMG, CodeSG, level, i));
-                            }
-
-                            break;
-                        case 3:
-                            level = 1;
-                            ANMG = line.Substring(0, 1);
-                            THSG = line.Substring(1, 2);
-                            CodeSG = ANMG + THSG;
-                            result = MedList.Find(x => x.MedicName.Contains(CodeSG));
-                            if (result == null)
-                            {
-                                MedList.Add(new TherapGroup(ANMG, THSG, level, i));
-                            }
-
-                            break;
-                        case 4:
-                            level = 2;
-                            ANMG = line.Substring(0, 1);
-                            THSG = line.Substring(1, 2);
-                            PHSG = line.Substring(3, 1);
-                            CodeSG = ANMG + THSG + PHSG;
-                            result = MedList.Find(x => x.MedicName.Contains(CodeSG));
-                            if (result == null)
-                            {
-                                MedList.Add(new PharmaGroup(PHSG, CodeSG, level, i));
-                            }
-                            break;
-                        //case 5:
-                        //    level = 3;
-                        //    ANMG = line.Substring(0, 1);
-                        //    THSG = line.Substring(1, 2);
-                        //    PHSG = line.Substring(3, 1);
-                        //    CHSG = line.Substring(4, 1);
-                        //    result = MedList.Find(x => x.MedicName.Contains(ANMG + THSG + PHSG + CHSG));
-                        //    if (result == null)
-                        //    {
-                        //        LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, level, i));
-                        //    }
-                        //    break;
-                        //case 7:
-                        //    level = 4;
-                        //    ANMG = line.Substring(0, 1);
-                        //    THSG = line.Substring(1, 2);
-                        //    PHSG = line.Substring(3, 1);
-                        //    CHSG = line.Substring(4, 1);
-                        //    CHST = line.Substring(5, 2);
-                        //    result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG + CHSG + CHST));
-                        //    if (result == null)
-                        //    {
-                        //        LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, CHST, level, i));
-                        //    }
-                        //    break;
-                    }
-                }
-                else
-                {
-                    ANMG = "ОШИБКА";
-                    MedList.Add(new AnatomGroup(ANMG,"Ошибка",0, i));
-                }
-            }
-            ParentNodesMed();*/
             Forms.AddForm NewForm = new Forms.AddForm();
             NewForm.MedList = MedList;
             NewForm.Show();
@@ -383,7 +247,6 @@ namespace LekarList
             {
                 var index = MedList.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
                 MedList[index].MedicName = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
-                //LKLIST.Sort();
                 ParentNodesMed();
             }
 
@@ -393,13 +256,7 @@ namespace LekarList
                 {
                     MinimButton.Visible = false;
                     DataDescriptionGrid.Rows.Clear();
-                    AddButton.BringToFront();
-                    
-                    //AddButton.Location = new Point(AddButton.Location.X + 137, AddButton.Location.Y - 224);
-                    //EditButton.Location = new Point(EditButton.Location.X, EditButton.Location.Y - 156);
-                    //DelButton.Location = new Point(DelButton.Location.X - 139, DelButton.Location.Y - 52);
-                    // MinimButton.Location = new Point(EditButton.Location.X, DelButton.Location.Y + 80);
-                    //MinimButton.Location = new Point(485, 310);
+                    AddButton.BringToFront();                  
                 }
 
         private void DelButton_Click(object sender, EventArgs e)
@@ -413,8 +270,6 @@ namespace LekarList
             {
                 MedList.RemoveAt(index);
             }
-
-            //LKLIST.Sort();
             ParentNodesMed();
         }
 
@@ -465,6 +320,8 @@ namespace LekarList
         {
             if (e.Control && e.KeyCode == Keys.S)
                 SaveFile();
+            if (e.Control && e.KeyCode == Keys.F)
+                StartSearh();
             //if (e.Control && e.KeyCode == Keys.L)
             //    LoadFile();
             //if (e.Control && e.KeyCode == Keys.P)
@@ -508,6 +365,13 @@ namespace LekarList
         {
             SaveFile();
         }
+
+        private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
  }
 
