@@ -273,7 +273,6 @@ namespace LekarList
             ParentNodesMed();
         }
 
-
         #endregion
 
         
@@ -316,6 +315,8 @@ namespace LekarList
 
         }
 
+        /*Обработка событий клавиатуры*/
+        /*KeyDown events*/
         private void MainWindows_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.S)
@@ -333,9 +334,10 @@ namespace LekarList
             //if (e.KeyCode == Keys.F1)
             //    HelpToolStripMenuItem_Click(new object(), new EventArgs());
         }
+ 
+ /*Сохранение в виде XML файла*/
  private void SaveFile()
 {
-
     try
     {
        List<Type> types = new List<Type>();
@@ -347,7 +349,7 @@ namespace LekarList
                 types.Add(type);
             }
         }
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Medication>),types.ToArray());
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Medication>),types.ToArray());
                 using (FileStream file = new FileStream("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\output.xml", FileMode.Create))
                 { 
                   file.SetLength(0);
@@ -371,7 +373,10 @@ namespace LekarList
 
         }
 
-       
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Программа создана в рамках выполнения курсового проекта\n\nИсходный текст программы в актуальном виде доступен на GitHub")
+        }
     }
  }
 

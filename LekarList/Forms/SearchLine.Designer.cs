@@ -49,7 +49,7 @@
             // 
             this.TextBox_SearchLine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TextBox_SearchLine.Font = new System.Drawing.Font("Times New Roman", 12.14F);
-            this.TextBox_SearchLine.Location = new System.Drawing.Point(259, 35);
+            this.TextBox_SearchLine.Location = new System.Drawing.Point(316, 35);
             this.TextBox_SearchLine.Name = "TextBox_SearchLine";
             this.TextBox_SearchLine.Size = new System.Drawing.Size(367, 31);
             this.TextBox_SearchLine.TabIndex = 1;
@@ -64,7 +64,7 @@
             this.OkButton_SearchLine.Cursor = System.Windows.Forms.Cursors.Hand;
             this.OkButton_SearchLine.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.OkButton_SearchLine.Font = new System.Drawing.Font("Times New Roman", 12.14F);
-            this.OkButton_SearchLine.Location = new System.Drawing.Point(413, 98);
+            this.OkButton_SearchLine.Location = new System.Drawing.Point(470, 99);
             this.OkButton_SearchLine.Name = "OkButton_SearchLine";
             this.OkButton_SearchLine.Size = new System.Drawing.Size(213, 36);
             this.OkButton_SearchLine.TabIndex = 2;
@@ -77,7 +77,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(651, 156);
+            this.ClientSize = new System.Drawing.Size(695, 156);
             this.Controls.Add(this.OkButton_SearchLine);
             this.Controls.Add(this.TextBox_SearchLine);
             this.Controls.Add(this.Label_SearchLine);
@@ -85,7 +85,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SearchLine";
-            this.Opacity = 0.7D;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Поиск по имени класса";
             this.ResumeLayout(false);
             this.PerformLayout();

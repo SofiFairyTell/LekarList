@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Фторид натрия");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Препараты для профилактики кариеса", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Стоматологические препараты", new System.Windows.Forms.TreeNode[] {
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Препараты влияющие на пищеварительный тракт", new System.Windows.Forms.TreeNode[] {
-            treeNode8});
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Лекарственное средство", new System.Windows.Forms.TreeNode[] {
-            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Фторид натрия");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Препараты для профилактики кариеса", new System.Windows.Forms.TreeNode[] {
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Стоматологические препараты", new System.Windows.Forms.TreeNode[] {
+            treeNode12});
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Препараты влияющие на пищеварительный тракт", new System.Windows.Forms.TreeNode[] {
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Лекарственное средство", new System.Windows.Forms.TreeNode[] {
+            treeNode14});
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.AddButton = new System.Windows.Forms.Button();
             this.LBdata = new System.Windows.Forms.ListBox();
@@ -215,6 +215,7 @@
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
+            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -295,18 +296,18 @@
             this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView2.Location = new System.Drawing.Point(422, 2);
             this.treeView2.Name = "treeView2";
-            treeNode6.Name = "chem";
-            treeNode6.Text = "Фторид натрия";
-            treeNode7.Name = "pharma";
-            treeNode7.Text = "Препараты для профилактики кариеса";
-            treeNode8.Name = "therap";
-            treeNode8.Text = "Стоматологические препараты";
-            treeNode9.Name = "anatom";
-            treeNode9.Text = "Препараты влияющие на пищеварительный тракт";
-            treeNode10.Name = "medicname";
-            treeNode10.Text = "Лекарственное средство";
+            treeNode11.Name = "chem";
+            treeNode11.Text = "Фторид натрия";
+            treeNode12.Name = "pharma";
+            treeNode12.Text = "Препараты для профилактики кариеса";
+            treeNode13.Name = "therap";
+            treeNode13.Text = "Стоматологические препараты";
+            treeNode14.Name = "anatom";
+            treeNode14.Text = "Препараты влияющие на пищеварительный тракт";
+            treeNode15.Name = "medicname";
+            treeNode15.Text = "Лекарственное средство";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode10});
+            treeNode15});
             this.treeView2.Size = new System.Drawing.Size(11, 383);
             this.treeView2.TabIndex = 2;
             this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
