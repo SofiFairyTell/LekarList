@@ -119,6 +119,88 @@ namespace LekarList
 
             // AddButton.Location = new Point(AddButton.Location.X - 199 , AddButton.Location.Y);
         }
+        
+        //функция поиска в дереве. Если ничего не найдено - возвращает null
+
+        private treeview1_SearchNode(string SearchText,TreeNode StartNode)
+
+        {
+
+            TreeNode node=null;
+
+            while (StartNode!= null)
+
+            {
+
+                if (StartNode.Text.ToLower().Contains(SearchText.ToLower()))
+
+                {
+
+                    node = StartNode; //чето нашли, выходим
+
+                    break;
+
+                };
+
+                if (StartNode.Nodes.Count != 0) //у узла есть дочерние элементы
+
+                {
+
+                    node=SearchNode(SearchText, StartNode.Nodes[0]);//ищем рекурсивно в дочерних
+
+                    if (node != null)
+
+                    {
+
+                        break;//чето нашли
+
+                    };
+
+                };
+
+                StartNode = StartNode.NextNode;
+
+            };
+
+            return node;//вернули результат поиска
+
+        }
+
+ 
+
+//нажатие на клавишу поиска
+
+        private void button2_Click(object sender, EventArgs e)
+
+        {
+
+            string SearchText = this.textBox1.Text;
+
+            if (SearchText == "")
+
+            {
+
+                return;
+
+            };
+
+            TreeNode SelectedNode = SearchNode(SearchText, treeView1.Nodes[0]);//пытаемся найти в поле Text
+
+            if (SelectedNode != null)
+
+            {
+
+                //нашли, выделяем...
+
+                this.treeView1.SelectedNode = SelectedNode;
+
+                this.treeView1.SelectedNode.Expand();
+
+                this.treeView1.Select();
+
+            };
+
+        }
         #endregion
 
         #region DataGrids
