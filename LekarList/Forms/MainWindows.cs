@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using LekarClass;
+using LekarList.LekarClass;
+using System.Xml.Serialization;
 using System.Xml;
+using System.IO;
 
 namespace LekarList
 {
@@ -18,107 +21,212 @@ namespace LekarList
         public MainWindows()
         {
             InitializeComponent();
-            LoadXML();
+            
+            StatusStrip1Initizlization();
+            StatusStrip2Initizlization();
         }
-        List<LekarListClass> LKLIST;
+        //Error Message
         public string ErrorMess = "Нельзя изменять главный уровень!";
+        public string ErrorMess2 = "Нельзя удалить уровень у которого есть подуровни!";
+        public string ErrorMess3 = "Нельзя изменить не открытый узел";
+        //Cписки
+        public static List<Medication> MedList = new List<Medication>();
+        //Переменные
+        ToolStripLabel timeStartLabel, dateLabel, timeLabel;
+        private static ulong timeSec = 0;
+        string CurrentFile = ""; //для определения имени текущего файла
+        public static string searchline;//this string may be init after entering text in searchForm
+        ToolStripMenuItem UpdateMenuItem = new ToolStripMenuItem("Обновить");
+        
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
-            
-            LekarListClass lekarList0 = new LekarListClass("A", 0, 0);
-            LekarListClass lekarList1 = new LekarListClass("A", "01", 1,1);
-            LekarListClass lekarList2 = new LekarListClass("A", "01", "A", 2, 2);
-            
+            /*Тестовые данные для списка*/
+            AnatomGroup anatom1 = new AnatomGroup("Препараты, влияющие на пищеварительный тракт и обмен веществ","A",0, 0);
+            TherapGroup therap1 = new TherapGroup("Стоматологические препараты", "A01", 1, 1);
+            PharmaGroup pharma1 = new PharmaGroup("Препараты для профилактики кариеса", "A01A", 2, 2);
+            //ChemGroup chem1 = new ChemGroup("A", "01", "A", "A", 3, 3);
 
-            LekarListClass lekarList3 = new LekarListClass("A", "01", "A","A", 3, 3);
-            LekarListClass lekarList4 = new LekarListClass("A", "01", "A", "A","01", 4, 4);
-            LekarListClass lekarList4a = new LekarListClass("A", "01", "A", "A", "02", 4, 5);
+            AnatomGroup anatom2 = new AnatomGroup("Препараты, влияющие на кроветворение и кровь","B",0, 3);
+            TherapGroup therap2 = new TherapGroup("Антикоагулянты", "B01", 1, 4);
+            // PharmaGroup pharma2 = new PharmaGroup("B", "01", "A", 2, 8);
+            MedList.Clear();
+            MedList.Add(anatom1);
+            MedList.Add(therap1);
+            MedList.Add(pharma1);
+            MedList.Add(anatom2);
+            MedList.Add(therap2);
 
-            LekarListClass lekarListB0 = new LekarListClass("B", 0, 6);
-            LekarListClass lekarListB1 = new LekarListClass("B", "01", 1, 7);
-            LekarListClass lekarListB2 = new LekarListClass("B", "01", "A", 2, 8);
-            LKLIST = new List<LekarListClass>();
-
-            LKLIST.Add(lekarList0);
-            LKLIST.Add(lekarList1);
-            LKLIST.Add(lekarList2);
-            LKLIST.Add(lekarList3);
-            LKLIST.Add(lekarList4);
-            LKLIST.Add(lekarList4a);
-        
-            LKLIST.Add(lekarListB0);
-            LKLIST.Add(lekarListB1);
-            LKLIST.Add(lekarListB2);
-
-            ParentNodes();
-
+            contextMenuStrip1.Items.AddRange(new[] { UpdateMenuItem});
+            treeView1.ContextMenuStrip = contextMenuStrip1;
+            UpdateMenuItem.Click += UpdateMenuItem_Click;
+            ParentNodesMed();
         }
+        void UpdateMenuItem_Click(object sender, EventArgs e)
+        {
+            // если выделен текст в текстовом поле, то копируем его в буфер
+            ParentNodesMed();
+        }
+        #region Статусы
+
+        // создаем элементы меню
+
+        // добавляем элементы в меню
+        //   
+        // ассоциируем контекстное меню с текстовым полем
+        void timer_Tick(object sender, EventArgs e)
+        {
+            dateLabel.Text = DateTime.Now.ToLongDateString();
+            timeLabel.Text = DateTime.Now.ToLongTimeString();
+        }
+        void timer_Tick2(object sender, EventArgs e)
+        {
+            timeSec += 1;
+            timeStartLabel.Text = timeSec.ToString();
+        }
+        private void StatusStrip1Initizlization()
+        {
+            ToolStripLabel infoLabel = new ToolStripLabel();
+            infoLabel.Text = "Текущие дата и время:";
+            dateLabel = new ToolStripLabel();
+            timeLabel = new ToolStripLabel();
+            statusStrip1.Items.Add(infoLabel);
+            statusStrip1.Items.Add(dateLabel);
+            statusStrip1.Items.Add(timeLabel);
+            Timer timer = new Timer() { Interval = 1000 };
+            timer.Tick += timer_Tick;
+            Timer timer2 = new Timer() { Interval = 1000 };
+            timer2.Tick += timer_Tick2;
+            timer.Start();
+            timer2.Start();
+        }
+        private void StatusStrip2Initizlization()
+        {
+            ToolStripLabel infoLabel = new ToolStripLabel();
+            infoLabel.Text = "Время работы программы в секундах:";
+            timeStartLabel = new ToolStripLabel();
+            statusStrip2.Items.Add(infoLabel);
+            statusStrip2.Items.Add(timeStartLabel);
+            Timer timer = new Timer() { Interval = 1000 };
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+        #endregion
+
         #region TREENODE
 
-        public void ParentNodes()
+        public void ParentNodesMed()
         {
             int i;
-           
+
             treeView1.Nodes.Clear();
             treeView1.BeginUpdate();
-            for (i=0;i<LKLIST.Count();i++)
+            for (i = 0; i < MedList.Count(); i++)
             {
-                if (LKLIST[i].Level == 0)
+                if (MedList[i].Level == 0)
                 {
-                    treeView1.Nodes.Add(LKLIST[i].ShowText,LKLIST[i].ShowText);
-                    treeView1.Nodes[treeView1.Nodes.Count - 1].Tag = LKLIST[i];
+                    treeView1.Nodes.Add(MedList[i].MedicName, MedList[i].MedicName);
+                    treeView1.Nodes[treeView1.Nodes.Count - 1].Tag = MedList[i];
                 }
             }
-            for(i=0;i<treeView1.Nodes.Count;i++)
+            for (i = 0; i < treeView1.Nodes.Count; i++)
             {
-                ChildNodes(treeView1.Nodes[i]);
-                LKLIST[i].Child++;
+                ChildNodesMed(treeView1.Nodes[i]);
+                MedList[i].Child++;
             }
             treeView1.EndUpdate();
             treeView1.Refresh();
         }
-
-        private void ChildNodes(TreeNode treeNode)
+        private void ChildNodesMed(TreeNode treeNode)
         {
-            LekarListClass parentRed = (LekarListClass)treeNode.Tag;
-            for (int i = parentRed.Index+1;i<LKLIST.Count;i++)
+            Medication parentRed = (Medication)treeNode.Tag;
+            for (int i = parentRed.Index + 1; i < MedList.Count; i++)
             {
-                if(LKLIST[i].Level == (parentRed.Level+1))
+                if (MedList[i].Level == (parentRed.Level + 1))
                 {
-                    treeNode.Nodes.Add(LKLIST[i].ShowText, LKLIST[i].ShowText);
-                    treeNode.Nodes[treeNode.Nodes.Count - 1].Tag = LKLIST[i];
-                    ChildNodes(treeNode.Nodes[treeNode.Nodes.Count - 1]);
+                    treeNode.Nodes.Add(MedList[i].MedicName, MedList[i].MedicName);
+                    treeNode.Nodes[treeNode.Nodes.Count - 1].Tag = MedList[i];
+                    ChildNodesMed(treeNode.Nodes[treeNode.Nodes.Count - 1]);
                 }
-                if (LKLIST[i].Level <= treeNode.Level) break;
+                if (MedList[i].Level <= treeNode.Level) break;
             }
 
         }
-               
+
         private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            // Получение выбранного двойным щелчком узла дерева.
-            TreeNode node = treeView1.SelectedNode;
+            try
+            {
+            
+            TreeNode node = treeView1.SelectedNode;// Получение выбранного двойным щелчком узла дерева.
+           
+            MessageBox.Show(string.Format("You selected: {0}", node.Text)); // Вывод окна с текстом данного узла.
 
-            // Вывод окна с текстом данного узла.
-            MessageBox.Show(string.Format("You selected: {0}", node.Text));
             DataDescriptionGrid.Rows.Clear();
             DataDescriptionGrid.Columns.Clear();
             DataGridInit();
             DataDescriptionGrid.ReadOnly = true;
             DataDescriptionGrid.Visible = true;
             AddButton.BringToFront();
-            MinimButton.Visible = true;
-            //AddButton.Location = new Point(AddButton.Location.X - 137, AddButton.Location.Y+ 224);
-            //EditButton.Location = new Point(EditButton.Location.X,EditButton.Location.Y + 156);
-            //DelButton.Location = new Point(DelButton.Location.X +139 ,DelButton.Location.Y + 52);
-            //MinimButton.Location = new Point(EditButton.Location.X, DelButton.Location.Y + 80);
 
-            var index = LKLIST.FindIndex(x => x.ShowText.Contains(node.Text));
-            DataDescriptionGrid.Rows[0].Cells[1].Value = LKLIST[index].ShowText;
-            DataDescriptionGrid.Rows[1].Cells[1].Value = LKLIST[index].Index; //индекс это номер элемента в списке
-            
+            MinimButton.Visible = true;//для закрытия информации об узле
+            EditButton.Visible = true;//для изменения данных в содержимом узла
+            AddButton.Visible = true;
+            DelButton.Visible = true;
 
-           // AddButton.Location = new Point(AddButton.Location.X - 199 , AddButton.Location.Y);
+                var index = MedList.FindIndex(x => x.MedicName.Contains(node.Text));
+            DataDescriptionGrid.Rows[0].Cells[1].Value = MedList[index].MedicName;
+            DataDescriptionGrid.Rows[1].Cells[1].Value = MedList[index].Index; //индекс это номер элемента в списке
+            DataDescriptionGrid.Rows[2].Cells[1].Value = MedList[index].Child; //индекс это номер элемента в списке
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при щелчке по узлу!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        
+        //функция поиска в дереве. Если ничего не найдено - возвращает null
+        
+        public static TreeNode SearchNode(string SearchText, TreeNode StartNode)
+        {
+            TreeNode node=null;
+            while (StartNode!= null)
+            {
+                if (StartNode.Text.ToLower().Contains(SearchText.ToLower()))
+                {
+                    node = StartNode; //node was found
+                    break;
+                };
+                if (StartNode.Nodes.Count != 0) //if node has child
+                {
+                    node = SearchNode(SearchText, StartNode.Nodes[0]);//ищем рекурсивно в дочерних
+                    if (node != null)
+                    {
+                        break;
+                    };
+                };
+                StartNode = StartNode.NextNode;
+            };
+            return node;//вернули результат поиска
+        }
+
+        private void StartSearh()
+        {
+            Forms.SearchLine searchForm = new Forms.SearchLine();
+            searchForm.ShowDialog();
+            TreeNode SelectedNode = SearchNode(searchline, treeView1.Nodes[0]);//пытаемся найти в поле Text
+            if (SelectedNode != null)
+            {
+                //нашли, выделяем...
+                this.treeView1.SelectedNode = SelectedNode;
+                this.treeView1.SelectedNode.Expand();
+                this.treeView1.Select();
+            };
+        }
+
+        private void поискToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StartSearh();
         }
         #endregion
 
@@ -154,7 +262,7 @@ namespace LekarList
 
         private void DataDescriptionGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var index = LKLIST.FindIndex(x => x.ShowText.Contains(DataDescriptionGrid.Rows[0].Cells[1].Value.ToString()));
+            var index = MedList.FindIndex(x => x.MedicName.Contains(DataDescriptionGrid.Rows[0].Cells[1].Value.ToString()));
             if (e.ColumnIndex == 1)
             {
                 DataDescriptionGrid.BeginEdit(true);
@@ -162,116 +270,21 @@ namespace LekarList
             }
             else
             {
-                DataDescriptionGrid.ReadOnly = true;
-                //DataDescriptionGrid.EndEdit();
-                //if (flag)
-                //{
-                //     LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
-                //    ParentNodes();
-                //}
-                
-               
+                DataDescriptionGrid.ReadOnly = true;                          
             }
         }
 
         #endregion
 
         #region Кнопки
+
         private void AddButton_Click_1(object sender, EventArgs e)
         {
-            int level;
-            string line;
-            string ANMG;
-            string THSG;
-            string PHSG;
-            string CHSG;
-            string CHST;
-
-            LKLIST = new List<LekarListClass>();
-            for (int i = 0; i < LBdata.Items.Count; i++)
-            {
-                line = LBdata.Items[i].ToString();
-                LekarListClass result;
-                Regex regex = new Regex("(^[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}$)|(^[A-Z]{1}[0-9]{2}[A-Z]{1}[A-Z]{1}[0-9]{2}$)");
-                Match match = regex.Match(line);
-                if (match.Success)
-                {
-
-                    switch (line.Length)
-                    {
-                        case 1:
-                            level = 0;
-                            ANMG = line.Substring(0, 1);
-                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG));
-                            if (result == null)
-                            {
-
-                                LKLIST.Add(new LekarListClass(ANMG, level, i));
-                            }
-
-                            break;
-                        case 3:
-                            level = 1;
-                            ANMG = line.Substring(0, 1);
-                            THSG = line.Substring(1, 2);
-                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG));
-                            if (result == null)
-                            {
-                                LKLIST.Add(new LekarListClass(ANMG, THSG, level, i));
-                            }
-
-                            break;
-                        case 4:
-                            level = 2;
-                            ANMG = line.Substring(0, 1);
-                            THSG = line.Substring(1, 2);
-                            PHSG = line.Substring(3, 1);
-                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG));
-                            if (result == null)
-                            {
-                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, level, i));
-                            }
-
-                            break;
-                        case 5:
-                            level = 3;
-                            ANMG = line.Substring(0, 1);
-                            THSG = line.Substring(1, 2);
-                            PHSG = line.Substring(3, 1);
-                            CHSG = line.Substring(4, 1);
-                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG + CHSG));
-                            if (result == null)
-                            {
-                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, level, i));
-                            }
-                            break;
-                        case 7:
-                            level = 4;
-                            ANMG = line.Substring(0, 1);
-                            THSG = line.Substring(1, 2);
-                            PHSG = line.Substring(3, 1);
-                            CHSG = line.Substring(4, 1);
-                            CHST = line.Substring(5, 2);
-                            result = LKLIST.Find(x => x.ShowText.Contains(ANMG + THSG + PHSG + CHSG + CHST));
-                            if (result == null)
-                            {
-                                LKLIST.Add(new LekarListClass(ANMG, THSG, PHSG, CHSG, CHST, level, i));
-                            }
-                            break;
-                    }
-                }
-                else
-                {
-                    ANMG = "ОШИБКА";
-                    LKLIST.Add(new LekarListClass(ANMG, 0, i));
-                }
-            }
-            ParentNodes();
             Forms.AddForm NewForm = new Forms.AddForm();
+            NewForm.MedList = MedList;
             NewForm.Show();
         }
 
-        
         private void SortButton_Click(object sender, EventArgs e)
         {
             LBdata.Sorted = true;
@@ -279,103 +292,173 @@ namespace LekarList
 
         private void добавитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LBdata.Visible = true;
-            SortButton.Visible = true;
-            AddButton.Visible = true;
+            Forms.AddForm NewForm = new Forms.AddForm();
+            NewForm.MedList = MedList;
+            NewForm.Show();
         }
-        private bool flag;
+
+
         private void EditButton_Click(object sender, EventArgs e)
         {
-            //flag = true;
-
+           try
+            {
             if (DataDescriptionGrid.Rows[1].Cells[1].Value.ToString() == " ")
-            {
+                {
 
-                MessageBox.Show(ErrorMess);
+                    MessageBox.Show(ErrorMess);
+                }
+                else
+                {
+                    var index = MedList.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
+                    MedList[index].MedicName = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
+                    ParentNodesMed();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var index = LKLIST.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
-                LKLIST[index].ShowText = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
-                //LKLIST.Sort();
-                ParentNodes();
+                MessageBox.Show($"{ErrorMess3}!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
         }
+        /*Закрыть открытый для редактирования узел*/
         private void MinimButton_Click(object sender, EventArgs e)
                 {
                     MinimButton.Visible = false;
+                    EditButton.Visible = false;
+                    AddButton.Visible = false;
+                    SortButton.Visible = false;
+                    DelButton.Visible = false;
                     DataDescriptionGrid.Rows.Clear();
-                    AddButton.BringToFront();
-                    
-                    //AddButton.Location = new Point(AddButton.Location.X + 137, AddButton.Location.Y - 224);
-                    //EditButton.Location = new Point(EditButton.Location.X, EditButton.Location.Y - 156);
-                    //DelButton.Location = new Point(DelButton.Location.X - 139, DelButton.Location.Y - 52);
-                    // MinimButton.Location = new Point(EditButton.Location.X, DelButton.Location.Y + 80);
-                    //MinimButton.Location = new Point(485, 310);
+                    AddButton.BringToFront();                  
                 }
 
-            private void DelButton_Click(object sender, EventArgs e)
+        private void DelButton_Click(object sender, EventArgs e)
+        {
+            try
+                {
+                var index = MedList.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
+                if (MedList[index].Child > 0)
                     {
-            var index = LKLIST.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
-            if (LKLIST[index].Child >0)
-            {
-                MessageBox.Show("Нельзя удалять корни!");
+                        MessageBox.Show("Нельзя удалять корни!");
+                    }
+                    else
+                    {
+                        MedList.RemoveAt(index);
+                    }
+                    ParentNodesMed();
             }
-            else
+            catch
             {
-                LKLIST.RemoveAt(index);
+                MessageBox.Show(ErrorMess2);
             }
-            
-            //LKLIST.Sort();
-            ParentNodes();
-        }
-
-
-
-        #endregion
-
-        private void LoadXML()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml");
-            foreach (XmlNode node in doc.DocumentElement)
-            {
-                string AnatomicalMainGroup = node.Attributes[0].Value;
-                int level = int.Parse(node["Level"].InnerText);
-                int index = int.Parse(node["Index"].InnerText);
-                listBox1.Items.Add(new LekarListClass(AnatomicalMainGroup, level, index));
-            }
-        }
-
-        private void propertyGrid1_Click(object sender, EventArgs e)
-        {
            
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        #endregion     
+       
+
+        /*Обработка событий клавиатуры*/
+        /*KeyDown events*/
+        private void MainWindows_KeyDown(object sender, KeyEventArgs e)
         {
-            if (listBox1.SelectedIndex !=-1)
+            if (e.Control && e.KeyCode == Keys.S)
+                SaveFile();
+            if (e.Control && e.KeyCode == Keys.F)
+                StartSearh();
+            //if (e.Control && e.KeyCode == Keys.L)
+            //    LoadFile();
+            //if (e.Control && e.KeyCode == Keys.P)
+            //    customControl11_Click(new object(), new EventArgs());
+            //if (e.KeyCode == Keys.Delete)
+            //    DeleteButton_Click(new object(), new EventArgs());
+            //if (e.Control && e.KeyCode == Keys.I)
+            //    AboutToolStripMenuItem_Click(new object(), new EventArgs());
+            //if (e.KeyCode == Keys.F1)
+            //    HelpToolStripMenuItem_Click(new object(), new EventArgs());
+        }
+ 
+ /*Сохранение в виде XML файла*/
+ private void SaveFile()
+{
+    try
+    {
+       List<Type> types = new List<Type>();
+       foreach(Medication med in MedList)
+        {
+            Type type = med.GetType();
+            if(!types.Contains(type))
             {
-                propertyGrid1.SelectedObject = listBox1.SelectedItem;
+                types.Add(type);
             }
+        }
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Medication>),types.ToArray());
+                using (FileStream file = new FileStream("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\output.xml", FileMode.Create))
+                { 
+                  file.SetLength(0);
+                   file.Flush();
+                    serializer.Serialize(file, MedList);
+                }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Что-то пошло не так!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+ }
+
+        #region Меню
+        private void сохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFile();
+        }
+
+        private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ParentNodesMed();
+        }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Программа создана в рамках выполнения курсового проекта\n\nИсходный текст программы в актуальном виде доступен на GitHub");
+        }
+
+        private void показатьКнопкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddButton.Visible = true;
+            EditButton.Visible = true;
+            DelButton.Visible = true;
+        }
+
+        //End work with current Form
+        //завершение работы с текущей формой
+        private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Close();    
         }
 
         private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LKLIST.Clear();
+            MedList.Clear();
             XmlDocument doc = new XmlDocument();
             doc.Load("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml");
+            CurrentFile = "C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml";
             foreach (XmlNode node in doc.DocumentElement)
             {
                 string AnatomicalMainGroup = node.Attributes[0].Value;
+                string Code = " ";
                 int level = int.Parse(node["Level"].InnerText);
                 int index = int.Parse(node["Index"].InnerText);
-                LKLIST.Add(new LekarListClass(AnatomicalMainGroup, level, index));
+                MedList.Add(new AnatomGroup(AnatomicalMainGroup, Code, level, index));
             }
-            ParentNodes();
+            ParentNodesMed();
         }
+        #endregion
     }
  }
+
 
