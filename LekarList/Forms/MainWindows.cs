@@ -28,6 +28,7 @@ namespace LekarList
         //Error Message
         public string ErrorMess = "Нельзя изменять главный уровень!";
         public string ErrorMess2 = "Нельзя удалить уровень у которого есть подуровни!";
+        public string ErrorMess3 = "Нельзя изменить не открытый узел";
         //Cписки
         public static List<Medication> MedList = new List<Medication>();
         //Переменные
@@ -35,7 +36,8 @@ namespace LekarList
         private static ulong timeSec = 0;
         string CurrentFile = ""; //для определения имени текущего файла
         public static string searchline;//this string may be init after entering text in searchForm
-
+        ToolStripMenuItem UpdateMenuItem = new ToolStripMenuItem("Обновить");
+        
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
             /*Тестовые данные для списка*/
@@ -46,17 +48,31 @@ namespace LekarList
 
             AnatomGroup anatom2 = new AnatomGroup("Препараты, влияющие на кроветворение и кровь","B",0, 3);
             TherapGroup therap2 = new TherapGroup("Антикоагулянты", "B01", 1, 4);
-           // PharmaGroup pharma2 = new PharmaGroup("B", "01", "A", 2, 8);
-
+            // PharmaGroup pharma2 = new PharmaGroup("B", "01", "A", 2, 8);
+            MedList.Clear();
             MedList.Add(anatom1);
             MedList.Add(therap1);
+            MedList.Add(pharma1);
             MedList.Add(anatom2);
             MedList.Add(therap2);
 
+            contextMenuStrip1.Items.AddRange(new[] { UpdateMenuItem});
+            treeView1.ContextMenuStrip = contextMenuStrip1;
+            UpdateMenuItem.Click += UpdateMenuItem_Click;
             ParentNodesMed();
         }
-
+        void UpdateMenuItem_Click(object sender, EventArgs e)
+        {
+            // если выделен текст в текстовом поле, то копируем его в буфер
+            ParentNodesMed();
+        }
         #region Статусы
+
+        // создаем элементы меню
+
+        // добавляем элементы в меню
+        //   
+        // ассоциируем контекстное меню с текстовым полем
         void timer_Tick(object sender, EventArgs e)
         {
             dateLabel.Text = DateTime.Now.ToLongDateString();
@@ -140,20 +156,24 @@ namespace LekarList
         {
             try
             {
-            // Получение выбранного двойным щелчком узла дерева.
-            TreeNode node = treeView1.SelectedNode;
+            
+            TreeNode node = treeView1.SelectedNode;// Получение выбранного двойным щелчком узла дерева.
+           
+            MessageBox.Show(string.Format("You selected: {0}", node.Text)); // Вывод окна с текстом данного узла.
 
-            // Вывод окна с текстом данного узла.
-            MessageBox.Show(string.Format("You selected: {0}", node.Text));
             DataDescriptionGrid.Rows.Clear();
             DataDescriptionGrid.Columns.Clear();
             DataGridInit();
             DataDescriptionGrid.ReadOnly = true;
             DataDescriptionGrid.Visible = true;
             AddButton.BringToFront();
-            MinimButton.Visible = true;
 
-            var index = MedList.FindIndex(x => x.MedicName.Contains(node.Text));
+            MinimButton.Visible = true;//для закрытия информации об узле
+            EditButton.Visible = true;//для изменения данных в содержимом узла
+            AddButton.Visible = true;
+            DelButton.Visible = true;
+
+                var index = MedList.FindIndex(x => x.MedicName.Contains(node.Text));
             DataDescriptionGrid.Rows[0].Cells[1].Value = MedList[index].MedicName;
             DataDescriptionGrid.Rows[1].Cells[1].Value = MedList[index].Index; //индекс это номер элемента в списке
             DataDescriptionGrid.Rows[2].Cells[1].Value = MedList[index].Child; //индекс это номер элемента в списке
@@ -163,9 +183,6 @@ namespace LekarList
                 MessageBox.Show($"Ошибка при щелчке по узлу!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-
-
-            // AddButton.Location = new Point(AddButton.Location.X - 199 , AddButton.Location.Y);
         }
         
         //функция поиска в дереве. Если ничего не найдено - возвращает null
@@ -275,33 +292,43 @@ namespace LekarList
 
         private void добавитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LBdata.Visible = true;
-            SortButton.Visible = true;
-            AddButton.Visible = true;
+            Forms.AddForm NewForm = new Forms.AddForm();
+            NewForm.MedList = MedList;
+            NewForm.Show();
         }
 
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            //flag = true;
-
+           try
+            {
             if (DataDescriptionGrid.Rows[1].Cells[1].Value.ToString() == " ")
-            {
+                {
 
-                MessageBox.Show(ErrorMess);
+                    MessageBox.Show(ErrorMess);
+                }
+                else
+                {
+                    var index = MedList.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
+                    MedList[index].MedicName = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
+                    ParentNodesMed();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var index = MedList.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
-                MedList[index].MedicName = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
-                ParentNodesMed();
+                MessageBox.Show($"{ErrorMess3}!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
         }
+        /*Закрыть открытый для редактирования узел*/
         private void MinimButton_Click(object sender, EventArgs e)
                 {
                     MinimButton.Visible = false;
+                    EditButton.Visible = false;
+                    AddButton.Visible = false;
+                    SortButton.Visible = false;
+                    DelButton.Visible = false;
                     DataDescriptionGrid.Rows.Clear();
                     AddButton.BringToFront();                  
                 }
@@ -328,25 +355,8 @@ namespace LekarList
            
         }
 
-        #endregion
-
-        
-        private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MedList.Clear();
-            XmlDocument doc = new XmlDocument();
-            doc.Load("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml");
-            CurrentFile = "C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml";
-            foreach (XmlNode node in doc.DocumentElement)
-            {
-                string AnatomicalMainGroup = node.Attributes[0].Value;
-                string Code = " ";
-                int level = int.Parse(node["Level"].InnerText);
-                int index = int.Parse(node["Index"].InnerText);
-                MedList.Add(new AnatomGroup(AnatomicalMainGroup, Code, level, index));
-            }
-            ParentNodesMed();
-        }
+        #endregion     
+       
 
         /*Обработка событий клавиатуры*/
         /*KeyDown events*/
@@ -396,6 +406,7 @@ namespace LekarList
     }
  }
 
+        #region Меню
         private void сохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFile();
@@ -406,16 +417,47 @@ namespace LekarList
 
         }
 
+        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ParentNodesMed();
+        }
+
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Программа создана в рамках выполнения курсового проекта\n\nИсходный текст программы в актуальном виде доступен на GitHub");
         }
+
+        private void показатьКнопкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddButton.Visible = true;
+            EditButton.Visible = true;
+            DelButton.Visible = true;
+        }
+
         //End work with current Form
         //завершение работы с текущей формой
         private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Close();    
         }
+
+        private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MedList.Clear();
+            XmlDocument doc = new XmlDocument();
+            doc.Load("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml");
+            CurrentFile = "C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml";
+            foreach (XmlNode node in doc.DocumentElement)
+            {
+                string AnatomicalMainGroup = node.Attributes[0].Value;
+                string Code = " ";
+                int level = int.Parse(node["Level"].InnerText);
+                int index = int.Parse(node["Index"].InnerText);
+                MedList.Add(new AnatomGroup(AnatomicalMainGroup, Code, level, index));
+            }
+            ParentNodesMed();
+        }
+        #endregion
     }
  }
 

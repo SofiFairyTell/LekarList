@@ -3,21 +3,21 @@
   <Medication xsi:type="AnatomGroup">
     <Level>0</Level>
     <Index>0</Index>
-    <Child>1</Child>
+    <Child>2</Child>
     <Code>A</Code>
     <MedicName>Препараты, влияющие на пищеварительный тракт и обмен веществ</MedicName>
   </Medication>
   <Medication xsi:type="TherapGroup">
     <Level>1</Level>
     <Index>1</Index>
-    <Child>1</Child>
+    <Child>2</Child>
     <Code>A01</Code>
     <MedicName>Стоматологические препараты</MedicName>
   </Medication>
   <Medication xsi:type="AnatomGroup">
     <Level>0</Level>
     <Index>3</Index>
-    <Child>0</Child>
+    <Child>1</Child>
     <Code>B</Code>
     <MedicName>Препараты, влияющие на кроветворение и кровь</MedicName>
   </Medication>
@@ -27,5 +27,12 @@
     <Child>0</Child>
     <Code>B01</Code>
     <MedicName>Антикоагулянты</MedicName>
+  </Medication>
+  <Medication xsi:type="AnatomGroup">
+    <Level>0</Level>
+    <Index>4</Index>
+    <Child>0</Child>
+    <Code>A</Code>
+    <MedicName>Препараты для лечения заболеваний сердечно-сосудистой системы</MedicName>
   </Medication>
 </ArrayOfMedication>
