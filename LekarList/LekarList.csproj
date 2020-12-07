@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Animations\Animation.cs" />
+    <Compile Include="Controls\Animations\Animator.cs" />
+    <Compile Include="Controls\Animations\ButtonNew.cs" />
+    <Compile Include="Controls\Animations\ButtonMinimize.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ButtonUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ButtonUI.Designer.cs">
+      <DependentUpon>ButtonUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\NewFolder1\Class1.cs" />
     <Compile Include="Classes\NewFolder1\Class2.cs" />
     <Compile Include="Classes\NewFolder1\Class3.cs" />
@@ -53,6 +65,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Classes\NewFolder1\Examples.cs" />
+    <Compile Include="Controls\Drawer.cs" />
     <Compile Include="Forms\AboutLekarList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +100,9 @@
     <Compile Include="LekarClass\TherapGroup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\ButtonUI.resx">
+      <DependentUpon>ButtonUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AboutLekarList.resx">
       <DependentUpon>AboutLekarList.cs</DependentUpon>
     </EmbeddedResource>

@@ -242,11 +242,11 @@ namespace AdvancedDataGridView
 		protected override DataGridViewCellCollection CreateCellsInstance()
 		{
 			DataGridViewCellCollection cells = base.CreateCellsInstance();
-			cells.CollectionChanged += cells_CollectionChanged;
+			cells.CollectionChanged += Cells_CollectionChanged;
 			return cells;
 		}
 
-		void cells_CollectionChanged(object sender, System.ComponentModel.CollectionChangeEventArgs e)
+		void Cells_CollectionChanged(object sender, CollectionChangeEventArgs e)
 		{
 			// Exit if there already is a tree cell for this row
 			if (_treeCell != null) return;

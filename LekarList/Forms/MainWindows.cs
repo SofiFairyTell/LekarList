@@ -73,41 +73,44 @@ namespace LekarList
         // добавляем элементы в меню
         //   
         // ассоциируем контекстное меню с текстовым полем
-        void timer_Tick(object sender, EventArgs e)
+        void Timer_Tick(object sender, EventArgs e)
         {
             dateLabel.Text = DateTime.Now.ToLongDateString();
             timeLabel.Text = DateTime.Now.ToLongTimeString();
         }
-        void timer_Tick2(object sender, EventArgs e)
+        void Timer_Tick2(object sender, EventArgs e)
         {
             timeSec += 1;
             timeStartLabel.Text = timeSec.ToString();
         }
         private void StatusStrip1Initizlization()
         {
-            ToolStripLabel infoLabel = new ToolStripLabel();
-            infoLabel.Text = "Текущие дата и время:";
+            ToolStripLabel infoLabel = new ToolStripLabel()
+            {
+                Text = "Текущие дата и время:"
+            };
             dateLabel = new ToolStripLabel();
             timeLabel = new ToolStripLabel();
             statusStrip1.Items.Add(infoLabel);
             statusStrip1.Items.Add(dateLabel);
             statusStrip1.Items.Add(timeLabel);
             Timer timer = new Timer() { Interval = 1000 };
-            timer.Tick += timer_Tick;
+            timer.Tick += Timer_Tick;
             Timer timer2 = new Timer() { Interval = 1000 };
-            timer2.Tick += timer_Tick2;
+            timer2.Tick += Timer_Tick2;
             timer.Start();
             timer2.Start();
         }
         private void StatusStrip2Initizlization()
         {
-            ToolStripLabel infoLabel = new ToolStripLabel();
+            ToolStripLabel toolStripLabel = new ToolStripLabel();
+            ToolStripLabel infoLabel = toolStripLabel;
             infoLabel.Text = "Время работы программы в секундах:";
             timeStartLabel = new ToolStripLabel();
             statusStrip2.Items.Add(infoLabel);
             statusStrip2.Items.Add(timeStartLabel);
             Timer timer = new Timer() { Interval = 1000 };
-            timer.Tick += timer_Tick;
+            timer.Tick += Timer_Tick;
             timer.Start();
         }
         #endregion
@@ -152,7 +155,7 @@ namespace LekarList
 
         }
 
-        private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void TreeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             try
             {
@@ -224,7 +227,7 @@ namespace LekarList
             };
         }
 
-        private void поискToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ПоискToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StartSearh();
         }
@@ -233,9 +236,14 @@ namespace LekarList
         #region DataGrids
         private void DataGridInit()
         {
-            DataGridViewCellStyle columnstyle = new DataGridViewCellStyle();
-            columnstyle.BackColor = Color.Chocolate;
-            columnstyle.Font = new Font("Arial", 11, FontStyle.Regular);
+            DataGridViewCellStyle columnstyle = new DataGridViewCellStyle()
+            {
+                BackColor = Color.Chocolate,
+                Font = new Font("Arial", 11, FontStyle.Regular)
+            };
+     
+            //columnstyle.BackColor = Color.Chocolate;
+            //columnstyle.Font = new Font("Arial", 11, FontStyle.Regular);
             DataDescriptionGrid.Columns.Add("GroupNameColumn", "");
             DataDescriptionGrid.Columns.Add("DescripColumn", "");
             DataDescriptionGrid.Rows.Add(5);
@@ -280,8 +288,11 @@ namespace LekarList
 
         private void AddButton_Click_1(object sender, EventArgs e)
         {
-            Forms.AddForm NewForm = new Forms.AddForm();
-            NewForm.MedList = MedList;
+            Forms.AddForm NewForm = new Forms.AddForm()
+            {
+                MedList = MedList,
+            };
+            //NewForm.MedList = MedList;
             NewForm.Show();
         }
 
@@ -290,9 +301,10 @@ namespace LekarList
             LBdata.Sorted = true;
         }
 
-        private void добавитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ДобавитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Forms.AddForm NewForm = new Forms.AddForm();
+            Forms.AddForm AddForm = new Forms.AddForm();
+            Forms.AddForm NewForm = AddForm;
             NewForm.MedList = MedList;
             NewForm.Show();
         }
@@ -407,41 +419,46 @@ namespace LekarList
  }
 
         #region Меню
-        private void сохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
+        private void СохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFile();
         }
 
-        private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        private void НастройкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ОбновитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ParentNodesMed();
         }
 
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ОПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Программа создана в рамках выполнения курсового проекта\n\nИсходный текст программы в актуальном виде доступен на GitHub");
         }
 
-        private void показатьКнопкиToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ПоказатьКнопкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddButton.Visible = true;
             EditButton.Visible = true;
             DelButton.Visible = true;
         }
 
+        private void buttonMinimize1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //End work with current Form
         //завершение работы с текущей формой
-        private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void ВыходToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Close();    
         }
 
-        private void xMLToolStripMenuItem_Click(object sender, EventArgs e)
+        private void XMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MedList.Clear();
             XmlDocument doc = new XmlDocument();
