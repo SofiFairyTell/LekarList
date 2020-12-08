@@ -57,10 +57,9 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.LBdata = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.buttonMinimize1 = new LekarList.ButtonMinimize();
             this.DescriptColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonMinimize2 = new LekarList.ButtonMinimize();
+            this.EditItem = new LekarList.Controls.ButtonNew();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -353,17 +352,6 @@
             this.tabControl1.Size = new System.Drawing.Size(942, 448);
             this.tabControl1.TabIndex = 6;
             // 
-            // buttonMinimize1
-            // 
-            this.buttonMinimize1.BackColor = System.Drawing.Color.Coral;
-            this.buttonMinimize1.ForeColor = System.Drawing.Color.White;
-            this.buttonMinimize1.Location = new System.Drawing.Point(955, 56);
-            this.buttonMinimize1.Name = "buttonMinimize1";
-            this.buttonMinimize1.Size = new System.Drawing.Size(217, 72);
-            this.buttonMinimize1.TabIndex = 12;
-            this.buttonMinimize1.Text = "buttonMinimize1";
-            this.buttonMinimize1.Click += new System.EventHandler(this.buttonMinimize1_Click);
-            // 
             // DescriptColumn
             // 
             this.DescriptColumn.Frozen = true;
@@ -380,23 +368,39 @@
             this.GroupNameColumn.Name = "GroupNameColumn";
             this.GroupNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // buttonMinimize2
+            // EditItem
             // 
-            this.buttonMinimize2.BackColor = System.Drawing.Color.Coral;
-            this.buttonMinimize2.ForeColor = System.Drawing.Color.White;
-            this.buttonMinimize2.Location = new System.Drawing.Point(963, 64);
-            this.buttonMinimize2.Name = "buttonMinimize2";
-            this.buttonMinimize2.Size = new System.Drawing.Size(100, 30);
-            this.buttonMinimize2.TabIndex = 13;
-            this.buttonMinimize2.Text = "buttonMinimize2";
+            this.EditItem.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.EditItem.BackColorAdditional = System.Drawing.Color.Gray;
+            this.EditItem.BackColorGradientEnabled = false;
+            this.EditItem.BackColorGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.EditItem.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.EditItem.BorderColorEnabled = false;
+            this.EditItem.BorderColorOnHover = System.Drawing.Color.Tomato;
+            this.EditItem.BorderColorOnHoverEnabled = false;
+            this.EditItem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.EditItem.Font = new System.Drawing.Font("Verdana", 8.25F);
+            this.EditItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.EditItem.Location = new System.Drawing.Point(955, 76);
+            this.EditItem.Name = "EditItem";
+            this.EditItem.RippleColor = System.Drawing.Color.Black;
+            this.EditItem.RoundingEnable = false;
+            this.EditItem.Size = new System.Drawing.Size(219, 52);
+            this.EditItem.TabIndex = 12;
+            this.EditItem.Text = "Изменить";
+            this.EditItem.TextHover = null;
+            this.EditItem.UseDownPressEffectOnClick = false;
+            this.EditItem.UseRippleEffect = true;
+            this.EditItem.UseZoomEffectOnHover = false;
+            this.EditItem.Visible = false;
+            this.EditItem.Click += new System.EventHandler(this.EditItem_Click);
             // 
             // MainWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 522);
-            this.Controls.Add(this.buttonMinimize2);
-            this.Controls.Add(this.buttonMinimize1);
+            this.Controls.Add(this.EditItem);
             this.Controls.Add(this.statusStrip2);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.EditButton);
@@ -460,8 +464,7 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ListBox LBdata;
         private System.Windows.Forms.TabControl tabControl1;
-        private ButtonMinimize buttonMinimize1;
-        private ButtonMinimize buttonMinimize2;
+        private Controls.ButtonNew EditItem;
     }
 }
 

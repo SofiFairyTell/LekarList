@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace LekarList
 {
-    public class ButtonMinimize : Control
+    public class ButtonAnim : Control
     {
         private StringFormat SF = new StringFormat();
         private bool MouseEntered = false;
         private bool MousePressed = false;
         Animation ButtonAnimation = new Animation();
 
-        public ButtonMinimize()
+        public ButtonAnim()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.SupportsTransparentBackColor | ControlStyles.UserPaint, true);
             DoubleBuffered = true;
@@ -45,8 +45,8 @@ namespace LekarList
             graphics.FillRectangle(new SolidBrush(BackColor), rect);
 
             /*Для "шторки"*/
-            graphics.DrawRectangle(new Pen(Color.FromArgb(255, Color.White)), rectNew);
-            graphics.FillRectangle(new SolidBrush(Color.FromArgb(255, Color.White)), rectNew);
+            graphics.DrawRectangle(new Pen(Color.FromArgb(40, Color.White)), rectNew);
+            graphics.FillRectangle(new SolidBrush(Color.FromArgb(40, Color.White)), rectNew);
 
             //if (MouseEntered)
             //{
@@ -67,7 +67,7 @@ namespace LekarList
             base.OnMouseEnter(e);
             MouseEntered = true;
             DoCurtainAnimation();
-//Invalidate();//для перерисовки кнопки с учетом измененных параметров
+            //Invalidate();//для перерисовки кнопки с учетом измененных параметров
         }
 
         protected override void OnMouseLeave(EventArgs e)
@@ -106,5 +106,6 @@ namespace LekarList
         }
     }
 }
+
 
 

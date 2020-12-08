@@ -24,6 +24,8 @@ namespace LekarList
             
             StatusStrip1Initizlization();
             StatusStrip2Initizlization();
+
+            Animator.Start();
         }
         //Error Message
         public string ErrorMess = "Нельзя изменять главный уровень!";
@@ -173,8 +175,11 @@ namespace LekarList
 
             MinimButton.Visible = true;//для закрытия информации об узле
             EditButton.Visible = true;//для изменения данных в содержимом узла
+            EditItem.Visible = true;
+
             AddButton.Visible = true;
             DelButton.Visible = true;
+            
 
                 var index = MedList.FindIndex(x => x.MedicName.Contains(node.Text));
             DataDescriptionGrid.Rows[0].Cells[1].Value = MedList[index].MedicName;
@@ -444,9 +449,10 @@ namespace LekarList
             AddButton.Visible = true;
             EditButton.Visible = true;
             DelButton.Visible = true;
+            EditItem.Visible = true;
         }
 
-        private void buttonMinimize1_Click(object sender, EventArgs e)
+        private void EditItem_Click(object sender, EventArgs e)
         {
 
         }

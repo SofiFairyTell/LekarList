@@ -48,8 +48,10 @@
   <ItemGroup>
     <Compile Include="Controls\Animations\Animation.cs" />
     <Compile Include="Controls\Animations\Animator.cs" />
-    <Compile Include="Controls\Animations\ButtonNew.cs" />
-    <Compile Include="Controls\Animations\ButtonMinimize.cs">
+    <Compile Include="Controls\Animations\ButtonNew.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ButtonAnim.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ButtonUI.cs">
