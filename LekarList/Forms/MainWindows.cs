@@ -43,13 +43,23 @@ namespace LekarList
         private void MainWindows_Load_1(object sender, EventArgs e)
         {
             /*Тестовые данные для списка*/
-            AnatomGroup anatom1 = new AnatomGroup("Препараты, влияющие на пищеварительный тракт и обмен веществ","A",0, 0);
-            TherapGroup therap1 = new TherapGroup("Стоматологические препараты", "A01", 1, 1);
-            PharmaGroup pharma1 = new PharmaGroup("Препараты для профилактики кариеса", "A01A", 2, 2);
+            AnatomGroup anatom1 = new AnatomGroup("Препараты, влияющие на пищеварительный тракт и обмен веществ","A", 
+                                                "Раздел системы буквенно-цифровых кодов Анатомо-терапевтическо-химической классификации," +
+                                                "разработанных Всемирной организацией здравоохранения для классификации лекарств и других " +
+                                                "медицинских продуктов", 0, 0);
+            TherapGroup therap1 = new TherapGroup("Стоматологические препараты", "A01", "Подгруппа А01 является частью группы препаратов A " +
+                                                "«Препараты, влияющие на пищеварительный тракт и обмен веществ» ", 1, 1);
+            PharmaGroup pharma1 = new PharmaGroup("Препараты для профилактики кариеса", "A01A", 
+                                                 "\n\tA01AA01 Фторид натрия, " +
+                                                 "\n\tA01AA02 Натрия монофторфосфат," +
+                                                 "\n\tA01AA03 Олафлур," +
+                                                 "\n\tA01AA04 Фторид олова," +
+                                                 "\n\tA01AA30 Комбинации," +
+                                                 "\n\tA01AA51 Комбинации фторида натрия",2, 2);
             //ChemGroup chem1 = new ChemGroup("A", "01", "A", "A", 3, 3);
 
-            AnatomGroup anatom2 = new AnatomGroup("Препараты, влияющие на кроветворение и кровь","B",0, 3);
-            TherapGroup therap2 = new TherapGroup("Антикоагулянты", "B01", 1, 4);
+            AnatomGroup anatom2 = new AnatomGroup("Препараты, влияющие на кроветворение и кровь","B"," ",0, 3);
+            TherapGroup therap2 = new TherapGroup("Антикоагулянты", "B01"," ", 1, 4);
             // PharmaGroup pharma2 = new PharmaGroup("B", "01", "A", 2, 8);
             MedList.Clear();
             MedList.Add(anatom1);
@@ -181,9 +191,16 @@ namespace LekarList
 
 
             var index = MedList.FindIndex(x => x.MedicName.Contains(node.Text));
-            DataDescriptionGrid.Rows[0].Cells[1].Value = MedList[index].MedicName;
-            DataDescriptionGrid.Rows[1].Cells[1].Value = MedList[index].Index; //индекс это номер элемента в списке
-            DataDescriptionGrid.Rows[2].Cells[1].Value = MedList[index].Child; //индекс это номер элемента в списке
+            DataDescriptionGrid.Rows[0].Cells[1].Value = MedList[index].Code;//код группы
+            DataDescriptionGrid.Rows[1].Cells[1].Value = MedList[index].MedicName;//название группы/препарата если на его уровне
+            DataDescriptionGrid.Rows[2].Cells[1].Value = MedList[index].Description;
+
+                DataDescriptionGrid.Columns[1].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                DataDescriptionGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; //автоматическое выравнивание текста в колонке
+                DataDescriptionGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+
+                //DataDescriptionGrid.Rows[1].Cells[1].Value = MedList[index].Index; //индекс это номер элемента в списке
+                //DataDescriptionGrid.Rows[2].Cells[1].Value = MedList[index].Child; //индекс это номер элемента в списке
             }
             catch (Exception ex)
             {
@@ -240,22 +257,24 @@ namespace LekarList
         #region DataGrids
         private void DataGridInit()
         {
+
+           DataDescriptionGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             DataGridViewCellStyle columnstyle = new DataGridViewCellStyle()
             {
                 BackColor = Color.Chocolate,
-                Font = new Font("Arial", 11, FontStyle.Regular)
+                Font = new Font("Arial", 11, FontStyle.Regular),
             };
-     
+            
             //columnstyle.BackColor = Color.Chocolate;
             //columnstyle.Font = new Font("Arial", 11, FontStyle.Regular);
             DataDescriptionGrid.Columns.Add("GroupNameColumn", "");
             DataDescriptionGrid.Columns.Add("DescripColumn", "");
             DataDescriptionGrid.Rows.Add(5);
-            DataDescriptionGrid.Rows[0].Cells[0].Value = "Код";
-            DataDescriptionGrid.Rows[1].Cells[0].Value = "Группа";
-            DataDescriptionGrid.Rows[2].Cells[0].Value = "Название";
-            DataDescriptionGrid.Rows[3].Cells[0].Value = "Латинское название";
-            DataDescriptionGrid.Rows[4].Cells[0].Value = "Препараты группы";
+            DataDescriptionGrid.Rows[0].Cells[0].Value = "Код: ";
+            DataDescriptionGrid.Rows[1].Cells[0].Value = "Группа: ";
+            DataDescriptionGrid.Rows[2].Cells[0].Value = "Описание: ";
+           // DataDescriptionGrid.Rows[3].Cells[0].Value = "Описание: ";
+            //DataDescriptionGrid.Rows[4].Cells[0].Value = "Препараты группы";
             DataDescriptionGrid.AllowUserToAddRows = false;
             DataDescriptionGrid.Columns[0].ReadOnly = true;
         }
@@ -507,9 +526,10 @@ namespace LekarList
             {
                 string AnatomicalMainGroup = node.Attributes[0].Value;
                 string Code = " ";
+                string Description = " ";
                 int level = int.Parse(node["Level"].InnerText);
                 int index = int.Parse(node["Index"].InnerText);
-                MedList.Add(new AnatomGroup(AnatomicalMainGroup, Code, level, index));
+                MedList.Add(new AnatomGroup(AnatomicalMainGroup, Code, Description, level, index));
             }
             ParentNodesMed();
         }

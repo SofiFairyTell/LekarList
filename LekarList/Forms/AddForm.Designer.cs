@@ -43,7 +43,7 @@
             this.ChemTypeLabel = new System.Windows.Forms.Label();
             this.ChemComboBox = new System.Windows.Forms.ComboBox();
             this.Description = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.DescriptionBox = new System.Windows.Forms.TextBox();
             this.CancelAdButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.lekarListClassBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -168,14 +168,14 @@
             this.Description.TabIndex = 53;
             this.Description.Text = "Описание";
             // 
-            // textBox1
+            // DescriptionBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(25, 311);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(341, 168);
-            this.textBox1.TabIndex = 54;
+            this.DescriptionBox.Location = new System.Drawing.Point(25, 311);
+            this.DescriptionBox.Margin = new System.Windows.Forms.Padding(4);
+            this.DescriptionBox.Multiline = true;
+            this.DescriptionBox.Name = "DescriptionBox";
+            this.DescriptionBox.Size = new System.Drawing.Size(341, 168);
+            this.DescriptionBox.TabIndex = 54;
             // 
             // CancelAdButton
             // 
@@ -193,7 +193,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 553);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.DescriptionBox);
             this.Controls.Add(this.Description);
             this.Controls.Add(this.ChemTypeLabel);
             this.Controls.Add(this.ChemComboBox);
@@ -232,7 +232,7 @@
         private System.Windows.Forms.Label ChemTypeLabel;
         private System.Windows.Forms.ComboBox ChemComboBox;
         private System.Windows.Forms.Label Description;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox DescriptionBox;
         private System.Windows.Forms.Button CancelAdButton;
     }
 }

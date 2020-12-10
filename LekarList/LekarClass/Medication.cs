@@ -11,28 +11,38 @@ namespace LekarList.LekarClass
     public abstract class Medication : IComparable<Medication>
     {
         [XmlElement("MedicName")]
-        public string MedicName { get; set; }
+        public string MedicName { get; set; } //название группы верхнего уровня
+
+        public string Description { get; set; }//текущее название препарата
+
+        public string Code; //код, который состоит из номеров групп верхеного уровня
+
+        /*Поля для формирования дерева*/
         [XmlElement("Level")]
-        public int Level;
+        public int Level; 
         [XmlElement("Index")]
         public int Index;
         //public string ShowText;
         public int Child;
-        public string Code;
+
+        
         /*Если уровень 0, то или А или B и т.д.*/
         public Medication()
         {
-            MedicName = " ";
-            Level = 0;
-            Index = 0;
+            this.MedicName = "V";
+            this.Description = " ";
+            this.Level = 0;
+            this.Index = 0;
         }
-        public Medication(string MedicNam, string CodeSG, int level, int index)
+        public Medication(string MedicName, string Code, string Description, int Level, int Index)
         {
-            MedicName = MedicNam;
-            Code = CodeSG;
-            Level = level;
-            Index = index;
+            this.MedicName = MedicName;
+            this.Code = Code;
+            this.Description = Description;
+            this.Level = Level;
+            this.Index = Index;
         }
+
         public static int Count(List<Medication> MedicGroups)
         {
             int n = 0;

@@ -20,13 +20,13 @@ namespace LekarList.LekarClass
             Level = 0;
             Index = 0;
         }
-        public TherapGroup(string THSG, string CodeSG, int level, int index)
+        public TherapGroup(string MedicName, string Code, string Description, int Level, int Index)
         {
-            TherapSG = THSG;
-            MedicName = THSG;
-            Code = CodeSG;
-            Level = level;
-            Index = index;
+            this.MedicName = MedicName;
+            this.Code = Code;
+            this.Description = Description;
+            this.Level = Level;
+            this.Index = Index;
         }
 
         public static new int Count(List<Medication> MedicGroups)
