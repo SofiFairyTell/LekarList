@@ -113,7 +113,7 @@ namespace LekarList.Controls
 
             Size = new Size(100, 30);
 
-            Font = new Font("Verdana", 8.25F, FontStyle.Regular);
+            Font = new Font("Times New Roman", 8.25F, FontStyle.Regular);
 
             Cursor = Cursors.Hand;
 
@@ -293,8 +293,10 @@ namespace LekarList.Controls
 
         private void ButtonMultiRippleAction()
         {
-            Animation MultiRippleButtonAnim = new Animation("ButtonMultiRipple_" + Handle + DateTime.Now.Millisecond, Invalidate, 0, Width * 3);
-            MultiRippleButtonAnim.StepDivider = 20;
+            Animation MultiRippleButtonAnim = new Animation("ButtonMultiRipple_" + Handle + DateTime.Now.Millisecond, Invalidate, 0, Width * 3)
+            {
+                StepDivider = 20
+            };
 
             Animator.Request(MultiRippleButtonAnim);
 

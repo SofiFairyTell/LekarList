@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.AddButton = new System.Windows.Forms.Button();
             this.SortButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,9 +44,6 @@
             this.показатьКнопкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MinimButton = new System.Windows.Forms.Button();
-            this.DelButton = new System.Windows.Forms.Button();
-            this.EditButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -57,9 +53,12 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.LBdata = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.MinimizeItem = new LekarList.Controls.ButtonNew();
+            this.AddItem = new LekarList.Controls.ButtonNew();
+            this.DelItem = new LekarList.Controls.ButtonNew();
+            this.EditItem = new LekarList.Controls.ButtonNew();
             this.DescriptColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EditItem = new LekarList.Controls.ButtonNew();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -67,25 +66,9 @@
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // AddButton
-            // 
-            this.AddButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.AddButton.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
-            this.AddButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGreen;
-            this.AddButton.Location = new System.Drawing.Point(955, 328);
-            this.AddButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(219, 63);
-            this.AddButton.TabIndex = 2;
-            this.AddButton.Text = "Добавить";
-            this.AddButton.UseCompatibleTextRendering = true;
-            this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Visible = false;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click_1);
-            // 
             // SortButton
             // 
-            this.SortButton.Location = new System.Drawing.Point(955, 133);
+            this.SortButton.Location = new System.Drawing.Point(955, 53);
             this.SortButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SortButton.Name = "SortButton";
             this.SortButton.Size = new System.Drawing.Size(217, 57);
@@ -192,6 +175,7 @@
             this.показатьКнопкиToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.показатьКнопкиToolStripMenuItem.Text = "Показать кнопки";
             this.показатьКнопкиToolStripMenuItem.Click += new System.EventHandler(this.ПоказатьКнопкиToolStripMenuItem_Click);
+            this.показатьКнопкиToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ПоказатьКнопкиToolStripMenuItem_MouseDown);
             // 
             // выходToolStripMenuItem1
             // 
@@ -206,48 +190,6 @@
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ОПрограммеToolStripMenuItem_Click);
-            // 
-            // MinimButton
-            // 
-            this.MinimButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.MinimButton.Location = new System.Drawing.Point(955, 395);
-            this.MinimButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimButton.Name = "MinimButton";
-            this.MinimButton.Size = new System.Drawing.Size(219, 59);
-            this.MinimButton.TabIndex = 9;
-            this.MinimButton.Text = "Свернуть";
-            this.MinimButton.UseCompatibleTextRendering = true;
-            this.MinimButton.UseVisualStyleBackColor = true;
-            this.MinimButton.Visible = false;
-            this.MinimButton.Click += new System.EventHandler(this.MinimButton_Click);
-            // 
-            // DelButton
-            // 
-            this.DelButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.DelButton.Location = new System.Drawing.Point(955, 261);
-            this.DelButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DelButton.Name = "DelButton";
-            this.DelButton.Size = new System.Drawing.Size(219, 63);
-            this.DelButton.TabIndex = 8;
-            this.DelButton.Text = "Удалить";
-            this.DelButton.UseCompatibleTextRendering = true;
-            this.DelButton.UseVisualStyleBackColor = true;
-            this.DelButton.Visible = false;
-            this.DelButton.Click += new System.EventHandler(this.DelButton_Click);
-            // 
-            // EditButton
-            // 
-            this.EditButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.EditButton.Location = new System.Drawing.Point(955, 194);
-            this.EditButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new System.Drawing.Size(219, 63);
-            this.EditButton.TabIndex = 7;
-            this.EditButton.Text = "Изменить";
-            this.EditButton.UseCompatibleTextRendering = true;
-            this.EditButton.UseVisualStyleBackColor = true;
-            this.EditButton.Visible = false;
-            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // statusStrip1
             // 
@@ -352,6 +294,116 @@
             this.tabControl1.Size = new System.Drawing.Size(942, 448);
             this.tabControl1.TabIndex = 6;
             // 
+            // MinimizeItem
+            // 
+            this.MinimizeItem.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.MinimizeItem.BackColorAdditional = System.Drawing.Color.Gray;
+            this.MinimizeItem.BackColorGradientEnabled = false;
+            this.MinimizeItem.BackColorGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.MinimizeItem.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.MinimizeItem.BorderColorEnabled = false;
+            this.MinimizeItem.BorderColorOnHover = System.Drawing.Color.Tomato;
+            this.MinimizeItem.BorderColorOnHoverEnabled = false;
+            this.MinimizeItem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MinimizeItem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MinimizeItem.ForeColor = System.Drawing.Color.White;
+            this.MinimizeItem.Location = new System.Drawing.Point(955, 373);
+            this.MinimizeItem.Name = "MinimizeItem";
+            this.MinimizeItem.RippleColor = System.Drawing.Color.DarkRed;
+            this.MinimizeItem.RoundingEnable = false;
+            this.MinimizeItem.Size = new System.Drawing.Size(219, 62);
+            this.MinimizeItem.TabIndex = 15;
+            this.MinimizeItem.Text = "Свернуть";
+            this.MinimizeItem.TextHover = null;
+            this.MinimizeItem.UseDownPressEffectOnClick = false;
+            this.MinimizeItem.UseRippleEffect = true;
+            this.MinimizeItem.UseZoomEffectOnHover = false;
+            this.MinimizeItem.Visible = false;
+            this.MinimizeItem.DoubleClick += new System.EventHandler(this.MinimButton_Click);
+            // 
+            // AddItem
+            // 
+            this.AddItem.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.AddItem.BackColorAdditional = System.Drawing.Color.Gray;
+            this.AddItem.BackColorGradientEnabled = false;
+            this.AddItem.BackColorGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.AddItem.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.AddItem.BorderColorEnabled = false;
+            this.AddItem.BorderColorOnHover = System.Drawing.Color.Tomato;
+            this.AddItem.BorderColorOnHoverEnabled = false;
+            this.AddItem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddItem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AddItem.ForeColor = System.Drawing.Color.White;
+            this.AddItem.Location = new System.Drawing.Point(955, 208);
+            this.AddItem.Name = "AddItem";
+            this.AddItem.RippleColor = System.Drawing.Color.DarkRed;
+            this.AddItem.RoundingEnable = false;
+            this.AddItem.Size = new System.Drawing.Size(219, 62);
+            this.AddItem.TabIndex = 14;
+            this.AddItem.Text = "Добавить";
+            this.AddItem.TextHover = null;
+            this.AddItem.UseDownPressEffectOnClick = false;
+            this.AddItem.UseRippleEffect = true;
+            this.AddItem.UseZoomEffectOnHover = false;
+            this.AddItem.Visible = false;
+            this.AddItem.DoubleClick += new System.EventHandler(this.AddButton_Click_1);
+            // 
+            // DelItem
+            // 
+            this.DelItem.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.DelItem.BackColorAdditional = System.Drawing.Color.Gray;
+            this.DelItem.BackColorGradientEnabled = false;
+            this.DelItem.BackColorGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.DelItem.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.DelItem.BorderColorEnabled = false;
+            this.DelItem.BorderColorOnHover = System.Drawing.Color.Tomato;
+            this.DelItem.BorderColorOnHoverEnabled = false;
+            this.DelItem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DelItem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DelItem.ForeColor = System.Drawing.Color.White;
+            this.DelItem.Location = new System.Drawing.Point(955, 290);
+            this.DelItem.Name = "DelItem";
+            this.DelItem.RippleColor = System.Drawing.Color.DarkRed;
+            this.DelItem.RoundingEnable = false;
+            this.DelItem.Size = new System.Drawing.Size(219, 62);
+            this.DelItem.TabIndex = 13;
+            this.DelItem.Text = "Удалить";
+            this.DelItem.TextHover = null;
+            this.DelItem.UseDownPressEffectOnClick = false;
+            this.DelItem.UseRippleEffect = true;
+            this.DelItem.UseZoomEffectOnHover = false;
+            this.DelItem.Visible = false;
+            this.DelItem.Click += new System.EventHandler(this.DelItem_Click);
+            this.DelItem.DoubleClick += new System.EventHandler(this.DelButton_Click);
+            // 
+            // EditItem
+            // 
+            this.EditItem.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.EditItem.BackColorAdditional = System.Drawing.Color.Gray;
+            this.EditItem.BackColorGradientEnabled = false;
+            this.EditItem.BackColorGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.EditItem.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.EditItem.BorderColorEnabled = false;
+            this.EditItem.BorderColorOnHover = System.Drawing.Color.Tomato;
+            this.EditItem.BorderColorOnHoverEnabled = false;
+            this.EditItem.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.EditItem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.EditItem.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.EditItem.Location = new System.Drawing.Point(955, 130);
+            this.EditItem.Name = "EditItem";
+            this.EditItem.RippleColor = System.Drawing.Color.Black;
+            this.EditItem.RoundingEnable = false;
+            this.EditItem.Size = new System.Drawing.Size(219, 62);
+            this.EditItem.TabIndex = 12;
+            this.EditItem.Text = "Изменить";
+            this.EditItem.TextHover = null;
+            this.EditItem.UseDownPressEffectOnClick = false;
+            this.EditItem.UseRippleEffect = true;
+            this.EditItem.UseZoomEffectOnHover = false;
+            this.EditItem.Visible = false;
+            this.EditItem.Click += new System.EventHandler(this.EditItem_Click_1);
+            this.EditItem.DoubleClick += new System.EventHandler(this.EditButton_Click);
+            // 
             // DescriptColumn
             // 
             this.DescriptColumn.Frozen = true;
@@ -368,45 +420,17 @@
             this.GroupNameColumn.Name = "GroupNameColumn";
             this.GroupNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // EditItem
-            // 
-            this.EditItem.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.EditItem.BackColorAdditional = System.Drawing.Color.Gray;
-            this.EditItem.BackColorGradientEnabled = false;
-            this.EditItem.BackColorGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
-            this.EditItem.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.EditItem.BorderColorEnabled = false;
-            this.EditItem.BorderColorOnHover = System.Drawing.Color.Tomato;
-            this.EditItem.BorderColorOnHoverEnabled = false;
-            this.EditItem.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.EditItem.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.EditItem.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.EditItem.Location = new System.Drawing.Point(955, 76);
-            this.EditItem.Name = "EditItem";
-            this.EditItem.RippleColor = System.Drawing.Color.Black;
-            this.EditItem.RoundingEnable = false;
-            this.EditItem.Size = new System.Drawing.Size(219, 52);
-            this.EditItem.TabIndex = 12;
-            this.EditItem.Text = "Изменить";
-            this.EditItem.TextHover = null;
-            this.EditItem.UseDownPressEffectOnClick = false;
-            this.EditItem.UseRippleEffect = true;
-            this.EditItem.UseZoomEffectOnHover = false;
-            this.EditItem.Visible = false;
-            this.EditItem.Click += new System.EventHandler(this.EditItem_Click);
-            // 
             // MainWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 522);
-            this.Controls.Add(this.EditItem);
+            this.Controls.Add(this.MinimizeItem);
+            this.Controls.Add(this.AddItem);
+            this.Controls.Add(this.DelItem);
             this.Controls.Add(this.statusStrip2);
+            this.Controls.Add(this.EditItem);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.EditButton);
-            this.Controls.Add(this.DelButton);
-            this.Controls.Add(this.AddButton);
-            this.Controls.Add(this.MinimButton);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.SortButton);
             this.Controls.Add(this.menuStrip1);
@@ -434,16 +458,12 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button SortButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem добавитьДанныеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem1;
-        private System.Windows.Forms.Button EditButton;
-        private System.Windows.Forms.Button MinimButton;
-        private System.Windows.Forms.Button DelButton;
         private System.Windows.Forms.ToolStripMenuItem xMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьКакToolStripMenuItem;
@@ -465,6 +485,9 @@
         private System.Windows.Forms.ListBox LBdata;
         private System.Windows.Forms.TabControl tabControl1;
         private Controls.ButtonNew EditItem;
+        private Controls.ButtonNew DelItem;
+        private Controls.ButtonNew MinimizeItem;
+        private Controls.ButtonNew AddItem;
     }
 }
 

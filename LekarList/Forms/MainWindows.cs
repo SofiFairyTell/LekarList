@@ -171,17 +171,16 @@ namespace LekarList
             DataGridInit();
             DataDescriptionGrid.ReadOnly = true;
             DataDescriptionGrid.Visible = true;
-            AddButton.BringToFront();
 
-            MinimButton.Visible = true;//для закрытия информации об узле
-            EditButton.Visible = true;//для изменения данных в содержимом узла
-            EditItem.Visible = true;
 
-            AddButton.Visible = true;
-            DelButton.Visible = true;
-            
+ 
+                AddItem.Visible = true;
+                EditItem.Visible = true;//для изменения данных в содержимом узла
+                DelItem.Visible = true;
+                MinimizeItem.Visible = true;//для закрытия информации об узле
 
-                var index = MedList.FindIndex(x => x.MedicName.Contains(node.Text));
+
+            var index = MedList.FindIndex(x => x.MedicName.Contains(node.Text));
             DataDescriptionGrid.Rows[0].Cells[1].Value = MedList[index].MedicName;
             DataDescriptionGrid.Rows[1].Cells[1].Value = MedList[index].Index; //индекс это номер элемента в списке
             DataDescriptionGrid.Rows[2].Cells[1].Value = MedList[index].Child; //индекс это номер элемента в списке
@@ -341,13 +340,13 @@ namespace LekarList
         /*Закрыть открытый для редактирования узел*/
         private void MinimButton_Click(object sender, EventArgs e)
                 {
-                    MinimButton.Visible = false;
-                    EditButton.Visible = false;
-                    AddButton.Visible = false;
+                    MinimizeItem.Visible = false;
+                    EditItem.Visible = false;
+                    AddItem.Visible = false;
                     SortButton.Visible = false;
-                    DelButton.Visible = false;
+                    DelItem.Visible = false;
                     DataDescriptionGrid.Rows.Clear();
-                    AddButton.BringToFront();                  
+                    //AddButton.BringToFront();                  
                 }
 
         private void DelButton_Click(object sender, EventArgs e)
@@ -446,13 +445,47 @@ namespace LekarList
 
         private void ПоказатьКнопкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddButton.Visible = true;
-            EditButton.Visible = true;
-            DelButton.Visible = true;
-            EditItem.Visible = true;
+            //AddButton.Visible = true;
+            //EditButton.Visible = true;
+            //DelButton.Visible = true;
+
+            
+            //AddItem.Visible = true;
+            //EditItem.Visible = true;
+            //DelItem.Visible = true;
+            //MinimizeItem.Visible = true;
+
         }
 
         private void EditItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ПоказатьКнопкиToolStripMenuItem_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                AddItem.Visible = true;
+                EditItem.Visible = true;
+                DelItem.Visible = true;
+                MinimizeItem.Visible = true;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                AddItem.Visible = false;
+                EditItem.Visible = false;
+                DelItem.Visible = false;
+                MinimizeItem.Visible = false;
+            }
+        }
+
+        private void EditItem_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DelItem_Click(object sender, EventArgs e)
         {
 
         }
