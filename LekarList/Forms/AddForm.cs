@@ -151,7 +151,11 @@ namespace LekarList.Forms
            
         }
 
- 
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = DialogResult.Cancel;
+
+        }
     }
 
      

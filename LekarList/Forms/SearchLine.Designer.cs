@@ -87,6 +87,8 @@
             this.Name = "SearchLine";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Поиск по имени класса";
+           // this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SearchLine_FormClosing);
+            this.Load += new System.EventHandler(this.SearchLine_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

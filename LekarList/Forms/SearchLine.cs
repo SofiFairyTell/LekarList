@@ -36,6 +36,13 @@ namespace LekarList.Forms
             this.Close();
 
         }
+
+       
+
+        private void SearchLine_Load(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }

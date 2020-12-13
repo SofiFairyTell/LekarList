@@ -35,7 +35,7 @@ namespace LekarList
         public static List<Medication> MedList = new List<Medication>();
         public static List<AnatomGroup> AnatomGroups = new List<AnatomGroup>();
         public static List<TherapGroup> TherapGroups = new List<TherapGroup>();
-       public static List<PharmaGroup> PharmaGroups = new List<PharmaGroup>();
+        public static List<PharmaGroup> PharmaGroups = new List<PharmaGroup>();
         public static List<ChemGroup> ChemGroups  = new List<ChemGroup>();
 
         //Переменные
@@ -79,7 +79,7 @@ namespace LekarList
             TherapGroups.Add(therap2);
             PharmaGroups.Add(pharma1);
 
-        contextMenuStrip1.Items.AddRange(new[] { UpdateMenuItem});
+            contextMenuStrip1.Items.AddRange(new[] { UpdateMenuItem});
             treeView1.ContextMenuStrip = contextMenuStrip1;
             UpdateMenuItem.Click += UpdateMenuItem_Click;
 
@@ -142,7 +142,16 @@ namespace LekarList
         #endregion
 
         #region TREENODE
-
+        /*--------------Динамическое добавление данных в TreeView-------------------*/
+        /*Прим. Пока работает корректно для данных последовательно добавляемых в список: 
+         Анатомическая Группа - level = 0, index = 0
+         Терапевтическая Группа - level = 1, index = 1
+         Фармакологическая Группа - level = 2, index = 2
+         Анатомическая Группа - level = 0, index = 3
+         Разнесение в списке идет по уровням. Но если изменить порядок записи в список 
+         то добавление будет некорректно отображаться. 
+         Как исправить?? Искать в файле и сравнивать по коду внутри списка?
+         */
         public void ParentNodesMed()
         {
             int i;
@@ -181,54 +190,50 @@ namespace LekarList
 
         }
 
+        /*--------------------Отображение содержимого класса--------------------------------*/
         private void TreeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             try
             {
             
-            TreeNode node = treeView1.SelectedNode;// Получение выбранного двойным щелчком узла дерева.
+                TreeNode node = treeView1.SelectedNode;// Получение выбранного двойным щелчком узла дерева.
            
-            MessageBox.Show(string.Format("You selected: {0}", node.Text)); // Вывод окна с текстом данного узла.
+                MessageBox.Show(string.Format("You selected: {0}", node.Text)); // Вывод окна с текстом данного узла.
 
-            DataDescriptionGrid.Rows.Clear();
-            DataDescriptionGrid.Columns.Clear();
-            DataGridInit();
-            DataDescriptionGrid.ReadOnly = true;
-            DataDescriptionGrid.Visible = true;
+                DataDescriptionGrid.Rows.Clear();
+                DataDescriptionGrid.Columns.Clear();
+                DataGridInit();
+                DataDescriptionGrid.ReadOnly = true;
+                DataDescriptionGrid.Visible = true;
 
-
- 
+                /*----------Кнопки---------------*/
                 AddItem.Visible = true;
                 EditItem.Visible = true;//для изменения данных в содержимом узла
                 DelItem.Visible = true;
                 MinimizeItem.Visible = true;//для закрытия информации об узле
+                /*---------Кнопки--------------*/
 
-
-            var index = MedList.FindIndex(x => x.MedicName.Contains(node.Text));
-            DataDescriptionGrid.Rows[0].Cells[1].Value = MedList[index].Code;//код группы
-            DataDescriptionGrid.Rows[1].Cells[1].Value = MedList[index].MedicName;//название группы/препарата если на его уровне
-            DataDescriptionGrid.Rows[2].Cells[1].Value = MedList[index].Description;
+                var index = MedList.FindIndex(x => x.MedicName.Contains(node.Text));
+                DataDescriptionGrid.Rows[0].Cells[1].Value = MedList[index].Code;//код группы
+                DataDescriptionGrid.Rows[1].Cells[1].Value = MedList[index].MedicName;//название группы/препарата если на его уровне
+                DataDescriptionGrid.Rows[2].Cells[1].Value = MedList[index].Description;
 
                 DataDescriptionGrid.Columns[1].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 DataDescriptionGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; //автоматическое выравнивание текста в колонке
                 DataDescriptionGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
-
-                //DataDescriptionGrid.Rows[1].Cells[1].Value = MedList[index].Index; //индекс это номер элемента в списке
-                //DataDescriptionGrid.Rows[2].Cells[1].Value = MedList[index].Child; //индекс это номер элемента в списке
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка при щелчке по узлу!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
-        
-        //функция поиска в дереве. Если ничего не найдено - возвращает null
-        
+        /*--------------------------------------------------------------------------------*/
+       
+       /*---------функция поиска в дереве. Если ничего не найдено - возвращает null------*/
         public static TreeNode SearchNode(string SearchText, TreeNode StartNode)
         {
             TreeNode node=null;
-            while (StartNode!= null)
+            while (StartNode!= null && SearchText != null) 
             {
                 if (StartNode.Text.ToLower().Contains(SearchText.ToLower()))
                 {
@@ -252,8 +257,9 @@ namespace LekarList
         {
             Forms.SearchLine searchForm = new Forms.SearchLine();
             searchForm.ShowDialog();
+            
             TreeNode SelectedNode = SearchNode(searchline, treeView1.Nodes[0]);//пытаемся найти в поле Text
-            if (SelectedNode != null)
+            if (SelectedNode != null )
             {
                 //нашли, выделяем...
                 this.treeView1.SelectedNode = SelectedNode;
@@ -261,11 +267,23 @@ namespace LekarList
                 this.treeView1.Select();
             };
         }
+        private void SearchLine_FormClosing(object sender, FormClosingEventArgs e)
+        {
 
-        private void ПоискToolStripMenuItem_Click(object sender, EventArgs e)
+            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
+            messageBoxCS.AppendFormat("{0} = {1}", "CloseReason", e.CloseReason);
+            messageBoxCS.AppendLine();
+            messageBoxCS.AppendFormat("{0} = {1}", "Cancel", e.Cancel);
+            messageBoxCS.AppendLine();
+            MessageBox.Show(messageBoxCS.ToString(), "FormClosing Event");
+            
+        }
+        private void ПоискToolStripMenuItem_Click(object sender, EventArgs e) //пункт меню
         {
             StartSearh();
         }
+        /*----------------------------------------------------------------------------*/
+
         #endregion
 
         #region DataGrids
@@ -372,15 +390,15 @@ namespace LekarList
         }
         /*Закрыть открытый для редактирования узел*/
         private void MinimButton_Click(object sender, EventArgs e)
-                {
-                    MinimizeItem.Visible = false;
-                    EditItem.Visible = false;
-                    AddItem.Visible = false;
-                    SortButton.Visible = false;
-                    DelItem.Visible = false;
-                    DataDescriptionGrid.Rows.Clear();
-                    //AddButton.BringToFront();                  
-                }
+        {
+            MinimizeItem.Visible = false;
+            EditItem.Visible = false;
+            AddItem.Visible = false;
+            SortButton.Visible = false;
+            DelItem.Visible = false;
+            DataDescriptionGrid.Rows.Clear();
+            //AddButton.BringToFront();                  
+        }
 
         private void DelButton_Click(object sender, EventArgs e)
         {
@@ -426,11 +444,24 @@ namespace LekarList
             //if (e.KeyCode == Keys.F1)
             //    HelpToolStripMenuItem_Click(new object(), new EventArgs());
         }
- 
- /*Сохранение в виде XML файла*/
- private void SaveFile()
-{
-    try
+        private void tabControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+                SaveFile();
+            if (e.Control && e.KeyCode == Keys.F)
+                StartSearh();
+        }
+        private void tabControl1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if (e.Control && e.KeyCode == Keys.S)
+            //    SaveFile();
+            //if (e.Control && e.KeyCode == Keys.F)
+            //    StartSearh();
+        }
+        /*Сохранение в виде XML файла*/
+        private void SaveFile()
+        {
+            try
     {
        List<Type> types = new List<Type>();
        foreach(Medication med in MedList)
@@ -453,7 +484,7 @@ namespace LekarList
     {
         MessageBox.Show($"Что-то пошло не так!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
- }
+        }
 
         #region Меню
         private void СохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
@@ -539,6 +570,12 @@ namespace LekarList
 
                 "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+
+
+
+
+
 
         //End work with current Form
         //завершение работы с текущей формой

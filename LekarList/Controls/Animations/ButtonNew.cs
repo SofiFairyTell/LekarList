@@ -89,7 +89,7 @@ namespace LekarList.Controls
 
         #endregion
 
- 
+        public virtual DialogResult DialogResult { get; set; }
 
         private StringFormat SF = new StringFormat();
 
@@ -105,7 +105,7 @@ namespace LekarList.Controls
         Point ClickLocation = new Point();
 
         #endregion
-
+        
         public ButtonNew()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.SupportsTransparentBackColor | ControlStyles.UserPaint, true);
@@ -116,6 +116,7 @@ namespace LekarList.Controls
             Font = new Font("Times New Roman", 8.25F, FontStyle.Regular);
 
             Cursor = Cursors.Hand;
+           
 
             BackColor = Color.DeepSkyBlue;
             BorderColor = BackColor;
