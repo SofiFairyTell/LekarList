@@ -32,7 +32,7 @@
             this.Label_SearchLine = new System.Windows.Forms.Label();
             this.TextBox_SearchLine = new System.Windows.Forms.TextBox();
             this.SearLineToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.OkButton_SearchLine = new System.Windows.Forms.Button();
+            this.buttonNew1 = new LekarList.Controls.ButtonNew();
             this.SuspendLayout();
             // 
             // Label_SearchLine
@@ -58,19 +58,32 @@
             // 
             this.SearLineToolTip.ToolTipTitle = "что вводить?";
             // 
-            // OkButton_SearchLine
+            // buttonNew1
             // 
-            this.OkButton_SearchLine.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.OkButton_SearchLine.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.OkButton_SearchLine.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.OkButton_SearchLine.Font = new System.Drawing.Font("Times New Roman", 12.14F);
-            this.OkButton_SearchLine.Location = new System.Drawing.Point(470, 99);
-            this.OkButton_SearchLine.Name = "OkButton_SearchLine";
-            this.OkButton_SearchLine.Size = new System.Drawing.Size(213, 36);
-            this.OkButton_SearchLine.TabIndex = 2;
-            this.OkButton_SearchLine.Text = "Выполнить поиск";
-            this.OkButton_SearchLine.UseVisualStyleBackColor = false;
-            this.OkButton_SearchLine.Click += new System.EventHandler(this.OkButton_SearchLine_Click);
+            this.buttonNew1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonNew1.BackColorAdditional = System.Drawing.Color.Gray;
+            this.buttonNew1.BackColorGradientEnabled = false;
+            this.buttonNew1.BackColorGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.buttonNew1.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.buttonNew1.BorderColorEnabled = false;
+            this.buttonNew1.BorderColorOnHover = System.Drawing.Color.Tomato;
+            this.buttonNew1.BorderColorOnHoverEnabled = false;
+            this.buttonNew1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonNew1.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonNew1.Font = new System.Drawing.Font("Times New Roman", 14.25F);
+            this.buttonNew1.ForeColor = System.Drawing.Color.White;
+            this.buttonNew1.Location = new System.Drawing.Point(214, 98);
+            this.buttonNew1.Name = "buttonNew1";
+            this.buttonNew1.RippleColor = System.Drawing.Color.Black;
+            this.buttonNew1.RoundingEnable = false;
+            this.buttonNew1.Size = new System.Drawing.Size(217, 46);
+            this.buttonNew1.TabIndex = 3;
+            this.buttonNew1.Text = "Выполнить поиск";
+            this.buttonNew1.TextHover = null;
+            this.buttonNew1.UseDownPressEffectOnClick = false;
+            this.buttonNew1.UseRippleEffect = true;
+            this.buttonNew1.UseZoomEffectOnHover = false;
+            this.buttonNew1.Click += new System.EventHandler(this.OkButton_SearchLine_Click);
             // 
             // SearchLine
             // 
@@ -78,7 +91,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(695, 156);
-            this.Controls.Add(this.OkButton_SearchLine);
+            this.Controls.Add(this.buttonNew1);
             this.Controls.Add(this.TextBox_SearchLine);
             this.Controls.Add(this.Label_SearchLine);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -87,7 +100,6 @@
             this.Name = "SearchLine";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Поиск по имени класса";
-           // this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SearchLine_FormClosing);
             this.Load += new System.EventHandler(this.SearchLine_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -99,6 +111,6 @@
         private System.Windows.Forms.Label Label_SearchLine;
         private System.Windows.Forms.ToolTip SearLineToolTip;
         internal System.Windows.Forms.TextBox TextBox_SearchLine;
-        public System.Windows.Forms.Button OkButton_SearchLine;
+        private Controls.ButtonNew buttonNew1;
     }
 }

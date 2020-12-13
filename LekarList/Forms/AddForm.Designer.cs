@@ -216,14 +216,14 @@
             this.CancelButton.BorderColorOnHover = System.Drawing.Color.Tomato;
             this.CancelButton.BorderColorOnHoverEnabled = false;
             this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Abort;
             this.CancelButton.Font = new System.Drawing.Font("Times New Roman", 8.25F);
             this.CancelButton.ForeColor = System.Drawing.Color.White;
-            this.CancelButton.Location = new System.Drawing.Point(199, 474);
+            this.CancelButton.Location = new System.Drawing.Point(269, 474);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.RippleColor = System.Drawing.Color.Black;
             this.CancelButton.RoundingEnable = false;
-            this.CancelButton.Size = new System.Drawing.Size(169, 30);
+            this.CancelButton.Size = new System.Drawing.Size(170, 30);
             this.CancelButton.TabIndex = 56;
             this.CancelButton.Text = "Отмена";
             this.CancelButton.TextHover = null;
