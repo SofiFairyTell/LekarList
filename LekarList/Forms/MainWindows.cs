@@ -267,17 +267,7 @@ namespace LekarList
                 this.treeView1.Select();
             };
         }
-        private void SearchLine_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
-            messageBoxCS.AppendFormat("{0} = {1}", "CloseReason", e.CloseReason);
-            messageBoxCS.AppendLine();
-            messageBoxCS.AppendFormat("{0} = {1}", "Cancel", e.Cancel);
-            messageBoxCS.AppendLine();
-            MessageBox.Show(messageBoxCS.ToString(), "FormClosing Event");
-            
-        }
+       
         private void ПоискToolStripMenuItem_Click(object sender, EventArgs e) //пункт меню
         {
             StartSearh();
