@@ -35,7 +35,6 @@
             this.AnatomComboBox = new System.Windows.Forms.ComboBox();
             this.TherapTypeLabel = new System.Windows.Forms.Label();
             this.TherapComboBox = new System.Windows.Forms.ComboBox();
-            this.AddButton = new System.Windows.Forms.Button();
             this.CodeTextBox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
             this.PharmaTypeLabel = new System.Windows.Forms.Label();
@@ -43,8 +42,10 @@
             this.ChemTypeLabel = new System.Windows.Forms.Label();
             this.ChemComboBox = new System.Windows.Forms.ComboBox();
             this.Description = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.DescriptionBox = new System.Windows.Forms.TextBox();
             this.CancelAdButton = new System.Windows.Forms.Button();
+            this.AddButton = new LekarList.Controls.ButtonNew();
+            this.CancelButton = new LekarList.Controls.ButtonNew();
             ((System.ComponentModel.ISupportInitialize)(this.lekarListClassBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             this.AnatomComboBox.Location = new System.Drawing.Point(21, 28);
             this.AnatomComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.AnatomComboBox.Name = "AnatomComboBox";
-            this.AnatomComboBox.Size = new System.Drawing.Size(345, 24);
+            this.AnatomComboBox.Size = new System.Drawing.Size(418, 24);
             this.AnatomComboBox.TabIndex = 47;
             this.AnatomComboBox.SelectedIndexChanged += new System.EventHandler(this.AnatomComboBox_SelectedIndexChanged);
             // 
@@ -86,27 +87,16 @@
             this.TherapComboBox.Location = new System.Drawing.Point(21, 82);
             this.TherapComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.TherapComboBox.Name = "TherapComboBox";
-            this.TherapComboBox.Size = new System.Drawing.Size(345, 24);
+            this.TherapComboBox.Size = new System.Drawing.Size(418, 24);
             this.TherapComboBox.TabIndex = 44;
             this.TherapComboBox.SelectedIndexChanged += new System.EventHandler(this.TherapComboBox_SelectedIndexChanged);
-            // 
-            // AddButton
-            // 
-            this.AddButton.Location = new System.Drawing.Point(22, 511);
-            this.AddButton.Margin = new System.Windows.Forms.Padding(4);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(169, 28);
-            this.AddButton.TabIndex = 43;
-            this.AddButton.Text = "Добавить";
-            this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // CodeTextBox
             // 
             this.CodeTextBox.Location = new System.Drawing.Point(21, 243);
             this.CodeTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.CodeTextBox.Name = "CodeTextBox";
-            this.CodeTextBox.Size = new System.Drawing.Size(345, 22);
+            this.CodeTextBox.Size = new System.Drawing.Size(418, 22);
             this.CodeTextBox.TabIndex = 37;
             // 
             // NameLabel
@@ -136,7 +126,7 @@
             this.PharmaComboBox.Location = new System.Drawing.Point(23, 134);
             this.PharmaComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.PharmaComboBox.Name = "PharmaComboBox";
-            this.PharmaComboBox.Size = new System.Drawing.Size(345, 24);
+            this.PharmaComboBox.Size = new System.Drawing.Size(416, 24);
             this.PharmaComboBox.TabIndex = 49;
             // 
             // ChemTypeLabel
@@ -156,7 +146,7 @@
             this.ChemComboBox.Location = new System.Drawing.Point(22, 188);
             this.ChemComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.ChemComboBox.Name = "ChemComboBox";
-            this.ChemComboBox.Size = new System.Drawing.Size(345, 24);
+            this.ChemComboBox.Size = new System.Drawing.Size(417, 24);
             this.ChemComboBox.TabIndex = 51;
             // 
             // Description
@@ -168,14 +158,14 @@
             this.Description.TabIndex = 53;
             this.Description.Text = "Описание";
             // 
-            // textBox1
+            // DescriptionBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(25, 311);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(341, 168);
-            this.textBox1.TabIndex = 54;
+            this.DescriptionBox.Location = new System.Drawing.Point(21, 311);
+            this.DescriptionBox.Margin = new System.Windows.Forms.Padding(4);
+            this.DescriptionBox.Multiline = true;
+            this.DescriptionBox.Name = "DescriptionBox";
+            this.DescriptionBox.Size = new System.Drawing.Size(418, 132);
+            this.DescriptionBox.TabIndex = 54;
             // 
             // CancelAdButton
             // 
@@ -188,12 +178,67 @@
             this.CancelAdButton.Text = "Отмена";
             this.CancelAdButton.UseVisualStyleBackColor = true;
             // 
+            // AddButton
+            // 
+            this.AddButton.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.AddButton.BackColorAdditional = System.Drawing.Color.Gray;
+            this.AddButton.BackColorGradientEnabled = false;
+            this.AddButton.BackColorGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.AddButton.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.AddButton.BorderColorEnabled = false;
+            this.AddButton.BorderColorOnHover = System.Drawing.Color.Tomato;
+            this.AddButton.BorderColorOnHoverEnabled = false;
+            this.AddButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.AddButton.Font = new System.Drawing.Font("Times New Roman", 8.25F);
+            this.AddButton.ForeColor = System.Drawing.Color.White;
+            this.AddButton.Location = new System.Drawing.Point(26, 509);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.RippleColor = System.Drawing.Color.Black;
+            this.AddButton.RoundingEnable = false;
+            this.AddButton.Size = new System.Drawing.Size(170, 30);
+            this.AddButton.TabIndex = 55;
+            this.AddButton.Text = "Добавить";
+            this.AddButton.TextHover = null;
+            this.AddButton.UseDownPressEffectOnClick = false;
+            this.AddButton.UseRippleEffect = true;
+            this.AddButton.UseZoomEffectOnHover = false;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            // 
+            // CancelButton
+            // 
+            this.CancelButton.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.CancelButton.BackColorAdditional = System.Drawing.Color.Gray;
+            this.CancelButton.BackColorGradientEnabled = false;
+            this.CancelButton.BackColorGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.CancelButton.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.CancelButton.BorderColorEnabled = false;
+            this.CancelButton.BorderColorOnHover = System.Drawing.Color.Tomato;
+            this.CancelButton.BorderColorOnHoverEnabled = false;
+            this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.CancelButton.Font = new System.Drawing.Font("Times New Roman", 8.25F);
+            this.CancelButton.ForeColor = System.Drawing.Color.White;
+            this.CancelButton.Location = new System.Drawing.Point(269, 474);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.RippleColor = System.Drawing.Color.Black;
+            this.CancelButton.RoundingEnable = false;
+            this.CancelButton.Size = new System.Drawing.Size(170, 30);
+            this.CancelButton.TabIndex = 56;
+            this.CancelButton.Text = "Отмена";
+            this.CancelButton.TextHover = null;
+            this.CancelButton.UseDownPressEffectOnClick = false;
+            this.CancelButton.UseRippleEffect = true;
+            this.CancelButton.UseZoomEffectOnHover = false;
+            // 
             // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 553);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(452, 553);
+            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.AddButton);
+            this.Controls.Add(this.DescriptionBox);
             this.Controls.Add(this.Description);
             this.Controls.Add(this.ChemTypeLabel);
             this.Controls.Add(this.ChemComboBox);
@@ -204,7 +249,6 @@
             this.Controls.Add(this.CancelAdButton);
             this.Controls.Add(this.TherapTypeLabel);
             this.Controls.Add(this.TherapComboBox);
-            this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CodeTextBox);
             this.Controls.Add(this.NameLabel);
             this.Name = "AddForm";
@@ -224,7 +268,6 @@
         private System.Windows.Forms.ComboBox AnatomComboBox;
         private System.Windows.Forms.Label TherapTypeLabel;
         private System.Windows.Forms.ComboBox TherapComboBox;
-        private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.TextBox CodeTextBox;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label PharmaTypeLabel;
@@ -232,7 +275,9 @@
         private System.Windows.Forms.Label ChemTypeLabel;
         private System.Windows.Forms.ComboBox ChemComboBox;
         private System.Windows.Forms.Label Description;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox DescriptionBox;
         private System.Windows.Forms.Button CancelAdButton;
+        private Controls.ButtonNew AddButton;
+        private Controls.ButtonNew CancelButton;
     }
 }

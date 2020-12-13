@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace LekarList.LekarClass
 {
-    class PharmaGroup:Medication
+    public class PharmaGroup: TherapGroup
     {
         private string AnatomMainGroup { get; set; }
-        private string TherapSG { get; set; }
+        //private string TherapSG { get; set; }
         private string PharmaSG { get; set; }
         public PharmaGroup()
         {
@@ -19,13 +19,13 @@ namespace LekarList.LekarClass
             Level = 0;
             Index = 0;
         }
-        public PharmaGroup(string PHSG,string CodeSG, int level, int index)
+        public PharmaGroup(string MedicName, string Code, string Description, int Level, int Index)
         {
-            PharmaSG = PHSG;
-            MedicName = PHSG;
-            Code = CodeSG;
-            Level = level;
-            Index = index;
+            this.MedicName = MedicName;
+            this.Code = Code;
+            this.Description = Description;
+            this.Level = Level;
+            this.Index = Index;
         }
 
         public static new int Count(List<Medication> MedicGroups)
@@ -33,7 +33,9 @@ namespace LekarList.LekarClass
             int n = 0;
             foreach (var obj in MedicGroups)
             {
-                if (obj is PharmaGroup)
+                //if (obj is TherapGroup || obj is ChemGroup)
+                //    continue;
+                    if (obj is PharmaGroup)
                     n++;
             }
             return n;

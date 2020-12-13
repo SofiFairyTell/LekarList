@@ -32,7 +32,7 @@ namespace LekarList.Forms
                 CodeTextBox.Text = "A";
             }
             int index = MedList.Count();//пока для последнего элеммента в списке так
-            AnatomGroup anatom = new AnatomGroup(AnatomComboBox.Text,CodeTextBox.Text,0,index);
+            AnatomGroup anatom = new AnatomGroup(AnatomComboBox.Text,CodeTextBox.Text,DescriptionBox.Text,0,index);
             MedList.Add(anatom);
             MainWindows.MedList = MedList;
             this.Close();
@@ -151,7 +151,11 @@ namespace LekarList.Forms
            
         }
 
- 
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = DialogResult.Cancel;
+
+        }
     }
 
      

@@ -20,19 +20,21 @@ namespace LekarList.LekarClass
             Index = 0;
         }
 
-        public AnatomGroup(string ANMG, string CodeSG, int level, int index)
+        public AnatomGroup(string MedicName, string Code, string Description, int Level, int Index)
         {
-            AnatomMainGroup = ANMG;
-            MedicName = ANMG;
-            Code = CodeSG;
-            Level = level;
-            Index = index;
+            this.MedicName = MedicName;
+            this.Code = Code;
+            this.Description = Description;
+            this.Level = Level;
+            this.Index = Index;
         }
-        public static new int Count(List<Medication> MedicGroups)
+        public static  int Count(List<Medication> MedicGroups)
         {
             int n = 0;
             foreach (var obj in MedicGroups)
             {
+                if (obj is TherapGroup || obj is PharmaGroup || obj is ChemGroup)
+                    continue;
                 if (obj is AnatomGroup)
                     n++;
             }
