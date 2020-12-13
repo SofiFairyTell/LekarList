@@ -28,11 +28,13 @@ namespace LekarList.LekarClass
             this.Level = Level;
             this.Index = Index;
         }
-        public static new int Count(List<Medication> MedicGroups)
+        public static  int Count(List<Medication> MedicGroups)
         {
             int n = 0;
             foreach (var obj in MedicGroups)
             {
+                if (obj is TherapGroup || obj is PharmaGroup || obj is ChemGroup)
+                    continue;
                 if (obj is AnatomGroup)
                     n++;
             }

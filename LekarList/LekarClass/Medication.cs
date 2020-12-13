@@ -43,16 +43,16 @@ namespace LekarList.LekarClass
             this.Index = Index;
         }
 
-        public static int Count(List<Medication> MedicGroups)
-        {
-            int n = 0;
-            foreach (var obj in MedicGroups)
-            {
-                if (obj is Medication)
-                    n++;
-            }
-            return n;
-        }
+        //public static int Count(List<Medication> MedicGroups)
+        //{
+        //    int n = 0;
+        //    foreach (var obj in MedicGroups)
+        //    {
+        //        if (obj is Medication)
+        //            n++;
+        //    }
+        //    return n;
+        //}
         public int CompareTo(Medication ComparedGroup)
         {
             string name1 = this.MedicName;

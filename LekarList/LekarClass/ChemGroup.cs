@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LekarList.LekarClass
 {
-    class ChemGroup:PharmaGroup
+   public class ChemGroup: PharmaGroup
     {
         private string AnatomMainGroup { get; set; }
         private string TherapSG { get; set; }
@@ -35,7 +35,10 @@ namespace LekarList.LekarClass
             int n = 0;
             foreach (var obj in MedicGroups)
             {
-                if (obj is ChemGroup);
+                /*без этого считает все подряд. почему?*/
+                if (obj is TherapGroup || obj is AnatomGroup || obj is PharmaGroup)
+                    continue;
+                    if (obj is ChemGroup)
                     n++;
             }
             return n;

@@ -33,6 +33,11 @@ namespace LekarList
         public string ErrorMess3 = "Нельзя изменить не открытый узел";
         //Cписки
         public static List<Medication> MedList = new List<Medication>();
+        public static List<AnatomGroup> AnatomGroups = new List<AnatomGroup>();
+        public static List<TherapGroup> TherapGroups = new List<TherapGroup>();
+       public static List<PharmaGroup> PharmaGroups = new List<PharmaGroup>();
+        public static List<ChemGroup> ChemGroups  = new List<ChemGroup>();
+
         //Переменные
         ToolStripLabel timeStartLabel, dateLabel, timeLabel;
         private static ulong timeSec = 0;
@@ -68,9 +73,18 @@ namespace LekarList
             MedList.Add(anatom2);
             MedList.Add(therap2);
 
-            contextMenuStrip1.Items.AddRange(new[] { UpdateMenuItem});
+            AnatomGroups.Add(anatom1);
+            AnatomGroups.Add(anatom2);
+            TherapGroups.Add(therap1);
+            TherapGroups.Add(therap2);
+            PharmaGroups.Add(pharma1);
+
+        contextMenuStrip1.Items.AddRange(new[] { UpdateMenuItem});
             treeView1.ContextMenuStrip = contextMenuStrip1;
             UpdateMenuItem.Click += UpdateMenuItem_Click;
+
+            
+
             ParentNodesMed();
         }
         void UpdateMenuItem_Click(object sender, EventArgs e)
@@ -507,6 +521,23 @@ namespace LekarList
         private void DelItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void СтатистикаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int AnatGroup, ThGroup, PhGroup, ChGroup;
+            AnatGroup = AnatomGroup.Count(MedList);
+            ThGroup = TherapGroup.Count(MedList);
+            PhGroup = PharmaGroup.Count(MedList);
+            ChGroup = ChemGroup.Count(MedList);
+
+            MessageBox.Show(
+                $"Количество Анатомических групп\n:{AnatGroup}\n" +
+                 $"Количество Терапевтических групп\n:{ThGroup}\n" +
+                  $"Количество Фармакологических групп\n:{PhGroup}\n" +
+                   $"Количество Химических групп\n:{ChGroup}\n", 
+
+                "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         //End work with current Form

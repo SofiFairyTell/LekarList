@@ -34,7 +34,9 @@ namespace LekarList.LekarClass
             int n = 0;
             foreach (var obj in MedicGroups)
             {
-                if (obj is TherapGroup)
+                if (obj is PharmaGroup || obj is ChemGroup)
+                    continue;
+                    if (obj is TherapGroup)
                     n++;
             }
             return n;
