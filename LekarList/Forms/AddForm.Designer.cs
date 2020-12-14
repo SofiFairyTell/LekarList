@@ -107,6 +107,7 @@
             this.PharmaComboBox.Name = "PharmaComboBox";
             this.PharmaComboBox.Size = new System.Drawing.Size(416, 24);
             this.PharmaComboBox.TabIndex = 49;
+            this.PharmaComboBox.SelectedIndexChanged += new System.EventHandler(this.PharmaComboBox_SelectedIndexChanged);
             // 
             // ChemTypeLabel
             // 
@@ -127,6 +128,7 @@
             this.ChemComboBox.Name = "ChemComboBox";
             this.ChemComboBox.Size = new System.Drawing.Size(417, 24);
             this.ChemComboBox.TabIndex = 51;
+            this.ChemComboBox.SelectedIndexChanged += new System.EventHandler(this.ChemComboBox_SelectedIndexChanged);
             // 
             // AddButton
             // 
