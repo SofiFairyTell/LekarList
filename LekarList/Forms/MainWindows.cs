@@ -561,6 +561,11 @@ namespace LekarList
                 "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
 
 
 

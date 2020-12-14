@@ -68,6 +68,10 @@
     </Compile>
     <Compile Include="Classes\NewFolder1\Examples.cs" />
     <Compile Include="Controls\Drawer.cs" />
+    <Compile Include="Controls\FlatColors.cs" />
+    <Compile Include="Controls\TextBoxNew.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\AboutLekarList.cs">
       <SubType>Form</SubType>
     </Compile>
