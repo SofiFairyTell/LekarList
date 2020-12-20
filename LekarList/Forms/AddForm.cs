@@ -67,49 +67,32 @@ namespace LekarList.Forms
         {
             AlimentaryClass alimentary = new AlimentaryClass();
             ANMG = alimentary.Return();
-            //ANMG.AddRange(new string[]
-            //{
-            //    "Препараты, влияющие на пищеварительный тракт и обмен веществ",
-            //    "Препараты, влияющие на кроветворение и кровь",
-            //    "Препараты для лечения заболеваний сердечно-сосудистой системы",
-            //    "Препараты для лечения заболеваний кожи",
-            //    "Препараты для лечения заболеваний урогенитальных органов и половые гормоны"
-            //});
             foreach (var str in ANMG)
             {
                 AnatomComboBox.Items.Add(str);
             }
-
-            //  string str2 = "";
-
-            //while (alimentary.Return() != "")
-            //{
-            //    string str3 = alimentary.Return(str2);
-            //    AnatomComboBox.Items.Add(str3);
-            //}
-
             Code_ANMG.Clear();
             Code_ANMG.AddRange(new string[] { "A", "B", "C", "D", "G" });
-
-
-
         }
        private void AnatomComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            PreparationsClass preparations = new PreparationsClass();
+
             switch ((string)AnatomComboBox.SelectedItem)
             {
                 case "Препараты, влияющие на пищеварительный тракт и обмен веществ":
                     /*Был выбран пункт. Сформируем список для следующего поля*/
                     THSG.Clear();
                     TherapComboBox.Items.Clear();
-                    THSG.AddRange(new string[]
-                    {
-                        "Стоматологические препараты",
-                        "Препараты для лечения заболеваний, связанных с нарушением кислотности",
-                        "Препараты для лечения функциональных расстройств ЖКТ",
-                        "Противорвотные препараты",
-                        "Препараты для лечения заболеваний печени и желчевыводящих путей"
-                    });
+                    THSG = preparations.Return("Препараты, влияющие на пищеварительный тракт и обмен веществ");
+                    //THSG.AddRange(new string[]
+                    //{
+                    //    "Стоматологические препараты",
+                    //    "Препараты для лечения заболеваний, связанных с нарушением кислотности",
+                    //    "Препараты для лечения функциональных расстройств ЖКТ",
+                    //    "Противорвотные препараты",
+                    //    "Препараты для лечения заболеваний печени и желчевыводящих путей"
+                    //});
 
                     Code_THSG.Clear();
                     Code_THSG.AddRange(new string[] { "A01", "A02", "A03", "A04", "A05" });
@@ -121,14 +104,17 @@ namespace LekarList.Forms
                 case "Препараты, влияющие на кроветворение и кровь":
                     THSG.Clear();
                     TherapComboBox.Items.Clear();
-                    THSG.AddRange(new string[]
-                    {
-                        "Антикоагулянты",
-                        "Гемостатические препараты",
-                        "Антианемические препараты",
-                        "Плазмозамещающие и перфузионные растворы",
-                        "Прочие гематологические препараты"
-                    });
+                    THSG.Clear();
+                    TherapComboBox.Items.Clear();
+                    THSG = preparations.Return("Препараты, влияющие на кроветворение и кровь");
+                    //THSG.AddRange(new string[]
+                    //{
+                    //    "Антикоагулянты",
+                    //    "Гемостатические препараты",
+                    //    "Антианемические препараты",
+                    //    "Плазмозамещающие и перфузионные растворы",
+                    //    "Прочие гематологические препараты"
+                    //});
                     foreach (var str in THSG)
                     {
                         TherapComboBox.Items.Add(str);
@@ -143,22 +129,22 @@ namespace LekarList.Forms
                     /*Был выбран пункт. Сформируем список для следующего поля*/
                     THSG.Clear();
                     TherapComboBox.Items.Clear();
-                    THSG.AddRange(new string[]
-                    {
-                        " ",
-                        " ",
-                        " ",
-                        " ",
-                        " "
-                    });
+                    THSG = preparations.Return("Препараты для лечения заболеваний сердечно-сосудистой системы");
+                    //THSG.AddRange(new string[]
+                    //{
+                    //    " ",
+                    //    " ",
+                    //    " ",
+                    //    " ",
+                    //    " "
+                    //});
 
                     Code_THSG.Clear();
-                    Code_THSG.AddRange(new string[] { "A01", "A02", "A03", "A04", "A05" });
+                    Code_THSG.AddRange(new string[] { "C01", "C02", "C03", "C04", "C05" });
                     foreach (var str in THSG)
                     {
                         TherapComboBox.Items.Add(str);
                     }
-                    break;
                     break;
                 default:
                     TherapComboBox.Items.Clear();

@@ -89,6 +89,8 @@
     <Compile Include="LekarClass\ChemGroup.cs" />
     <Compile Include="LekarClass\Medication.cs" />
     <Compile Include="LekarClass\PharmaGroup.cs" />
+    <Compile Include="LekarClass\PharmaPreparat.cs" />
+    <Compile Include="LekarClass\PreparationsClass.cs" />
     <Compile Include="LekarListClass\ClassLekar.cs" />
     <Compile Include="LekarListClass\LekarClass.cs" />
     <Compile Include="Forms\AddForm.cs">
