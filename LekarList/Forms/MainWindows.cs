@@ -343,15 +343,16 @@ namespace LekarList
 
         private void SortButton_Click(object sender, EventArgs e)
         {
-            LBdata.Sorted = true;
+            //LBdata.Sorted = true;
         }
 
-        private void ДобавитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
+         private void ДобавитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Forms.AddForm AddForm = new Forms.AddForm();
-            Forms.AddForm NewForm = AddForm;
-            NewForm.MedList = MedList;
-            NewForm.Show();
+            //Forms.AddForm AddForm = new Forms.AddForm();
+            //Forms.AddForm NewForm = AddForm;
+            //NewForm.MedList = MedList;
+            //NewForm.Show();
+
         }
 
 
@@ -366,8 +367,9 @@ namespace LekarList
                 }
                 else
                 {
-                    var index = MedList.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
-                    MedList[index].MedicName = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
+
+                    var index = MedList.FindIndex(x => x.Code.Equals(DataDescriptionGrid.Rows[0].Cells[1].Value));
+                    MedList[index].Description = DataDescriptionGrid.Rows[2].Cells[1].Value.ToString();
                     ParentNodesMed();
                 }
             }
@@ -440,6 +442,8 @@ namespace LekarList
                 SaveFile();
             if (e.Control && e.KeyCode == Keys.F)
                 StartSearh();
+            if (e.KeyCode == Keys.F1)
+                ОПрограммеToolStripMenuItem_Click(sender, e);
         }
         private void tabControl1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -452,16 +456,16 @@ namespace LekarList
         private void SaveFile()
         {
             try
-    {
-       List<Type> types = new List<Type>();
-       foreach(Medication med in MedList)
-        {
-            Type type = med.GetType();
-            if(!types.Contains(type))
             {
-                types.Add(type);
+            List<Type> types = new List<Type>();
+            foreach(Medication med in MedList)
+            {
+                Type type = med.GetType();
+                if(!types.Contains(type))
+                {
+                    types.Add(type);
+                }
             }
-        }
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Medication>),types.ToArray());
                 using (FileStream file = new FileStream("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\output.xml", FileMode.Create))
                 { 
@@ -469,11 +473,12 @@ namespace LekarList
                    file.Flush();
                     serializer.Serialize(file, MedList);
                 }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"Что-то пошло не так!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
+                MessageBox.Show($"Ваш файл был сохранен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Что-то пошло не так!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #region Меню
@@ -511,10 +516,7 @@ namespace LekarList
 
         }
 
-        private void EditItem_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void ПоказатьКнопкиToolStripMenuItem_MouseDown(object sender, MouseEventArgs e)
         {
@@ -534,11 +536,7 @@ namespace LekarList
             }
         }
 
-        private void EditItem_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
+ 
         private void DelItem_Click(object sender, EventArgs e)
         {
 
@@ -566,6 +564,22 @@ namespace LekarList
 
         }
 
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void очиститьВсеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void добавитьЭлементToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddButton_Click_1(sender, e);
+        }
+
+
 
 
 
@@ -583,16 +597,21 @@ namespace LekarList
         {
             MedList.Clear();
             XmlDocument doc = new XmlDocument();
-            doc.Load("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml");
-            CurrentFile = "C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml";
+            doc.Load("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\output.xml");
+            CurrentFile = "C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\output.xml";
             foreach (XmlNode node in doc.DocumentElement)
             {
                 string AnatomicalMainGroup = node.Attributes[0].Value;
-                string Code = " ";
+                string MedicName = node["MedicName"].InnerText;
+                string Code = node["Code"].InnerText;
                 string Description = " ";
                 int level = int.Parse(node["Level"].InnerText);
+                //if(level ==1)
+                //{
+
+                //}
                 int index = int.Parse(node["Index"].InnerText);
-                MedList.Add(new AnatomGroup(AnatomicalMainGroup, Code, Description, level, index));
+                MedList.Add(new AnatomGroup(MedicName, Code, Description, level, index));
             }
             ParentNodesMed();
         }

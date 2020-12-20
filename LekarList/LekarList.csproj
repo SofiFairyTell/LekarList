@@ -84,6 +84,7 @@
     <Compile Include="Forms\SearchLine.Designer.cs">
       <DependentUpon>SearchLine.cs</DependentUpon>
     </Compile>
+    <Compile Include="LekarClass\AlimentaryClass.cs" />
     <Compile Include="LekarClass\AnatomGroup.cs" />
     <Compile Include="LekarClass\ChemGroup.cs" />
     <Compile Include="LekarClass\Medication.cs" />
@@ -130,6 +131,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\DataSources\LekarClass.LekarListClass.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

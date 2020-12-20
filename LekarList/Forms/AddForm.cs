@@ -65,19 +65,29 @@ namespace LekarList.Forms
 
         private void AddForm_Load(object sender, EventArgs e)
         {
-           
-            ANMG.AddRange(new string[]
-            {
-                "Препараты, влияющие на пищеварительный тракт и обмен веществ",
-                "Препараты, влияющие на кроветворение и кровь",
-                "Препараты для лечения заболеваний сердечно-сосудистой системы",
-                "Препараты для лечения заболеваний кожи",
-                "Препараты для лечения заболеваний урогенитальных органов и половые гормоны"
-            });
+            AlimentaryClass alimentary = new AlimentaryClass();
+            ANMG = alimentary.Return();
+            //ANMG.AddRange(new string[]
+            //{
+            //    "Препараты, влияющие на пищеварительный тракт и обмен веществ",
+            //    "Препараты, влияющие на кроветворение и кровь",
+            //    "Препараты для лечения заболеваний сердечно-сосудистой системы",
+            //    "Препараты для лечения заболеваний кожи",
+            //    "Препараты для лечения заболеваний урогенитальных органов и половые гормоны"
+            //});
             foreach (var str in ANMG)
             {
                 AnatomComboBox.Items.Add(str);
             }
+
+            //  string str2 = "";
+
+            //while (alimentary.Return() != "")
+            //{
+            //    string str3 = alimentary.Return(str2);
+            //    AnatomComboBox.Items.Add(str3);
+            //}
+
             Code_ANMG.Clear();
             Code_ANMG.AddRange(new string[] { "A", "B", "C", "D", "G" });
 
@@ -129,7 +139,26 @@ namespace LekarList.Forms
                     Code_THSG.AddRange(new string[] { "B01", "B02", "B03", "B05", "B06" });
 
                     break;
-                case "":
+                case "Препараты для лечения заболеваний сердечно-сосудистой системы":
+                    /*Был выбран пункт. Сформируем список для следующего поля*/
+                    THSG.Clear();
+                    TherapComboBox.Items.Clear();
+                    THSG.AddRange(new string[]
+                    {
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " "
+                    });
+
+                    Code_THSG.Clear();
+                    Code_THSG.AddRange(new string[] { "A01", "A02", "A03", "A04", "A05" });
+                    foreach (var str in THSG)
+                    {
+                        TherapComboBox.Items.Add(str);
+                    }
+                    break;
                     break;
                 default:
                     TherapComboBox.Items.Clear();

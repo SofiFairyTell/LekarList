@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="vp_course.Animal">
+    <Position X="4.5" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAABAAAIAQABAAAAAQAAAQAAAAAAEAACAAAAAA=</HashCode>
+      <FileName>Animal.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="vp_course.Anthropod">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Anthropod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="vp_course.Birds">
+    <Position X="12" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAABIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Birds.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="vp_course.Bivalvias" Collapsed="true">
+    <Position X="8.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bivalvias.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="vp_course.Cephalopods" Collapsed="true">
+    <Position X="8.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAABAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cephalopods.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="vp_course.Chordata" Collapsed="true">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Chordata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="vp_course.Mollusca" Collapsed="true">
+    <Position X="7" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAABAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Mollusca.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="vp_course.Vertebrates" Collapsed="true">
+    <Position X="10.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vertebrates.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
