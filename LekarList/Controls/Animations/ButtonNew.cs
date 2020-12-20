@@ -96,7 +96,7 @@ namespace LekarList.Controls
         private bool MouseEntered = false;
         private bool MousePressed = false;
 
-        Animation CurtainButtonAnim = new Animation();
+        Animation CurtainButtonAnim = new Animation();  
         //Animation RippleButtonAnim = new Animation();
         Animation TextSlideAnim = new Animation();
 

@@ -280,7 +280,7 @@ namespace LekarList
         private void DataGridInit()
         {
 
-           DataDescriptionGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            DataDescriptionGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             DataGridViewCellStyle columnstyle = new DataGridViewCellStyle()
             {
                 BackColor = Color.Chocolate,
