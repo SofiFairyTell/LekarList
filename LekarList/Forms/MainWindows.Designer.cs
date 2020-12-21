@@ -49,13 +49,14 @@
             this.DataDescriptionGrid = new System.Windows.Forms.DataGridView();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             this.MinimizeItem = new LekarList.Controls.ButtonNew();
             this.AddItem = new LekarList.Controls.ButtonNew();
             this.DelItem = new LekarList.Controls.ButtonNew();
             this.EditItem = new LekarList.Controls.ButtonNew();
             this.DescriptColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -267,6 +268,22 @@
             this.tabControl1.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeView1_DragEnter);
             this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
             // 
+            // toolTip1
+            // 
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // panel1
+            // 
+            this.panel1.AllowDrop = true;
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Location = new System.Drawing.Point(955, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(219, 442);
+            this.panel1.TabIndex = 16;
+            this.panel1.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView1_DragDrop);
+            this.panel1.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeView1_DragEnter);
+            // 
             // MinimizeItem
             // 
             this.MinimizeItem.BackColor = System.Drawing.Color.DeepSkyBlue;
@@ -395,16 +412,13 @@
             this.GroupNameColumn.Name = "GroupNameColumn";
             this.GroupNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // toolTip1
-            // 
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            // 
             // MainWindows
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 522);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.MinimizeItem);
             this.Controls.Add(this.AddItem);
             this.Controls.Add(this.DelItem);
@@ -464,6 +478,7 @@
         private Controls.ButtonNew AddItem;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripMenuItem CтатистикаToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

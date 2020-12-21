@@ -524,15 +524,20 @@ namespace LekarList
             //    if (allowFilesDrop)
             //        e.Effect = DragDropEffects.All;
             //}
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            /*
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move )
+            {             
+                MessageBox.Show(e.Data.GetData(DataFormats.Text).ToString());
+            }*/
+            //if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            //{
+
+            //}
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) && ((e.AllowedEffect & DragDropEffects.Move) == DragDropEffects.Move))
             {
-                e.Effect = DragDropEffects.Move;
                 MessageBox.Show(e.Data.GetData(DataFormats.Text).ToString());
             }
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
 
-            }
         }
 
         private void treeView1_DragDrop(object sender, DragEventArgs e)
