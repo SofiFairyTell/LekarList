@@ -35,17 +35,14 @@
             this.AnatomComboBox = new System.Windows.Forms.ComboBox();
             this.TherapTypeLabel = new System.Windows.Forms.Label();
             this.TherapComboBox = new System.Windows.Forms.ComboBox();
-            this.CodeTextBox = new System.Windows.Forms.TextBox();
-            this.NameLabel = new System.Windows.Forms.Label();
             this.PharmaTypeLabel = new System.Windows.Forms.Label();
             this.PharmaComboBox = new System.Windows.Forms.ComboBox();
             this.ChemTypeLabel = new System.Windows.Forms.Label();
             this.ChemComboBox = new System.Windows.Forms.ComboBox();
-            this.Description = new System.Windows.Forms.Label();
-            this.DescriptionBox = new System.Windows.Forms.TextBox();
-            this.CancelAdButton = new System.Windows.Forms.Button();
             this.AddButton = new LekarList.Controls.ButtonNew();
             this.CancelButton = new LekarList.Controls.ButtonNew();
+            this.DescriptionBox = new LekarList.EgoldsGoogleTextBox();
+            this.CodeTextBox = new LekarList.EgoldsGoogleTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.lekarListClassBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,24 +88,6 @@
             this.TherapComboBox.TabIndex = 44;
             this.TherapComboBox.SelectedIndexChanged += new System.EventHandler(this.TherapComboBox_SelectedIndexChanged);
             // 
-            // CodeTextBox
-            // 
-            this.CodeTextBox.Location = new System.Drawing.Point(21, 243);
-            this.CodeTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.CodeTextBox.Name = "CodeTextBox";
-            this.CodeTextBox.Size = new System.Drawing.Size(418, 22);
-            this.CodeTextBox.TabIndex = 37;
-            // 
-            // NameLabel
-            // 
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(21, 223);
-            this.NameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(33, 17);
-            this.NameLabel.TabIndex = 33;
-            this.NameLabel.Text = "Код";
-            // 
             // PharmaTypeLabel
             // 
             this.PharmaTypeLabel.AutoSize = true;
@@ -128,6 +107,7 @@
             this.PharmaComboBox.Name = "PharmaComboBox";
             this.PharmaComboBox.Size = new System.Drawing.Size(416, 24);
             this.PharmaComboBox.TabIndex = 49;
+            this.PharmaComboBox.SelectedIndexChanged += new System.EventHandler(this.PharmaComboBox_SelectedIndexChanged);
             // 
             // ChemTypeLabel
             // 
@@ -148,35 +128,7 @@
             this.ChemComboBox.Name = "ChemComboBox";
             this.ChemComboBox.Size = new System.Drawing.Size(417, 24);
             this.ChemComboBox.TabIndex = 51;
-            // 
-            // Description
-            // 
-            this.Description.AutoSize = true;
-            this.Description.Location = new System.Drawing.Point(21, 290);
-            this.Description.Name = "Description";
-            this.Description.Size = new System.Drawing.Size(74, 17);
-            this.Description.TabIndex = 53;
-            this.Description.Text = "Описание";
-            // 
-            // DescriptionBox
-            // 
-            this.DescriptionBox.Location = new System.Drawing.Point(21, 311);
-            this.DescriptionBox.Margin = new System.Windows.Forms.Padding(4);
-            this.DescriptionBox.Multiline = true;
-            this.DescriptionBox.Name = "DescriptionBox";
-            this.DescriptionBox.Size = new System.Drawing.Size(418, 132);
-            this.DescriptionBox.TabIndex = 54;
-            // 
-            // CancelAdButton
-            // 
-            this.CancelAdButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelAdButton.Location = new System.Drawing.Point(199, 511);
-            this.CancelAdButton.Margin = new System.Windows.Forms.Padding(4);
-            this.CancelAdButton.Name = "CancelAdButton";
-            this.CancelAdButton.Size = new System.Drawing.Size(169, 28);
-            this.CancelAdButton.TabIndex = 46;
-            this.CancelAdButton.Text = "Отмена";
-            this.CancelAdButton.UseVisualStyleBackColor = true;
+            this.ChemComboBox.SelectedIndexChanged += new System.EventHandler(this.ChemComboBox_SelectedIndexChanged);
             // 
             // AddButton
             // 
@@ -219,7 +171,7 @@
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Abort;
             this.CancelButton.Font = new System.Drawing.Font("Times New Roman", 8.25F);
             this.CancelButton.ForeColor = System.Drawing.Color.White;
-            this.CancelButton.Location = new System.Drawing.Point(269, 474);
+            this.CancelButton.Location = new System.Drawing.Point(256, 509);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.RippleColor = System.Drawing.Color.Black;
             this.CancelButton.RoundingEnable = false;
@@ -231,26 +183,59 @@
             this.CancelButton.UseRippleEffect = true;
             this.CancelButton.UseZoomEffectOnHover = false;
             // 
+            // DescriptionBox
+            // 
+            this.DescriptionBox.BackColor = System.Drawing.Color.White;
+            this.DescriptionBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.DescriptionBox.BorderColorNotActive = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
+            this.DescriptionBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.DescriptionBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DescriptionBox.FontTextPreview = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
+            this.DescriptionBox.ForeColor = System.Drawing.Color.Black;
+            this.DescriptionBox.Location = new System.Drawing.Point(21, 298);
+            this.DescriptionBox.MultiLine = false;
+            this.DescriptionBox.Name = "DescriptionBox";
+            this.DescriptionBox.Size = new System.Drawing.Size(418, 171);
+            this.DescriptionBox.TabIndex = 57;
+            this.DescriptionBox.TextInput = "";
+            this.DescriptionBox.TextPreview = "Описание";
+            this.DescriptionBox.UseSystemPasswordChar = false;
+            // 
+            // CodeTextBox
+            // 
+            this.CodeTextBox.BackColor = System.Drawing.Color.White;
+            this.CodeTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.CodeTextBox.BorderColorNotActive = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
+            this.CodeTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.CodeTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CodeTextBox.FontTextPreview = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
+            this.CodeTextBox.ForeColor = System.Drawing.Color.Black;
+            this.CodeTextBox.Location = new System.Drawing.Point(21, 238);
+            this.CodeTextBox.MultiLine = false;
+            this.CodeTextBox.Name = "CodeTextBox";
+            this.CodeTextBox.Size = new System.Drawing.Size(418, 54);
+            this.CodeTextBox.TabIndex = 58;
+            this.CodeTextBox.TextInput = "";
+            this.CodeTextBox.TextPreview = "Код группы";
+            this.CodeTextBox.UseSystemPasswordChar = false;
+            // 
             // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(452, 553);
+            this.Controls.Add(this.CodeTextBox);
+            this.Controls.Add(this.DescriptionBox);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddButton);
-            this.Controls.Add(this.DescriptionBox);
-            this.Controls.Add(this.Description);
             this.Controls.Add(this.ChemTypeLabel);
             this.Controls.Add(this.ChemComboBox);
             this.Controls.Add(this.PharmaTypeLabel);
             this.Controls.Add(this.PharmaComboBox);
             this.Controls.Add(this.AnatomTypeLabel);
             this.Controls.Add(this.AnatomComboBox);
-            this.Controls.Add(this.CancelAdButton);
             this.Controls.Add(this.TherapTypeLabel);
             this.Controls.Add(this.TherapComboBox);
-            this.Controls.Add(this.CodeTextBox);
-            this.Controls.Add(this.NameLabel);
             this.Name = "AddForm";
             this.Text = "Добавление данных";
             this.Load += new System.EventHandler(this.AddForm_Load);
@@ -268,16 +253,13 @@
         private System.Windows.Forms.ComboBox AnatomComboBox;
         private System.Windows.Forms.Label TherapTypeLabel;
         private System.Windows.Forms.ComboBox TherapComboBox;
-        private System.Windows.Forms.TextBox CodeTextBox;
-        private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label PharmaTypeLabel;
         private System.Windows.Forms.ComboBox PharmaComboBox;
         private System.Windows.Forms.Label ChemTypeLabel;
         private System.Windows.Forms.ComboBox ChemComboBox;
-        private System.Windows.Forms.Label Description;
-        private System.Windows.Forms.TextBox DescriptionBox;
-        private System.Windows.Forms.Button CancelAdButton;
         private Controls.ButtonNew AddButton;
         private Controls.ButtonNew CancelButton;
+        private EgoldsGoogleTextBox DescriptionBox;
+        private EgoldsGoogleTextBox CodeTextBox;
     }
 }

@@ -68,11 +68,21 @@
     </Compile>
     <Compile Include="Classes\NewFolder1\Examples.cs" />
     <Compile Include="Controls\Drawer.cs" />
+    <Compile Include="Controls\FlatColors.cs" />
+    <Compile Include="Controls\TextBoxNew.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\AboutLekarList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AboutLekarList.Designer.cs">
       <DependentUpon>AboutLekarList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SearchLine.cs">
       <SubType>Form</SubType>
@@ -80,10 +90,14 @@
     <Compile Include="Forms\SearchLine.Designer.cs">
       <DependentUpon>SearchLine.cs</DependentUpon>
     </Compile>
+    <Compile Include="LekarClass\AlimentaryClass.cs" />
     <Compile Include="LekarClass\AnatomGroup.cs" />
+    <Compile Include="LekarClass\ChemClass.cs" />
     <Compile Include="LekarClass\ChemGroup.cs" />
     <Compile Include="LekarClass\Medication.cs" />
     <Compile Include="LekarClass\PharmaGroup.cs" />
+    <Compile Include="LekarClass\PharmaPreparat.cs" />
+    <Compile Include="LekarClass\PreparationsClass.cs" />
     <Compile Include="LekarListClass\ClassLekar.cs" />
     <Compile Include="LekarListClass\LekarClass.cs" />
     <Compile Include="Forms\AddForm.cs">
@@ -111,6 +125,9 @@
     <EmbeddedResource Include="Forms\AddForm.resx">
       <DependentUpon>AddForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWindows.resx">
       <DependentUpon>MainWindows.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,6 +143,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\DataSources\LekarClass.LekarListClass.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

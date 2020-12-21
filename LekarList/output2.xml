@@ -12,7 +12,7 @@
     <Code>A01</Code>
     <Level>1</Level>
     <Index>1</Index>
-    <Child>1</Child>
+    <Child>0</Child>
     <MedicName>Стоматологические препараты</MedicName>
     <Description>Подгруппа А01 является частью группы препаратов A «Препараты, влияющие на пищеварительный тракт и обмен веществ» </Description>
   </Medication>
@@ -29,21 +29,5 @@
 	A01AA04 Фторид олова,
 	A01AA30 Комбинации,
 	A01AA51 Комбинации фторида натрия</Description>
-  </Medication>
-  <Medication xsi:type="AnatomGroup">
-    <Code>B</Code>
-    <Level>0</Level>
-    <Index>3</Index>
-    <Child>0</Child>
-    <MedicName>Препараты, влияющие на кроветворение и кровь</MedicName>
-    <Description> </Description>
-  </Medication>
-  <Medication xsi:type="TherapGroup">
-    <Code>B01</Code>
-    <Level>1</Level>
-    <Index>4</Index>
-    <Child>0</Child>
-    <MedicName>Антикоагулянты</MedicName>
-    <Description> </Description>
   </Medication>
 </ArrayOfMedication>
