@@ -18,7 +18,7 @@ namespace LekarList
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindows());
-           // Application.Run(new Form1());
+           //Application.Run(new LekarList.Forms.Form1());
         }
     }
 }

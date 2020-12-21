@@ -87,7 +87,6 @@
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
             this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(68, 26);
             this.настройкиToolStripMenuItem.Text = "Файл";
-
             // 
             // xMLToolStripMenuItem
             // 
@@ -148,7 +147,6 @@
             this.показатьКнопкиToolStripMenuItem.Name = "показатьКнопкиToolStripMenuItem";
             this.показатьКнопкиToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
             this.показатьКнопкиToolStripMenuItem.Text = "Показать кнопки";
-            this.показатьКнопкиToolStripMenuItem.Click += new System.EventHandler(this.ПоказатьКнопкиToolStripMenuItem_Click);
             this.показатьКнопкиToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ПоказатьКнопкиToolStripMenuItem_MouseDown);
             // 
             // CтатистикаToolStripMenuItem
@@ -240,6 +238,7 @@
             // 
             // treeView1
             // 
+            this.treeView1.AllowDrop = true;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.treeView1.Location = new System.Drawing.Point(3, 2);
@@ -251,9 +250,12 @@
             this.treeView1.TabIndex = 0;
             this.toolTip1.SetToolTip(this.treeView1, "Иерархия отображается здесь");
             this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeView1_NodeMouseDoubleClick);
+            this.treeView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView1_DragDrop);
+            this.treeView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeView1_DragEnter);
             // 
             // tabControl1
             // 
+            this.tabControl1.AllowDrop = true;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(0, 28);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -261,6 +263,8 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(914, 448);
             this.tabControl1.TabIndex = 6;
+            this.tabControl1.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView1_DragDrop);
+            this.tabControl1.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeView1_DragEnter);
             this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
             // 
             // MinimizeItem
@@ -345,7 +349,6 @@
             this.DelItem.UseRippleEffect = true;
             this.DelItem.UseZoomEffectOnHover = false;
             this.DelItem.Visible = false;
-            this.DelItem.Click += new System.EventHandler(this.DelItem_Click);
             this.DelItem.DoubleClick += new System.EventHandler(this.DelButton_Click);
             // 
             // EditItem
@@ -398,6 +401,7 @@
             // 
             // MainWindows
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 522);
