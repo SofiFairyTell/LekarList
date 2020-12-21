@@ -31,7 +31,19 @@ namespace LekarList.Forms
             {
                 if (AnatomComboBox.ToString()!= null && TherapComboBox.ToString()!=null && PharmaComboBox.ToString()!=null && ChemComboBox.ToString()!=null)
                 {
+                    int index = MedList.Count();//пока для последнего элеммента в списке так
+                    AnatomGroup anatom = new AnatomGroup(AnatomComboBox.Text,CodeTextBox.Text,DescriptionBox.Text,0,index);
+                    TherapGroup therap = new TherapGroup(TherapComboBox.Text, CodeTextBox.Text, DescriptionBox.Text, 1, index + 1);
+                    PharmaGroup pharma = new PharmaGroup(PharmaComboBox.Text, CodeTextBox.Text, DescriptionBox.Text, 2, index + 1);
+                    ChemGroup chem = new ChemGroup(ChemComboBox.Text, CodeTextBox.Text, DescriptionBox.Text, 3, index + 1);
 
+                    MedList.Add(anatom);
+                    MedList.Add(therap);
+                    MedList.Add(pharma);
+                    MedList.Add(chem);
+            
+                    MainWindows.MedList = MedList;
+                    this.Close();
                 }
 
             }
@@ -40,15 +52,11 @@ namespace LekarList.Forms
                 MessageBox.Show($"Ошибка на форме 'Добавить'!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
-            if(AnatomComboBox.ToString()!=null)
-            {
-                CodeTextBox.Text = "A";
-            }
-            int index = MedList.Count();//пока для последнего элеммента в списке так
-            AnatomGroup anatom = new AnatomGroup(AnatomComboBox.Text,CodeTextBox.Text,DescriptionBox.Text,0,index);
-            MedList.Add(anatom);
-            MainWindows.MedList = MedList;
-            this.Close();
+            //if(AnatomComboBox.ToString()!=null)
+            //{
+            //    CodeTextBox.Text = "A";
+            //}
+           
         }
 
         /*---------Списки групп--------------*/
@@ -205,13 +213,23 @@ namespace LekarList.Forms
             /*Динамически меняем отображаемый код анатомической группы*/
             for (int i = 0; i < PHSG.Count; i++)
             {
-                if ((string)TherapComboBox.SelectedItem == PHSG[i])
+                if ((string)PharmaComboBox.SelectedItem == PHSG[i])
                 {
                     CodeTextBox.Text = Code_PHSG[i];
                 }
             }
         }
-
+        private void ChemComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            /*Динамически меняем отображаемый код анатомической группы*/
+            for (int i = 0; i < CHSG.Count; i++)
+            {
+                if ((string)ChemComboBox.SelectedItem == CHSG[i])
+                {
+                    CodeTextBox.Text = Code_CHSG[i];
+                }
+            }
+        }
 
    private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -219,17 +237,7 @@ namespace LekarList.Forms
 
         }
 
-        private void ChemComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /*Динамически меняем отображаемый код анатомической группы*/
-            for (int i = 0; i < CHSG.Count; i++)
-            {
-                if ((string)TherapComboBox.SelectedItem == CHSG[i])
-                {
-                    CodeTextBox.Text = Code_CHSG[i];
-                }
-            }
-        }
+
     }
 
      

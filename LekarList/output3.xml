@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<ArrayOfMedication xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Medication xsi:type="AnatomGroup">
+    <Code>A</Code>
+    <Level>0</Level>
+    <Index>0</Index>
+    <Child>2</Child>
+    <MedicName>Препараты, влияющие на пищеварительный тракт и обмен веществ</MedicName>
+    <Description>Раздел системы буквенно-цифровых кодов Анатомо-терапевтическо-химической классификации,разработанных Всемирной организацией здравоохранения для классификации лекарств и других медицинских продуктов</Description>
+  </Medication>
+  <Medication xsi:type="TherapGroup">
+    <Code>A01</Code>
+    <Level>1</Level>
+    <Index>1</Index>
+    <Child>1</Child>
+    <MedicName>Стоматологические препараты</MedicName>
+    <Description>Подгруппа А01 является частью группы препаратов A «Препараты, влияющие на пищеварительный тракт и обмен веществ» </Description>
+  </Medication>
+  <Medication xsi:type="PharmaGroup">
+    <Code>A01A</Code>
+    <Level>2</Level>
+    <Index>2</Index>
+    <Child>0</Child>
+    <MedicName>Препараты для профилактики кариеса</MedicName>
+    <Description>
+	A01AA01 Фторид натрия, 
+	A01AA02 Натрия монофторфосфат,
+	A01AA03 Олафлур,
+	A01AA04 Фторид олова,
+	A01AA30 Комбинации,
+	A01AA51 Комбинации фторида натрия</Description>
+  </Medication>
+  <Medication xsi:type="AnatomGroup">
+    <Code>B02</Code>
+    <Level>0</Level>
+    <Index>3</Index>
+    <Child>0</Child>
+    <MedicName>Препараты, влияющие на кроветворение и кровь</MedicName>
+    <Description>Препарат</Description>
+  </Medication>
+  <Medication xsi:type="TherapGroup">
+    <Code>B02</Code>
+    <Level>1</Level>
+    <Index>4</Index>
+    <Child>0</Child>
+    <MedicName>Гемостатические препараты</MedicName>
+    <Description>Препарат</Description>
+  </Medication>
+  <Medication xsi:type="PharmaGroup">
+    <Code>B02</Code>
+    <Level>2</Level>
+    <Index>4</Index>
+    <Child>0</Child>
+    <MedicName />
+    <Description>Препарат</Description>
+  </Medication>
+  <Medication xsi:type="ChemGroup">
+    <Code>B02</Code>
+    <Level>3</Level>
+    <Index>4</Index>
+    <Child>0</Child>
+    <MedicName />
+    <Description>Препарат</Description>
+  </Medication>
+</ArrayOfMedication>

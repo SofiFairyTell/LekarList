@@ -54,7 +54,17 @@ namespace LekarList
 
         //[Browsable(false)]
         //public new string Text { get; set; }
-
+        public bool MultiLine
+        {
+            get
+            {
+                return tbInput.Multiline;
+            }
+            set
+            {
+                tbInput.Multiline = value;
+            }
+        }
         public new string Text
         {
             get => tbInput.Text;

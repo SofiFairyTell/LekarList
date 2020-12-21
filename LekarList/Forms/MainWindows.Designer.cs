@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.SortButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +38,7 @@
             this.поискToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.показатьКнопкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CтатистикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -56,25 +56,12 @@
             this.DescriptColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.CтатистикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataDescriptionGrid)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // SortButton
-            // 
-            this.SortButton.Location = new System.Drawing.Point(955, 53);
-            this.SortButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.SortButton.Name = "SortButton";
-            this.SortButton.Size = new System.Drawing.Size(217, 57);
-            this.SortButton.TabIndex = 4;
-            this.SortButton.Text = "Сортировка";
-            this.SortButton.UseVisualStyleBackColor = true;
-            this.SortButton.Visible = false;
-            this.SortButton.Click += new System.EventHandler(this.SortButton_Click);
             // 
             // menuStrip1
             // 
@@ -100,7 +87,7 @@
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
             this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(68, 26);
             this.настройкиToolStripMenuItem.Text = "Файл";
-            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.НастройкиToolStripMenuItem_Click);
+
             // 
             // xMLToolStripMenuItem
             // 
@@ -164,6 +151,14 @@
             this.показатьКнопкиToolStripMenuItem.Click += new System.EventHandler(this.ПоказатьКнопкиToolStripMenuItem_Click);
             this.показатьКнопкиToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ПоказатьКнопкиToolStripMenuItem_MouseDown);
             // 
+            // CтатистикаToolStripMenuItem
+            // 
+            this.CтатистикаToolStripMenuItem.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.CтатистикаToolStripMenuItem.Name = "CтатистикаToolStripMenuItem";
+            this.CтатистикаToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.CтатистикаToolStripMenuItem.Text = "Статистика";
+            this.CтатистикаToolStripMenuItem.Click += new System.EventHandler(this.СтатистикаToolStripMenuItem_Click);
+            // 
             // выходToolStripMenuItem1
             // 
             this.выходToolStripMenuItem1.Font = new System.Drawing.Font("Times New Roman", 12F);
@@ -189,7 +184,6 @@
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
             this.toolTip1.SetToolTip(this.statusStrip1, "Текущие дата и время");
-            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // statusStrip2
             // 
@@ -402,14 +396,6 @@
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
-            // CтатистикаToolStripMenuItem
-            // 
-            this.CтатистикаToolStripMenuItem.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.CтатистикаToolStripMenuItem.Name = "CтатистикаToolStripMenuItem";
-            this.CтатистикаToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
-            this.CтатистикаToolStripMenuItem.Text = "Статистика";
-            this.CтатистикаToolStripMenuItem.Click += new System.EventHandler(this.СтатистикаToolStripMenuItem_Click);
-            // 
             // MainWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -422,7 +408,6 @@
             this.Controls.Add(this.EditItem);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.SortButton);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -448,7 +433,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button SortButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;

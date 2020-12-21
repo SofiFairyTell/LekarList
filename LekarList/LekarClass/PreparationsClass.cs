@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LekarList.LekarClass
 {
-    public class PreparationsClass:TherapGroup
+    public class PreparationsClass: TherapGroup
     {
         /*Здесь перечислены группы препаратов входящих в терапевтическую группу*/
 

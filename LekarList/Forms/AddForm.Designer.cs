@@ -193,6 +193,7 @@
             this.DescriptionBox.FontTextPreview = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
             this.DescriptionBox.ForeColor = System.Drawing.Color.Black;
             this.DescriptionBox.Location = new System.Drawing.Point(21, 298);
+            this.DescriptionBox.MultiLine = false;
             this.DescriptionBox.Name = "DescriptionBox";
             this.DescriptionBox.Size = new System.Drawing.Size(418, 171);
             this.DescriptionBox.TabIndex = 57;
@@ -210,6 +211,7 @@
             this.CodeTextBox.FontTextPreview = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
             this.CodeTextBox.ForeColor = System.Drawing.Color.Black;
             this.CodeTextBox.Location = new System.Drawing.Point(21, 238);
+            this.CodeTextBox.MultiLine = false;
             this.CodeTextBox.Name = "CodeTextBox";
             this.CodeTextBox.Size = new System.Drawing.Size(418, 54);
             this.CodeTextBox.TabIndex = 58;

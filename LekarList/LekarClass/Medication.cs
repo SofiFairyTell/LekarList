@@ -76,5 +76,7 @@ namespace LekarList.LekarClass
             else
                 return 0;
         }
+
+
     }
 }
