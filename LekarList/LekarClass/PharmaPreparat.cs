@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LekarList.LekarClass
 {
-    public class PharmaPreparat:PharmaGroup
+    public class PharmaPreparat : PharmaGroup
     {
         /*Стоматологические препараты*/
         public static List<string> StomatPreparat = new List<string>()
@@ -17,11 +17,22 @@ namespace LekarList.LekarClass
             "Прочие препараты для лечения заболеваний полости рта",
         };
         /*Противорвотные препараты*/
-        public static List<string> AntiemeticPreparat= new List<string>()
+        public static List<string> AntiemeticPreparat = new List<string>()
         {
             "Блокаторы серотониновых 5-HT3-рецепторов",
             "Другие противорвотные препараты"
 
+        };
+        /*Антикоагулянты*/
+        public static List<string> AntiCoagulasPreparat = new List<string>()
+        {
+            "Антагонисты витамина К",
+            "Гепарин и его производные",
+            "Ингибиторы агрегации тромбоцитов (исключая гепарин)",
+            "Ферментные препараты",
+            "Прямые ингибиторы тромбина",
+            "Прямые ингибиторы фактора Xa",
+            "Прочие антикоагулянты"
         };
         public PharmaPreparat()
         {
@@ -36,7 +47,8 @@ namespace LekarList.LekarClass
                     return StomatPreparat;
                 case "Противорвотные препараты ":
                     return AntiemeticPreparat;
-
+                case "Антикоагулянты":
+                    return AntiCoagulasPreparat;
                 default: return null;
             }
         }

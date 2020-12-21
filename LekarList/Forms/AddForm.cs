@@ -85,15 +85,6 @@ namespace LekarList.Forms
                     THSG.Clear();
                     TherapComboBox.Items.Clear();
                     THSG = preparations.Return("Препараты, влияющие на пищеварительный тракт и обмен веществ");
-                    //THSG.AddRange(new string[]
-                    //{
-                    //    "Стоматологические препараты",
-                    //    "Препараты для лечения заболеваний, связанных с нарушением кислотности",
-                    //    "Препараты для лечения функциональных расстройств ЖКТ",
-                    //    "Противорвотные препараты",
-                    //    "Препараты для лечения заболеваний печени и желчевыводящих путей"
-                    //});
-
                     Code_THSG.Clear();
                     Code_THSG.AddRange(new string[] { "A01", "A02", "A03", "A04", "A05" });
                         foreach (var str in THSG)
@@ -104,17 +95,7 @@ namespace LekarList.Forms
                 case "Препараты, влияющие на кроветворение и кровь":
                     THSG.Clear();
                     TherapComboBox.Items.Clear();
-                    THSG.Clear();
-                    TherapComboBox.Items.Clear();
                     THSG = preparations.Return("Препараты, влияющие на кроветворение и кровь");
-                    //THSG.AddRange(new string[]
-                    //{
-                    //    "Антикоагулянты",
-                    //    "Гемостатические препараты",
-                    //    "Антианемические препараты",
-                    //    "Плазмозамещающие и перфузионные растворы",
-                    //    "Прочие гематологические препараты"
-                    //});
                     foreach (var str in THSG)
                     {
                         TherapComboBox.Items.Add(str);
@@ -130,7 +111,6 @@ namespace LekarList.Forms
                     THSG.Clear();
                     TherapComboBox.Items.Clear();
                     THSG = preparations.Return("Препараты для лечения заболеваний сердечно-сосудистой системы");
-
                     Code_THSG.Clear();
                     Code_THSG.AddRange(new string[] { "C01", "C02", "C03", "C04", "C05" });
                     foreach (var str in THSG)
@@ -153,18 +133,13 @@ namespace LekarList.Forms
             }
         }
         private void TherapComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {     
+        {
+            PharmaPreparat pharma = new PharmaPreparat();
             switch ((string)TherapComboBox.SelectedItem)
             {
                case "Стоматологические препараты":
                     PharmaComboBox.Items.Clear();
-                    PHSG.AddRange(new string[]
-                    {
-                        "Препараты для профилактики кариеса",
-                        "Противомикробные препараты для местного лечения заболеваний",
-                        "Глюкокортикостероиды для местного лечения заболеваний полости рта",
-                        "Прочие препараты для лечения заболеваний полости рта ",
-                    });
+                    PHSG = pharma.Return("Стоматологические препараты");
                     foreach (var str in PHSG)
                     {
                         PharmaComboBox.Items.Add(str);
@@ -174,16 +149,7 @@ namespace LekarList.Forms
                    break;
                 case "Антикоагулянты":
                     PharmaComboBox.Items.Clear();
-                    PHSG.AddRange(new string[]
-                    {
-                        "Антагонисты витамина К",
-                        "Гепарин и его производные",
-                        "Ингибиторы агрегации тромбоцитов (исключая гепарин)",
-                        "Ферментные препараты",
-                        "Прямые ингибиторы тромбина",
-                        "Прямые ингибиторы фактора Xa",
-                        "Прочие антикоагулянты"
-                    });
+                    PHSG = pharma.Return("Антикоагулянты");
                     foreach (var str in PHSG)
                     {
                         PharmaComboBox.Items.Add(str);
@@ -209,39 +175,22 @@ namespace LekarList.Forms
 
         private void PharmaComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ChemClass chem = new ChemClass();
             switch ((string)PharmaComboBox.SelectedItem)
             {
                 case "Препараты для профилактики кариеса":
                     ChemComboBox.Items.Clear();
-                    CHSG.AddRange(new string[]
-                    {
-                        "Фторид натрия",
-                        "Натрия монофторфосфат",
-                        "Олафур",
-                        "Фторид олова",
-                        "Комбинации",
-                        "Комбинации фторида натрия"                   
-                    });
+                    CHSG = chem.Return("Препараты для профилактики кариеса");
                     foreach (var str in CHSG)
                     {
-                        PharmaComboBox.Items.Add(str);
+                        ChemComboBox.Items.Add(str);
                     }
                     Code_CHSG.Clear();
                     Code_CHSG.AddRange(new string[] { "A01AA01", "A01AA02", "A01AA03", "A01AA04", "A01AA30", "A01AA51" });
                     break;
                 case "Противомикробные препараты для местного лечения заболеваний":
                     ChemComboBox.Items.Clear();
-                    CHSG.AddRange(new string[]
-                    {
-                        "Пероксид водорода",
-                         "Хлоргексидин",
-                         "Амфотерицин",
-                         "Полиноксилин",
-                         "Домифена бромид",
-                         "Оксихинолин",
-                        "Неомицин",
-                        "Миконазол"
-                    });
+                    CHSG = chem.Return("Противомикробные препараты для местного лечения заболеваний");
                     foreach (var str in CHSG)
                     {
                         PharmaComboBox.Items.Add(str);

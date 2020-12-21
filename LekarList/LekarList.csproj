@@ -86,6 +86,7 @@
     </Compile>
     <Compile Include="LekarClass\AlimentaryClass.cs" />
     <Compile Include="LekarClass\AnatomGroup.cs" />
+    <Compile Include="LekarClass\ChemClass.cs" />
     <Compile Include="LekarClass\ChemGroup.cs" />
     <Compile Include="LekarClass\Medication.cs" />
     <Compile Include="LekarClass\PharmaGroup.cs" />
