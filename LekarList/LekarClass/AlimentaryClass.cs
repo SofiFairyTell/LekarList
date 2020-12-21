@@ -31,7 +31,7 @@ namespace LekarList.LekarClass
          /*Просто инициализатор класса*/
         }
         /*Вернем хранящийся список в классе */
-        public List<string> Return()
+        public override List<string> Return()
         {
            return Chapters;             
         }

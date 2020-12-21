@@ -17,6 +17,8 @@ namespace LekarList.LekarClass
 
         public string Code; //код, который состоит из номеров групп верхеного уровня
 
+        List<string> Chapters = new List<string>(); //для объектов или содержимого класса
+
         /*Поля для формирования дерева*/
         [XmlElement("Level")]
         public int Level; 
@@ -77,6 +79,14 @@ namespace LekarList.LekarClass
                 return 0;
         }
 
+        public virtual List<string> Return()
+        {
+            return Chapters;
+        }
+        public virtual List<string> Return(string str)
+        {
+            return Chapters;
+        }
 
     }
 }

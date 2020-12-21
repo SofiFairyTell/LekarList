@@ -30,7 +30,7 @@ namespace LekarList.LekarClass
             "Неомицин",
             "Миконазол"
         };
-        public List<string> Return(string Preparat)
+        public override List<string> Return(string Preparat)
         {
             switch (Preparat)
             {

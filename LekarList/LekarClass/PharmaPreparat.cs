@@ -39,7 +39,7 @@ namespace LekarList.LekarClass
             /*Просто инициализатор класса*/
         }
         /*Вернем хранящийся список в классе */
-        public List<string> Return(string Preparat)
+        public override List<string> Return(string Preparat)
         {
             switch (Preparat)
             {
@@ -52,9 +52,9 @@ namespace LekarList.LekarClass
                 default: return null;
             }
         }
-        public List<string> Return()
-        {
-            return null;
-        }
+        //public List<string> Return()
+        //{
+        //    return null;
+        //}
     }
 }

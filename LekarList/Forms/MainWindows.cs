@@ -288,7 +288,7 @@ namespace LekarList
 
             DataDescriptionGrid.Columns.Add("GroupNameColumn", "");
             DataDescriptionGrid.Columns.Add("DescripColumn", "");
-            DataDescriptionGrid.Rows.Add(5);
+            DataDescriptionGrid.Rows.Add(3);
             DataDescriptionGrid.Rows[0].Cells[0].Value = "Код: ";
             DataDescriptionGrid.Rows[1].Cells[0].Value = "Группа: ";
             DataDescriptionGrid.Rows[2].Cells[0].Value = "Описание: ";
@@ -515,50 +515,50 @@ namespace LekarList
 
         private void treeView1_DragEnter(object sender, DragEventArgs e)
         {
-            //if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
-            //{
-            //    bool allowFilesDrop = true;
-            //    foreach (string f in (string[])e.Data.GetData(DataFormats.FileDrop, true))
-            //        allowFilesDrop = ((new System.IO.FileInfo(f)).Extension == ".xml");
-
-            //    if (allowFilesDrop)
-            //        e.Effect = DragDropEffects.All;
-            //}
-            /*
-            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move )
-            {             
-                MessageBox.Show(e.Data.GetData(DataFormats.Text).ToString());
-            }*/
-            //if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            //{
-
-            //}
             if (e.Data.GetDataPresent(DataFormats.FileDrop) && ((e.AllowedEffect & DragDropEffects.Move) == DragDropEffects.Move))
             {
-                MessageBox.Show(e.Data.GetData(DataFormats.Text).ToString());
+                e.Effect = DragDropEffects.Move;
             }
-
         }
 
         private void treeView1_DragDrop(object sender, DragEventArgs e)
         {
-             foreach (string fileName in (string[])e.Data.GetData(DataFormats.FileDrop))
+            MessageBox.Show("Файл загружен");
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move)
+              {
+                string[] obj = (string[])e.Data.GetData(DataFormats.FileDrop); //выясним сколько файлов
+                if (obj.Length >1)
                 {
-                MedList.Clear();
-                XmlDocument doc = new XmlDocument();
-                doc.Load(fileName);
-                foreach (XmlNode node in doc.DocumentElement)
-                {
-                    string AnatomicalMainGroup = node.Attributes[0].Value;
-                    string MedicName = node["MedicName"].InnerText;
-                    string Code = node["Code"].InnerText;
-                    string Description = " ";
-                    int level = int.Parse(node["Level"].InnerText);
-                    int index = int.Parse(node["Index"].InnerText);
-                    MedList.Add(new AnatomGroup(MedicName, Code, Description, level, index));
+                    MessageBox.Show($"Слишком мгого файлов\n", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                ParentNodesMed();
+                else
+                {
+                    if(Path.GetExtension(obj[0]) != ".xml")
+                    {
+                        MessageBox.Show($"Не то расширение файла\nНадо .xml", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MedList.Clear();
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(obj[0]);
+                        foreach (XmlNode node in doc.DocumentElement)
+                        {
+                            string AnatomicalMainGroup = node.Attributes[0].Value;
+                            string MedicName = node["MedicName"].InnerText;
+                            string Code = node["Code"].InnerText;
+                            string Description = " ";
+                            int level = int.Parse(node["Level"].InnerText);
+                            int index = int.Parse(node["Index"].InnerText);
+                            MedList.Add(new AnatomGroup(MedicName, Code, Description, level, index));
+                        }
+                        ParentNodesMed();
+                    }
+
+                }
+                          
             }
+
         }
 
 

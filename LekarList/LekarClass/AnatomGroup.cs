@@ -19,6 +19,8 @@ namespace LekarList.LekarClass
             Index = 0;
         }
 
+   
+
         public AnatomGroup(string MedicName, string Code, string Description, int Level, int Index)
         {
             this.MedicName = MedicName;
@@ -50,6 +52,5 @@ namespace LekarList.LekarClass
             return n;
         }
 
-       
     }
 }
