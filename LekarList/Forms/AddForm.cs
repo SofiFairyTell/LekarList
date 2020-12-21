@@ -130,14 +130,6 @@ namespace LekarList.Forms
                     THSG.Clear();
                     TherapComboBox.Items.Clear();
                     THSG = preparations.Return("Препараты для лечения заболеваний сердечно-сосудистой системы");
-                    //THSG.AddRange(new string[]
-                    //{
-                    //    " ",
-                    //    " ",
-                    //    " ",
-                    //    " ",
-                    //    " "
-                    //});
 
                     Code_THSG.Clear();
                     Code_THSG.AddRange(new string[] { "C01", "C02", "C03", "C04", "C05" });

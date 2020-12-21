@@ -8,8 +8,19 @@ namespace LekarList.LekarClass
 {
     public class PharmaPreparat:PharmaGroup
     {
+        /*Стоматологические препараты*/
         public static List<string> StomatPreparat = new List<string>()
         {
+            "Препараты для профилактики кариеса",
+            "Противомикробные препараты для местного лечения заболеваний",
+            "Глюкокортикостероиды для местного лечения заболеваний полости рта",
+            "Прочие препараты для лечения заболеваний полости рта",
+        };
+        /*Противорвотные препараты*/
+        public static List<string> AntiemeticPreparat= new List<string>()
+        {
+            "Блокаторы серотониновых 5-HT3-рецепторов",
+            "Другие противорвотные препараты"
 
         };
         public PharmaPreparat()
@@ -21,12 +32,11 @@ namespace LekarList.LekarClass
         {
             switch (Preparat)
             {
-                case " ":
+                case "Стоматологические препараты":
                     return StomatPreparat;
-                case " ":
-                    //return BloodPrepat;
-                case " ":
-                    //return HeartPrepat;
+                case "Противорвотные препараты ":
+                    return AntiemeticPreparat;
+
                 default: return null;
             }
         }
