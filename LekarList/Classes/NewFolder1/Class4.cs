@@ -14,8 +14,7 @@ namespace LekarList.Classes.NewFolder1
       
         public class TreeGridView : DataGridView
         {
-            private int _indentWidth;
-            private TreeGridNode _root;
+             private TreeGridNode _root;
             private TreeGridColumn _expandableColumn;
             private bool _disposing = false;
             internal ImageList _imageList;

@@ -41,7 +41,6 @@ namespace LekarList
         //Переменные
         ToolStripLabel timeStartLabel, dateLabel, timeLabel;
         private static ulong timeSec = 0;
-        string CurrentFile = ""; //для определения имени текущего файла
         public static string searchline;//this string may be init after entering text in searchForm
         ToolStripMenuItem UpdateMenuItem = new ToolStripMenuItem("Обновить");
         
@@ -70,14 +69,14 @@ namespace LekarList
             MedList.Add(anatom1);
             MedList.Add(therap1);
             MedList.Add(pharma1);
-            MedList.Add(anatom2);
-            MedList.Add(therap2);
+          //  MedList.Add(anatom2);
+            //MedList.Add(therap2);
 
-            AnatomGroups.Add(anatom1);
-            AnatomGroups.Add(anatom2);
+            //AnatomGroups.Add(anatom1);
+           //AnatomGroups.Add(anatom2);
             TherapGroups.Add(therap1);
-            TherapGroups.Add(therap2);
-            PharmaGroups.Add(pharma1);
+            //TherapGroups.Add(therap2);
+            //PharmaGroups.Add(pharma1);
 
             contextMenuStrip1.Items.AddRange(new[] { UpdateMenuItem});
             treeView1.ContextMenuStrip = contextMenuStrip1;
@@ -280,23 +279,20 @@ namespace LekarList
         private void DataGridInit()
         {
 
-           DataDescriptionGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            DataDescriptionGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             DataGridViewCellStyle columnstyle = new DataGridViewCellStyle()
             {
                 BackColor = Color.Chocolate,
                 Font = new Font("Arial", 11, FontStyle.Regular),
             };
-            
-            //columnstyle.BackColor = Color.Chocolate;
-            //columnstyle.Font = new Font("Arial", 11, FontStyle.Regular);
+
             DataDescriptionGrid.Columns.Add("GroupNameColumn", "");
             DataDescriptionGrid.Columns.Add("DescripColumn", "");
             DataDescriptionGrid.Rows.Add(5);
             DataDescriptionGrid.Rows[0].Cells[0].Value = "Код: ";
             DataDescriptionGrid.Rows[1].Cells[0].Value = "Группа: ";
             DataDescriptionGrid.Rows[2].Cells[0].Value = "Описание: ";
-           // DataDescriptionGrid.Rows[3].Cells[0].Value = "Описание: ";
-            //DataDescriptionGrid.Rows[4].Cells[0].Value = "Препараты группы";
+
             DataDescriptionGrid.AllowUserToAddRows = false;
             DataDescriptionGrid.Columns[0].ReadOnly = true;
         }
@@ -337,59 +333,41 @@ namespace LekarList
             {
                 MedList = MedList,
             };
-            //NewForm.MedList = MedList;
             NewForm.Show();
         }
-
-        private void SortButton_Click(object sender, EventArgs e)
-        {
-            LBdata.Sorted = true;
-        }
-
-        private void ДобавитьДанныеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Forms.AddForm AddForm = new Forms.AddForm();
-            Forms.AddForm NewForm = AddForm;
-            NewForm.MedList = MedList;
-            NewForm.Show();
-        }
-
 
         private void EditButton_Click(object sender, EventArgs e)
         {
            try
-            {
-            if (DataDescriptionGrid.Rows[1].Cells[1].Value.ToString() == " ")
+           {
+                if (DataDescriptionGrid.Rows[1].Cells[1].Value.ToString() == " ")
                 {
 
                     MessageBox.Show(ErrorMess);
                 }
                 else
                 {
-                    var index = MedList.FindIndex(x => x.Index.Equals(DataDescriptionGrid.Rows[1].Cells[1].Value));
-                    MedList[index].MedicName = DataDescriptionGrid.Rows[0].Cells[1].Value.ToString();
+                    var index = MedList.FindIndex(x => x.Code.Equals(DataDescriptionGrid.Rows[0].Cells[1].Value));
+                    MedList[index].Description = DataDescriptionGrid.Rows[2].Cells[1].Value.ToString();
                     ParentNodesMed();
                 }
-            }
+           }
             catch (Exception ex)
-            {
+           {
                 MessageBox.Show($"{ErrorMess3}!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
+           }
         }
-        /*Закрыть открытый для редактирования узел*/
+
+        /*--------------------Закрыть открытый для редактирования узел--------------------*/
         private void MinimButton_Click(object sender, EventArgs e)
         {
             MinimizeItem.Visible = false;
             EditItem.Visible = false;
             AddItem.Visible = false;
-            SortButton.Visible = false;
             DelItem.Visible = false;
-            DataDescriptionGrid.Rows.Clear();
-            //AddButton.BringToFront();                  
+            DataDescriptionGrid.Rows.Clear();              
         }
-
+        /*-----------------------------Удаление узла------------------------------------*/
         private void DelButton_Click(object sender, EventArgs e)
         {
             try
@@ -409,7 +387,6 @@ namespace LekarList
             {
                 MessageBox.Show(ErrorMess2);
             }
-           
         }
 
         #endregion     
@@ -440,51 +417,49 @@ namespace LekarList
                 SaveFile();
             if (e.Control && e.KeyCode == Keys.F)
                 StartSearh();
+            if (e.KeyCode == Keys.F1)
+                ОПрограммеToolStripMenuItem_Click(sender, e);
         }
-        private void tabControl1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //if (e.Control && e.KeyCode == Keys.S)
-            //    SaveFile();
-            //if (e.Control && e.KeyCode == Keys.F)
-            //    StartSearh();
-        }
+
         /*Сохранение в виде XML файла*/
         private void SaveFile()
         {
             try
-    {
-       List<Type> types = new List<Type>();
-       foreach(Medication med in MedList)
-        {
-            Type type = med.GetType();
-            if(!types.Contains(type))
             {
-                types.Add(type);
-            }
-        }
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Medication>),types.ToArray());
-                using (FileStream file = new FileStream("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\output.xml", FileMode.Create))
-                { 
-                  file.SetLength(0);
-                   file.Flush();
-                    serializer.Serialize(file, MedList);
+                List<Type> types = new List<Type>();
+                foreach(Medication med in MedList)
+                {
+                    Type type = med.GetType();
+                    if(!types.Contains(type))
+                    {
+                        types.Add(type);
+                    }
                 }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"Что-то пошло не так!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Medication>),types.ToArray());
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.DefaultExt = "*.xml";
+                saveFileDialog1.Filter = "XML files|*.xml";
+                if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK && saveFileDialog1.FileName.Length > 0)
+                {
+                    using (FileStream file = new FileStream(saveFileDialog1.FileName, FileMode.Create))
+                    { 
+                      file.SetLength(0);
+                      file.Flush(); //очищает все буферы данного потока и вызывает запись данных буферов в базовое устройство.
+                      serializer.Serialize(file, MedList);
+                    }
+                    MessageBox.Show($"Ваш файл был сохранен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Что-то пошло не так!\nДополнительные сведения:\n{ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #region Меню
         private void СохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFile();
-        }
-
-        private void НастройкиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void ОбновитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -495,25 +470,6 @@ namespace LekarList
         private void ОПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Программа создана в рамках выполнения курсового проекта\n\nИсходный текст программы в актуальном виде доступен на GitHub");
-        }
-
-        private void ПоказатьКнопкиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //AddButton.Visible = true;
-            //EditButton.Visible = true;
-            //DelButton.Visible = true;
-
-            
-            //AddItem.Visible = true;
-            //EditItem.Visible = true;
-            //DelItem.Visible = true;
-            //MinimizeItem.Visible = true;
-
-        }
-
-        private void EditItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void ПоказатьКнопкиToolStripMenuItem_MouseDown(object sender, MouseEventArgs e)
@@ -534,16 +490,6 @@ namespace LekarList
             }
         }
 
-        private void EditItem_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DelItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void СтатистикаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int AnatGroup, ThGroup, PhGroup, ChGroup;
@@ -562,9 +508,58 @@ namespace LekarList
         }
 
 
+        private void добавитьЭлементToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddButton_Click_1(sender, e);
+        }
 
+        private void treeView1_DragEnter(object sender, DragEventArgs e)
+        {
+            //if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
+            //{
+            //    bool allowFilesDrop = true;
+            //    foreach (string f in (string[])e.Data.GetData(DataFormats.FileDrop, true))
+            //        allowFilesDrop = ((new System.IO.FileInfo(f)).Extension == ".xml");
 
+            //    if (allowFilesDrop)
+            //        e.Effect = DragDropEffects.All;
+            //}
+            /*
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move )
+            {             
+                MessageBox.Show(e.Data.GetData(DataFormats.Text).ToString());
+            }*/
+            //if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            //{
 
+            //}
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) && ((e.AllowedEffect & DragDropEffects.Move) == DragDropEffects.Move))
+            {
+                MessageBox.Show(e.Data.GetData(DataFormats.Text).ToString());
+            }
+
+        }
+
+        private void treeView1_DragDrop(object sender, DragEventArgs e)
+        {
+             foreach (string fileName in (string[])e.Data.GetData(DataFormats.FileDrop))
+                {
+                MedList.Clear();
+                XmlDocument doc = new XmlDocument();
+                doc.Load(fileName);
+                foreach (XmlNode node in doc.DocumentElement)
+                {
+                    string AnatomicalMainGroup = node.Attributes[0].Value;
+                    string MedicName = node["MedicName"].InnerText;
+                    string Code = node["Code"].InnerText;
+                    string Description = " ";
+                    int level = int.Parse(node["Level"].InnerText);
+                    int index = int.Parse(node["Index"].InnerText);
+                    MedList.Add(new AnatomGroup(MedicName, Code, Description, level, index));
+                }
+                ParentNodesMed();
+            }
+        }
 
 
         //End work with current Form
@@ -576,18 +571,26 @@ namespace LekarList
 
         private void XMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MedList.Clear();
+            var filePath = string.Empty;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = "*.xml";
+            openFileDialog.Filter = "XML files|*.xml";
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                filePath = openFileDialog.FileName;
+            }
+                MedList.Clear();
             XmlDocument doc = new XmlDocument();
-            doc.Load("C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml");
-            CurrentFile = "C:\\Users\\Kurbatova\\source\\repos\\LekarList\\LekarList\\lekar.xml";
+            doc.Load(filePath);
             foreach (XmlNode node in doc.DocumentElement)
             {
                 string AnatomicalMainGroup = node.Attributes[0].Value;
-                string Code = " ";
+                string MedicName = node["MedicName"].InnerText;
+                string Code = node["Code"].InnerText;
                 string Description = " ";
                 int level = int.Parse(node["Level"].InnerText);
                 int index = int.Parse(node["Index"].InnerText);
-                MedList.Add(new AnatomGroup(AnatomicalMainGroup, Code, Description, level, index));
+                MedList.Add(new AnatomGroup(MedicName, Code, Description, level, index));
             }
             ParentNodesMed();
         }

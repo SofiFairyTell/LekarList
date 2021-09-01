@@ -72,11 +72,11 @@
             this.buttonNew1.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonNew1.Font = new System.Drawing.Font("Times New Roman", 14.25F);
             this.buttonNew1.ForeColor = System.Drawing.Color.White;
-            this.buttonNew1.Location = new System.Drawing.Point(214, 98);
+            this.buttonNew1.Location = new System.Drawing.Point(12, 97);
             this.buttonNew1.Name = "buttonNew1";
             this.buttonNew1.RippleColor = System.Drawing.Color.Black;
             this.buttonNew1.RoundingEnable = false;
-            this.buttonNew1.Size = new System.Drawing.Size(217, 46);
+            this.buttonNew1.Size = new System.Drawing.Size(671, 47);
             this.buttonNew1.TabIndex = 3;
             this.buttonNew1.Text = "Выполнить поиск";
             this.buttonNew1.TextHover = null;

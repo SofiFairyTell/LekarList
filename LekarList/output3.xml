@@ -4,7 +4,7 @@
     <Code>A</Code>
     <Level>0</Level>
     <Index>0</Index>
-    <Child>1</Child>
+    <Child>2</Child>
     <MedicName>Препараты, влияющие на пищеварительный тракт и обмен веществ</MedicName>
     <Description>Раздел системы буквенно-цифровых кодов Анатомо-терапевтическо-химической классификации,разработанных Всемирной организацией здравоохранения для классификации лекарств и других медицинских продуктов</Description>
   </Medication>
@@ -31,19 +31,35 @@
 	A01AA51 Комбинации фторида натрия</Description>
   </Medication>
   <Medication xsi:type="AnatomGroup">
-    <Code>B</Code>
+    <Code>B02</Code>
     <Level>0</Level>
     <Index>3</Index>
     <Child>0</Child>
     <MedicName>Препараты, влияющие на кроветворение и кровь</MedicName>
-    <Description> </Description>
+    <Description>Препарат</Description>
   </Medication>
   <Medication xsi:type="TherapGroup">
-    <Code>B01</Code>
+    <Code>B02</Code>
     <Level>1</Level>
     <Index>4</Index>
     <Child>0</Child>
-    <MedicName>Антикоагулянты</MedicName>
-    <Description> </Description>
+    <MedicName>Гемостатические препараты</MedicName>
+    <Description>Препарат</Description>
+  </Medication>
+  <Medication xsi:type="PharmaGroup">
+    <Code>B02</Code>
+    <Level>2</Level>
+    <Index>4</Index>
+    <Child>0</Child>
+    <MedicName />
+    <Description>Препарат</Description>
+  </Medication>
+  <Medication xsi:type="ChemGroup">
+    <Code>B02</Code>
+    <Level>3</Level>
+    <Index>4</Index>
+    <Child>0</Child>
+    <MedicName />
+    <Description>Препарат</Description>
   </Medication>
 </ArrayOfMedication>
