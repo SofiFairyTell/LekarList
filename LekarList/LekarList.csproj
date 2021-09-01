@@ -141,12 +141,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TreeGridview\Simple Test App\Simple Test App.csproj">
-      <Project>{136FDB49-A279-45CE-B859-6131C4616A11}</Project>
-      <Name>Simple Test App</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="lekar.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
